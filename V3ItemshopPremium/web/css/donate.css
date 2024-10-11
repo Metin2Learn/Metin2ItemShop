@@ -1,0 +1,4787 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent
+}
+
+body {
+    line-height: normal
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+blockquote,
+q {
+    quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none
+}
+
+:focus {
+    outline: 0
+}
+
+ins {
+    text-decoration: none
+}
+
+del {
+    text-decoration: line-through
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+body {
+    background-color: #000;
+    font-size: 12px;
+    color: #f2e69f;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+body.loading #container {
+    background-image: url("../images/donate/loading.gif");
+    background-repeat: no-repeat;
+    background-position: center 250px
+}
+
+a,
+a:link,
+a:active,
+a:visited {
+    color: #f2e69f;
+    text-decoration: none
+}
+
+.hidden {
+    display: none !important
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #000;
+    display: none;
+    -moz-opacity: .2;
+    opacity: .2;
+    filter: alpha(opacity=20)
+}
+
+#container {
+    position: relative;
+    margin: 5px auto 0 auto;
+    min-height: 585px;
+    width: 760px
+}
+
+#container.banner {
+    min-height: 605px
+}
+
+#container #mainPage {
+    display: none
+}
+
+#categories,
+#payMethods,
+#checkout,
+#orderPopup,
+#item {
+    margin: 5px 0 0 22px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#categories:after,
+#payMethods:after,
+#checkout:after,
+#orderPopup:after,
+#item:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#categories .step,
+#payMethods .step,
+#checkout .step,
+#orderPopup .step,
+#item .step {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -22px;
+    width: 22px;
+    font-weight: 700;
+    font-size: 19px;
+    text-align: center;
+    padding-top: 5px;
+    background-position: left 0;
+    color: #f2e69f;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623);
+    text-shadow: 1px 1px 1px #000
+}
+
+#categories .category.fadeout .information,
+#categories .category.locked .information,
+#categories .method.fadeout .information,
+#categories .method.locked .information,
+#categories .specialTariff.fadeout .information,
+#categories .specialTariff.locked .information,
+#payMethods .category.fadeout .information,
+#payMethods .category.locked .information,
+#payMethods .method.fadeout .information,
+#payMethods .method.locked .information,
+#payMethods .specialTariff.fadeout .information,
+#payMethods .specialTariff.locked .information {
+    -moz-opacity: .4;
+    opacity: .4;
+    filter: alpha(opacity=40)
+}
+
+#categories .category.fadeout .disabled,
+#categories .category.locked .disabled,
+#categories .method.fadeout .disabled,
+#categories .method.locked .disabled,
+#categories .specialTariff.fadeout .disabled,
+#categories .specialTariff.locked .disabled,
+#payMethods .category.fadeout .disabled,
+#payMethods .category.locked .disabled,
+#payMethods .method.fadeout .disabled,
+#payMethods .method.locked .disabled,
+#payMethods .specialTariff.fadeout .disabled,
+#payMethods .specialTariff.locked .disabled {
+    display: block
+}
+
+#categories .category.fadeout.specialCategory .amount,
+#categories .category.fadeout.specialCategory .itemName,
+#categories .category.locked.specialCategory .amount,
+#categories .category.locked.specialCategory .itemName,
+#categories .method.fadeout.specialCategory .amount,
+#categories .method.fadeout.specialCategory .itemName,
+#categories .method.locked.specialCategory .amount,
+#categories .method.locked.specialCategory .itemName,
+#categories .specialTariff.fadeout.specialCategory .amount,
+#categories .specialTariff.fadeout.specialCategory .itemName,
+#categories .specialTariff.locked.specialCategory .amount,
+#categories .specialTariff.locked.specialCategory .itemName,
+#payMethods .category.fadeout.specialCategory .amount,
+#payMethods .category.fadeout.specialCategory .itemName,
+#payMethods .category.locked.specialCategory .amount,
+#payMethods .category.locked.specialCategory .itemName,
+#payMethods .method.fadeout.specialCategory .amount,
+#payMethods .method.fadeout.specialCategory .itemName,
+#payMethods .method.locked.specialCategory .amount,
+#payMethods .method.locked.specialCategory .itemName,
+#payMethods .specialTariff.fadeout.specialCategory .amount,
+#payMethods .specialTariff.fadeout.specialCategory .itemName,
+#payMethods .specialTariff.locked.specialCategory .amount,
+#payMethods .specialTariff.locked.specialCategory .itemName {
+    display: none
+}
+
+#categories .category.fadeout.hover .information,
+#categories .category.locked.hover .information,
+#categories .method.fadeout.hover .information,
+#categories .method.locked.hover .information,
+#categories .specialTariff.fadeout.hover .information,
+#categories .specialTariff.locked.hover .information,
+#payMethods .category.fadeout.hover .information,
+#payMethods .category.locked.hover .information,
+#payMethods .method.fadeout.hover .information,
+#payMethods .method.locked.hover .information,
+#payMethods .specialTariff.fadeout.hover .information,
+#payMethods .specialTariff.locked.hover .information {
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+#categories .category.fadeout.hover .information .amount,
+#categories .category.fadeout.hover .information .itemName,
+#categories .category.locked.hover .information .amount,
+#categories .category.locked.hover .information .itemName,
+#categories .method.fadeout.hover .information .amount,
+#categories .method.fadeout.hover .information .itemName,
+#categories .method.locked.hover .information .amount,
+#categories .method.locked.hover .information .itemName,
+#categories .specialTariff.fadeout.hover .information .amount,
+#categories .specialTariff.fadeout.hover .information .itemName,
+#categories .specialTariff.locked.hover .information .amount,
+#categories .specialTariff.locked.hover .information .itemName,
+#payMethods .category.fadeout.hover .information .amount,
+#payMethods .category.fadeout.hover .information .itemName,
+#payMethods .category.locked.hover .information .amount,
+#payMethods .category.locked.hover .information .itemName,
+#payMethods .method.fadeout.hover .information .amount,
+#payMethods .method.fadeout.hover .information .itemName,
+#payMethods .method.locked.hover .information .amount,
+#payMethods .method.locked.hover .information .itemName,
+#payMethods .specialTariff.fadeout.hover .information .amount,
+#payMethods .specialTariff.fadeout.hover .information .itemName,
+#payMethods .specialTariff.locked.hover .information .amount,
+#payMethods .specialTariff.locked.hover .information .itemName {
+    display: block
+}
+
+#categories .category.fadeout.hover .disabled,
+#categories .category.locked.hover .disabled,
+#categories .method.fadeout.hover .disabled,
+#categories .method.locked.hover .disabled,
+#categories .specialTariff.fadeout.hover .disabled,
+#categories .specialTariff.locked.hover .disabled,
+#payMethods .category.fadeout.hover .disabled,
+#payMethods .category.locked.hover .disabled,
+#payMethods .method.fadeout.hover .disabled,
+#payMethods .method.locked.hover .disabled,
+#payMethods .specialTariff.fadeout.hover .disabled,
+#payMethods .specialTariff.locked.hover .disabled {
+    display: none
+}
+
+.campain_badge,
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    text-align: center;
+    width: 45px;
+    padding-top: 5px;
+    min-height: 30px;
+    font-weight: 700;
+    z-index: 2;
+    background-position: left -440px;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623);
+    text-shadow: 0 0 5px #000
+}
+
+.campain_badge .value,
+.badge .value {
+    font-size: 14px;
+    line-height: 12.6px
+}
+
+.campain_badge .value.singleLineBadge,
+.badge .value.singleLineBadge {
+    line-height: 24px
+}
+
+.campain_badge .unit,
+.badge .unit {
+    font-size: sizeFontBadgeUnit
+}
+
+.campain_badge .addition,
+.badge .addition {
+    display: block;
+    font-size: 9px;
+    line-height: 9px
+}
+
+.campain_badge {
+    background-image: url(../images/donate/campain_badge.png?v=20170623);
+    background-position: 0 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0
+}
+
+.campain_badge .unit {
+    font-size: 11px
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    padding: 5px;
+    top: 20px;
+    right: -12px;
+    width: 140px;
+    color: #292828;
+    font-weight: 700;
+    background-color: #fcfcdc;
+    border: 1px solid #3e2c13;
+    -moz-opacity: .85;
+    opacity: .85;
+    filter: alpha(opacity=85)
+}
+
+.specialButton {
+    background-position: right -3400px;
+    padding-right: 5px;
+    display: inline-block;
+    color: #f2e69f;
+    font-size: 16px;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #000;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+.specialButton .label {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10 0 15px;
+    text-align: center;
+    font-weight: 700;
+    min-width: 270px;
+    background-position: left -3400px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+.specialButton:active,
+.specialButton:visited,
+.specialButton:link {
+    color: #f2e69f
+}
+
+.specialButton:hover {
+    color: #f2e69f;
+    background-position: right -3530px
+}
+
+.specialButton:hover .label {
+    background-position: left -3530px
+}
+
+#backButton {
+    position: absolute;
+    top: 524px;
+    left: 30px
+}
+
+#backButton .label {
+    min-width: 90px
+}
+
+.infoTooltip {
+    display: block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-position: left -1540px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+.link .infoTooltip {
+    right: -7px;
+    top: -2px
+}
+
+.method .disabled,
+.category .disabled,
+.specialTariff .disabled,
+.link .disabled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    line-height: 11px;
+    font-weight: 700;
+    text-align: center;
+    display: none;
+    cursor: pointer;
+    padding: 0 5px;
+    color: #4d2e28;
+    text-shadow: 1px 1px 1px none
+}
+
+#iconSelectedCategory,
+#iconSelectedTariff,
+#iconSelectedPPRT {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: -10px;
+    bottom: -7px;
+    background-position: left -1100px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+.method #iconSelectedCategory,
+.method #iconSelectedTariff,
+.method #iconSelectedPPRT,
+.specialTariff #iconSelectedCategory,
+.specialTariff #iconSelectedTariff,
+.specialTariff #iconSelectedPPRT {
+    left: 0;
+    bottom: -10px
+}
+
+#header {
+    min-height: 50px;
+    position: relative
+}
+
+#header:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#header #secureUrl {
+    display: block;
+    height: 30px;
+    width: 25px;
+    margin-right: 5px;
+    float: left;
+    background-position: left 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#header h1 #headline {
+    font-size: 26px;
+    font-weight: 700;
+    color: #f2e69f
+}
+
+#header #banner {
+    float: left;
+    display: inline-block;
+    position: relative
+}
+
+#header #banner img {
+    border: 1px solid #f2e69f;
+    display: block
+}
+
+#header #banner #counter {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    width: 76px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000
+}
+
+#header #banner #counter .label {
+    font-weight: normal;
+    font-style: normal
+}
+
+#header #banner #counter #campaignTime {
+    font-size: 14px
+}
+
+#header #banner #counter .hours,
+#header #banner #counter .minutes,
+#header #banner #counter .seconds {
+    font-weight: bold
+}
+
+#progress {
+    height: 30px
+}
+
+#progress:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#progress li {
+    float: left;
+    text-align: center;
+    line-height: 29px;
+    height: 30px;
+    position: relative;
+    font-weight: 700;
+    width: 253.33333px;
+    text-shadow: 1px 1px 1px transparent
+}
+
+#progress li .number {
+    height: 30px;
+    width: 29px;
+    padding-right: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    font-size: 20px;
+    color: #fff;
+    background-position: left -230px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#progress li .text {
+    margin-left: 30px;
+    display: block;
+    height: 30px;
+    color: #b5b5b5;
+    background-position: right -230px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#progress li.first {
+    cursor: pointer
+}
+
+#progress li.last .number {
+    background-position: left -370px
+}
+
+#progress li.last .text {
+    background-position: right -370px
+}
+
+#progress li.active {
+    text-shadow: 1px 1px 1px #000
+}
+
+#progress li.active .number {
+    background-position: left -160px;
+    color: #f2e69f
+}
+
+#progress li.active .text {
+    background-position: right -160px;
+    color: #f2e69f
+}
+
+#progress li.last.active .number {
+    background-position: left -300px
+}
+
+#progress li.last.active .text {
+    background-position: right -300px
+}
+
+#countries {
+    width: 210px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    text-align: right;
+    font-size: 11px;
+    cursor: pointer;
+    z-index: 100
+}
+
+#countries .label {
+    position: absolute;
+    right: 100%;
+    display: block;
+    min-width: 150px;
+    height: 21px;
+    line-height: 21px;
+    padding-right: 10px;
+    cursor: default;
+    color: #f2e69f
+}
+
+#countries #countryKeyStringForm {
+    height: 0;
+    overflow: hidden
+}
+
+#countries #countrySelectBox {
+    width: 210px;
+    font-size: 11px;
+    margin-top: 1px;
+    padding: 1px 0
+}
+
+#countries #chooseCountry {
+    padding-left: 5px;
+    background-position: left -90px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#countries #chooseCountry #countrySelected,
+#countries #chooseCountry #countryKeyStringLabel {
+    height: 21px;
+    line-height: 21px;
+    background-position: right -90px;
+    font-size: 12px;
+    color: #444;
+    text-align: left;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#countries #chooseCountry #countryKeyStringLabel {
+    display: none;
+    font-weight: 700
+}
+
+#countries #chooseCountry #countryList {
+    position: absolute;
+    top: 21px;
+    right: 0;
+    left: 0;
+    max-height: 219px
+}
+
+#countries #chooseCountry #countryList li a {
+    display: block;
+    line-height: 21px;
+    height: 21px;
+    padding-left: 5px;
+    text-align: left;
+    color: #444;
+    background-color: #eee;
+    border-bottom: 1px solid #979797
+}
+
+#countries #chooseCountry #countryList li a:hover,
+#countries #chooseCountry #countryList li a.hover {
+    color: #7b1300;
+    background-color: #fff
+}
+
+#categories {
+    background-position: right 0
+}
+
+#categories .emptyCategory,
+#categories .normalCategory,
+#categories .specialCategory {
+    width: 123.6px;
+    margin-left: 20px;
+    position: relative;
+    float: left
+}
+
+#categories .emptyCategory {
+    height: 78px
+}
+
+#categories .information {
+    padding-right: 5px;
+    position: relative;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#categories .information .box {
+    padding-left: 5px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#normalCategories {
+    position: relative;
+    height: 104px
+}
+
+#normalCategories .normalCategory {
+    margin-top: 13px
+}
+
+#normalCategories .normalCategory .information {
+    height: 78px;
+    background-position: right -930px;
+    color: #fff
+}
+
+#normalCategories .normalCategory .information .box {
+    height: 78px;
+    background-position: left -930px
+}
+
+#normalCategories .normalCategory .information .amount {
+    text-shadow: 1px 1px 1px #000
+}
+
+#normalCategories .normalCategory .information .amount .realamount {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    padding-top: 5px;
+    display: inline-block
+}
+
+#normalCategories .normalCategory .information .amount .oldamount {
+    font-size: 14px;
+    float: left;
+    padding: 5px 3px 0 0;
+    display: inline-block;
+    text-decoration: line-through
+}
+
+#normalCategories .normalCategory .information .itemName {
+    text-shadow: 1px 1px 1px #000
+}
+
+#normalCategories .normalCategory .information .price {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    text-align: right;
+    text-shadow: 1px 1px 1px #000
+}
+
+#normalCategories .normalCategory .information .price .realPrice .value {
+    font-weight: 700;
+    font-size: 16px
+}
+
+#normalCategories .normalCategory .information .price .smallPrice {
+    font-size: 11px
+}
+
+#normalCategories .normalCategory .information .price .smallPrice .value {
+    padding-right: 2px
+}
+
+#normalCategories .normalCategory.hover .information {
+    background-position: right -1060px;
+    color: #fff
+}
+
+#normalCategories .normalCategory.hover .information .box {
+    background-position: left -1060px
+}
+
+#normalCategories .normalCategory.selected .information {
+    background-position: right -1190px;
+    color: #fff
+}
+
+#normalCategories .normalCategory.selected .information .box {
+    background-position: left -1190px
+}
+
+#normalCategories .normalCategory.selected .information .amount,
+#normalCategories .normalCategory.selected .information .itemName,
+#normalCategories .normalCategory.selected .information .price {
+    text-shadow: 1px 1px 1px #000
+}
+
+#normalCategories .disabled {
+    top: 15px
+}
+
+#specialCategories {
+    position: relative;
+    height: 92px
+}
+
+#specialCategories .specialCategory {
+    margin-top: 13px
+}
+
+#specialCategories .specialCategory .information {
+    height: 66px;
+    background-position: right -1320px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000
+}
+
+#specialCategories .specialCategory .information .box {
+    height: 66px;
+    background-position: left -1320px
+}
+
+#specialCategories .specialCategory .information .name {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    padding-top: 5px
+}
+
+#specialCategories .specialCategory .information .itemName,
+#specialCategories .specialCategory .information .amount {
+    position: absolute;
+    right: 5px;
+    text-align: right
+}
+
+#specialCategories .specialCategory .information .itemName {
+    bottom: 5px
+}
+
+#specialCategories .specialCategory .information .amount {
+    bottom: 20px
+}
+
+#specialCategories .specialCategory .information .amount span {
+    font-weight: 700;
+    font-size: 16px
+}
+
+#specialCategories .specialCategory.hover .information {
+    background-position: right -1450px;
+    color: #fff
+}
+
+#specialCategories .specialCategory.hover .information .box {
+    background-position: left -1450px
+}
+
+#specialCategories .specialCategory.selected .information {
+    background-position: right -1580px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000
+}
+
+#specialCategories .specialCategory.selected .information .box {
+    background-position: left -1580px
+}
+
+#specialCategories #category_13 .information {
+    background-position: right -1710px
+}
+
+#specialCategories #category_13 .information .box {
+    background-position: left -1710px
+}
+
+#specialCategories #category_13 .amount,
+#specialCategories #category_13 .itemName {
+    display: none
+}
+
+#specialCategories #category_13 .methodLogos {
+    position: absolute;
+    bottom: 0;
+    left: 20px
+}
+
+#specialCategories #category_13 .methodLogos li {
+    width: 84px;
+    height: 38px;
+    float: left
+}
+
+#specialCategories #category_13.doubleSize {
+    width: 267.2px
+}
+
+#specialCategories #category_13.doubleSize li {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/gray_logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/gray_logos_for_dark_background.gif?v=20170623)
+}
+
+#specialCategories #category_13.doubleSize .methodLogos {
+    left: 2px
+}
+
+#specialCategories #category_13.hover .methodLogos li {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+#specialCategories #category_13.hover .information {
+    background-position: right -1840px
+}
+
+#specialCategories #category_13.hover .information .box {
+    background-position: left -1840px
+}
+
+#specialCategories #category_13.selected .methodLogos li {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+#specialCategories #category_13.selected .information {
+    background-position: right -1970px
+}
+
+#specialCategories #category_13.selected .information .box {
+    background-position: left -1970px
+}
+
+#specialCategories .disabled {
+    top: 25px
+}
+
+.directOrderCategory .information {
+    background-position: right -1710px
+}
+
+.directOrderCategory .information .box {
+    background-position: left -1710px
+}
+
+.directOrderCategory .methodLogos {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8)
+}
+
+.directOrderCategory .methodLogos li {
+    width: 84px;
+    height: 38px;
+    float: left
+}
+
+.directOrderCategory.hover .methodLogos li {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+.directOrderCategory.hover .information {
+    background-position: right -1840px
+}
+
+.directOrderCategory.hover .information .box {
+    background-position: left -1840px
+}
+
+.directOrderCategory.position2 .methodLogos {
+    left: 1px
+}
+
+.directOrderCategory.position2 .methodLogos li {
+    width: 120px
+}
+
+#payMethods,
+#itemPayMethods {
+    background-position: right -310px;
+    padding: 10px 0 0 10px;
+    height: 186px;
+    position: relative
+}
+
+#payMethods .step,
+#itemPayMethods .step {
+    background-position: left -310px
+}
+
+#payMethods .method,
+#itemPayMethods .method {
+    float: left;
+    width: 120px;
+    margin: 0 5px;
+    font-size: 11px;
+    cursor: pointer;
+    position: relative
+}
+
+#payMethods .method .information,
+#itemPayMethods .method .information {
+    text-align: center;
+    padding-right: 5px;
+    background-position: right -2100px;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#payMethods .method .information .box,
+#itemPayMethods .method .information .box {
+    height: 64px;
+    padding-left: 5px;
+    background-position: left -2100px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#payMethods .method .information .box .name,
+#itemPayMethods .method .information .box .name {
+    padding-top: 45px;
+    display: block;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+#payMethods .method .information .box .name span,
+#itemPayMethods .method .information .box .name span {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    left: 5px;
+    display: block;
+    line-height: 10px;
+    text-align: center
+}
+
+#payMethods .method .disabled,
+#itemPayMethods .method .disabled {
+    top: 8px
+}
+
+#payMethods .method.wideMethod,
+#itemPayMethods .method.wideMethod {
+    width: 185px
+}
+
+#payMethods .method.hover .information,
+#itemPayMethods .method.hover .information {
+    background-position: right -2230px;
+    color: #fff
+}
+
+#payMethods .method.hover .information .box,
+#itemPayMethods .method.hover .information .box {
+    background-position: left -2230px
+}
+
+#payMethods .method.hover .information .box .name,
+#itemPayMethods .method.hover .information .box .name {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+#payMethods .method.selected .information,
+#itemPayMethods .method.selected .information {
+    background-position: right -2360px;
+    color: #fff
+}
+
+#payMethods .method.selected .information .box,
+#itemPayMethods .method.selected .information .box {
+    background-position: left -2360px
+}
+
+#payMethods .method.selected .information .box .name,
+#itemPayMethods .method.selected .information .box .name {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+#topMethods {
+    padding-right: 5px;
+    display: inline-block;
+    background-position: right -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#topMethods h2 {
+    font-size: 15px;
+    padding: 0 0 3px 5px;
+    color: #7b1300;
+    overflow: hidden;
+    height: 19px;
+    max-width: 385px;
+    text-shadow: 0 0 5px #fff
+}
+
+#topMethods .list {
+    height: 90px;
+    width: 390px;
+    padding: 5px 0 5px 5px;
+    display: inline-block;
+    background-position: left -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#topMethods .list:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#topMethods .list #noTopMethods {
+    display: none;
+    height: 50px;
+    width: 390px -55;
+    padding: 8px 5px 5px 65px;
+    background-position: left -2620px;
+    color: #7b1300
+}
+
+#topMethods .list #noTopMethods .icon {
+    display: block;
+    position: absolute;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-image: url("../images/donate/no_top_methods.png?v=20170623")
+}
+
+#regularMethods,
+#itemPayMethods {
+    padding-top: 5px
+}
+
+#regularMethods #scroll,
+#rtl #regularMethods #tariffElementsNormalScroll,
+#regularMethods #rtl #itemPayMethods #tariffElementsNormalScroll,
+#itemPayMethods #scroll,
+#itemPayMethods #rtl #regularMethods #tariffElementsNormalScroll,
+#rtl #itemPayMethods #tariffElementsNormalScroll {
+    height: 70px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    width: 650px
+}
+
+#regularMethods #scroll ul,
+#rtl #regularMethods #tariffElementsNormalScroll ul,
+#regularMethods #rtl #itemPayMethods #tariffElementsNormalScroll ul,
+#itemPayMethods #scroll ul,
+#itemPayMethods #rtl #regularMethods #tariffElementsNormalScroll ul,
+#rtl #itemPayMethods #tariffElementsNormalScroll ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5000px !important
+}
+
+#regularMethods .method,
+#itemPayMethods .method {
+    margin-bottom: 6px
+}
+
+#regularMethods .prev,
+#regularMethods .next,
+#itemPayMethods .prev,
+#itemPayMethods .next {
+    width: 33px;
+    height: 33px;
+    margin-top: 15px;
+    display: block;
+    float: left;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#regularMethods .prev.disabled,
+#regularMethods .next.disabled,
+#itemPayMethods .prev.disabled,
+#itemPayMethods .next.disabled {
+    cursor: auto;
+    -moz-opacity: .2;
+    opacity: .2;
+    filter: alpha(opacity=20)
+}
+
+#regularMethods .prev.hide,
+#regularMethods .next.hide,
+#itemPayMethods .prev.hide,
+#itemPayMethods .next.hide {
+    width: 5px;
+    background-image: none
+}
+
+#regularMethods .prev,
+#itemPayMethods .prev {
+    background-position: left -660px
+}
+
+#regularMethods .prev:hover,
+#itemPayMethods .prev:hover {
+    background-position: left -770px
+}
+
+#regularMethods .prev.disabled:hover,
+#itemPayMethods .prev.disabled:hover {
+    background-position: left -660px
+}
+
+#regularMethods .next,
+#itemPayMethods .next {
+    background-position: left -880px
+}
+
+#regularMethods .next:hover,
+#itemPayMethods .next:hover {
+    background-position: left -990px
+}
+
+#regularMethods .next.disabled:hover,
+#itemPayMethods .next.disabled:hover {
+    background-position: left -880px
+}
+
+#specialMethods h2 {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 0 0 65px;
+    margin-bottom: 5px;
+    height: 55px;
+    color: #7b1300;
+    width: 350px;
+    position: relative;
+    text-shadow: 0 0 5px #fff
+}
+
+#specialMethods h2 .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 55px;
+    width: 60px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+#specialMethods .submenu {
+    height: 21px;
+    margin-left: 6px;
+    position: relative;
+    z-index: 2
+}
+
+#specialMethods .submenu li {
+    padding-right: 5px;
+    float: left;
+    margin-right: 3px;
+    cursor: pointer;
+    background-position: right -3140px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#specialMethods .submenu li .label {
+    padding: 0 5px 0 10px;
+    min-width: 100px;
+    font-size: 11px;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    height: 21px;
+    background-position: left -3140px;
+    color: #7b1300;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#specialMethods .submenu li.active {
+    background-position: right -3270px
+}
+
+#specialMethods .submenu li.active .label {
+    background-position: left -3270px;
+    color: #7b1300
+}
+
+#specialMethods .tariffs {
+    padding-right: 5px;
+    display: inline-block;
+    position: relative;
+    top: -3px;
+    background-position: right -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#specialMethods .tariffs:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#specialMethods .tariffs ul {
+    height: 100px;
+    min-width: 360px;
+    padding: 2px 10px 0 5px;
+    background-position: left -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#specialMethods .tariffs ul:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#specialMethods .specialTariff {
+    margin: 15px 0 5px 10px;
+    position: relative;
+    float: left
+}
+
+#specialMethods .specialTariff .badge {
+    right: -7px
+}
+
+#specialMethods .specialTariff .disabled {
+    top: 10px
+}
+
+#specialMethods .specialTariff .information {
+    width: 115px;
+    padding-right: 5px;
+    position: relative;
+    cursor: pointer;
+    background-position: right -2100px;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#specialMethods .specialTariff .information .box {
+    height: 64px;
+    padding-left: 5px;
+    background-position: left -2100px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#specialMethods .specialTariff .information .amount .realamount {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    padding-top: 5px;
+    display: inline-block;
+    text-shadow: 1px 1px 1px #000
+}
+
+#specialMethods .specialTariff .information .amount .oldamount {
+    font-size: 14px;
+    float: left;
+    padding: 5px 3px 0 0;
+    display: inline-block;
+    text-decoration: line-through
+}
+
+#specialMethods .specialTariff .information .price {
+    position: absolute;
+    right: 5px;
+    bottom: 2px;
+    text-align: right;
+    text-shadow: 1px 1px 1px #000
+}
+
+#specialMethods .specialTariff .information .price .realPrice .value {
+    font-weight: 700;
+    font-size: 16px
+}
+
+#specialMethods .specialTariff .information .price .smallPrice {
+    font-size: 11px
+}
+
+#specialMethods .specialTariff .information .price .smallPrice .value {
+    padding-right: 2px
+}
+
+#specialMethods .specialTariff.hover .information {
+    background-position: right -2230px;
+    color: #fff
+}
+
+#specialMethods .specialTariff.hover .information .box {
+    background-position: left -2230px
+}
+
+#specialMethods .specialTariff.selected .information {
+    background-position: right -2360px;
+    color: #fff
+}
+
+#specialMethods .specialTariff.selected .information .box {
+    background-position: left -2360px
+}
+
+#specialMethods .specialTariff.selected .information .realamount,
+#specialMethods .specialTariff.selected .information .price {
+    text-shadow: 1px 1px 1px #000
+}
+
+#infoBoxContainer {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 11px;
+    color: #7b1300
+}
+
+#infoBoxContainer #infoBox {
+    padding-right: 5px;
+    background-position: right -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#infoBoxContainer #infoBox #noticeText {
+    height: 85px;
+    width: 245px;
+    padding: 10px 5px 5px 50px;
+    background-position: left -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#infoBoxContainer #infoBox #noticeText.ppRTBox {
+    padding: 5px;
+    height: 90px;
+    width: 284px
+}
+
+#infoBoxContainer #infoBox #noticeText.ppRTBox h2 {
+    font-size: 15px;
+    padding: 0 0 3px 5px;
+    color: #7b1300;
+    overflow: hidden;
+    height: 19px;
+    max-width: 385px;
+    text-shadow: 0 0 5px #fff
+}
+
+#infoBoxContainer #infoBox #noticeText.ppRTBox .method {
+    width: 250px
+}
+
+#infoBoxContainer #infoBox #noticeText .icon {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 35px;
+    background-position: left -550px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#infoBoxContainer.special {
+    top: auto;
+    bottom: 8px
+}
+
+#infoBoxContainer.special #infoBox #noticeText {
+    width: 235px
+}
+
+#checkout {
+    background-position: right -620px;
+    height: 72px;
+    position: relative
+}
+
+#checkout .step {
+    background-position: left -620px
+}
+
+#checkout #terms {
+    color: #7b1300;
+    font-size: 11px;
+    line-height: 10px;
+    padding: 4px 11px 5px 33px;
+    position: relative;
+    width: 388px
+}
+
+#checkout #terms #acceptTerms {
+    left: 10px;
+    position: absolute;
+    top: 2px
+}
+
+#checkout #checkoutButton,
+#checkout #disabledCheckoutButton {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding-right: 5px;
+    width: 298px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#checkout #checkoutButton .box,
+#checkout #disabledCheckoutButton .box {
+    height: 62px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#checkout #checkoutButton .icon,
+#checkout #disabledCheckoutButton .icon {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+#checkout #checkoutButton {
+    cursor: pointer;
+    color: #fff;
+    background-position: right -2880px
+}
+
+#checkout #checkoutButton .box {
+    padding: 0 0 0 10px;
+    background-position: left -2880px
+}
+
+#checkout #checkoutButton .label {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 62px;
+    padding-right: 30px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000
+}
+
+#checkout #checkoutButton .icon {
+    top: 7px;
+    right: 5px;
+    width: 60px;
+    height: 50px;
+    background-position: left -1320px
+}
+
+#checkout #checkoutButton .amountOverview,
+#checkout #checkoutButton .price {
+    font-weight: 700;
+    text-shadow: 1px 1px 1px #000
+}
+
+#checkout #checkoutButton .amountOverview {
+    font-size: 27px;
+    line-height: 40px
+}
+
+#checkout #checkoutButton.hover {
+    background-position: right -3010px;
+    color: #fff
+}
+
+#checkout #checkoutButton.hover .box {
+    background-position: left -3010px
+}
+
+#checkout #checkoutButton.hover .icon {
+    background-position: left -1430px
+}
+
+#checkout #disabledCheckoutButton {
+    background-position: right -2750px
+}
+
+#checkout #disabledCheckoutButton .box {
+    background-position: left -2750px;
+    padding: 0 23px 0 55px
+}
+
+#checkout #disabledCheckoutButton .icon {
+    height: 33px;
+    width: 33px;
+    top: 16px;
+    left: 15px;
+    background-position: left -550px
+}
+
+#checkout #disabledCheckoutButton .text {
+    font-weight: 700;
+    font-size: 11px;
+    display: table-cell;
+    height: 62px;
+    vertical-align: middle;
+    color: #555
+}
+
+#checkout #orderInformation {
+    color: #7b1300;
+    position: absolute;
+    height: 36px;
+    right: 317px;
+    bottom: 0px;
+    width: 411px;
+    text-shadow: 1px 1px 1px transparent
+}
+
+#checkout #orderInformation .amount,
+#checkout #orderInformation .bonus,
+#checkout #orderInformation .price {
+    font-size: 18px;
+    font-weight: 700
+}
+
+#checkout #orderInformation #taxInformation {
+    display: block;
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    right: 0;
+    font-size: 11px;
+    color: #7b1300
+}
+
+#orderContainer {
+    display: none
+}
+
+#orderContainer #orderPopup {
+    height: 202px;
+    background-position: right 0;
+    font-weight: 700;
+    padding-left: 130px;
+    margin-bottom: 150px;
+    color: #7b1300
+}
+
+#orderContainer #orderPopup h2 {
+    font-size: 20px;
+    height: 25px;
+    text-decoration: underline;
+    padding: 25px 0 15px 0
+}
+
+#orderContainer #orderPopup p {
+    font-size: 16px
+}
+
+#orderContainer #orderPopup #windowInfo {
+    margin: 40px 0 5px 0
+}
+
+#orderContainer #orderFrame h2 {
+    font-size: 16px;
+    text-decoration: underline;
+    padding: 4px 0 5px 0;
+    color: #f2e69f
+}
+
+#orderContainer #orderFrame #iframeContainer {
+    height: 420px;
+    margin-bottom: 5px
+}
+
+#orderContainer #orderFrame #iframeContainer iframe {
+    display: none;
+    width: 100%;
+    height: 100%
+}
+
+#orderContainer .whiteBackground {
+    background-color: white
+}
+
+#directPay,
+#twoPay {
+    padding: 10px;
+    margin-top: 5px;
+    color: #666;
+    background-color: #222;
+    border: 1px solid #333;
+    text-shadow: 1px 1px 1px transparent;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px
+}
+
+#directPay .button,
+#directPay .link,
+#directPay h2,
+#twoPay .button,
+#twoPay .link,
+#twoPay h2 {
+    display: block;
+    float: left;
+    font-weight: 700;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    padding-right: 5px
+}
+
+#directPay .button,
+#directPay h2,
+#twoPay .button,
+#twoPay h2 {
+    font-size: 16px;
+    min-width: 215px
+}
+
+#directPay .button,
+#directPay .link,
+#twoPay .button,
+#twoPay .link {
+    padding-left: 7px
+}
+
+#directPay .button .label,
+#directPay .link .label,
+#twoPay .button .label,
+#twoPay .link .label {
+    padding-left: 5px;
+    display: block;
+    overflow: hidden;
+    height: 50px
+}
+
+#directPay .button,
+#twoPay .button {
+    color: #666;
+    background-position: right -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#directPay .button .label,
+#twoPay .button .label {
+    background-position: left -2490px;
+    white-space: nowrap;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#directPay .button:hover,
+#directPay .button.hover,
+#twoPay .button:hover,
+#twoPay .button.hover {
+    color: #fff
+}
+
+#directPay .link,
+#twoPay .link {
+    position: relative
+}
+
+#directPay .link .disabled,
+#twoPay .link .disabled {
+    top: 15px;
+    display: none
+}
+
+#directPay .link .label,
+#twoPay .link .label {
+    color: #666;
+    line-height: 12px;
+    height: 30px;
+    padding-top: 20px
+}
+
+#directPay .link .logo,
+#twoPay .link .logo {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    height: 38px;
+    top: 6px;
+    left: 7px;
+    right: 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623)
+}
+
+#directPay .link .infoTooltip,
+#twoPay .link .infoTooltip {
+    display: none;
+    top: auto;
+    bottom: 2px;
+    right: 2px
+}
+
+#directPay .link.locked .logo,
+#twoPay .link.locked .logo {
+    -moz-opacity: .3;
+    opacity: .3;
+    filter: alpha(opacity=30)
+}
+
+#directPay .link:hover,
+#directPay .link.hover,
+#twoPay .link:hover,
+#twoPay .link.hover {
+    color: #fff;
+    background-position: right -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#directPay .link:hover .label,
+#directPay .link.hover .label,
+#twoPay .link:hover .label,
+#twoPay .link.hover .label {
+    line-height: 1000px;
+    background-position: left -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#directPay .link:hover .logo,
+#directPay .link:hover .infoTooltip,
+#directPay .link.hover .logo,
+#directPay .link.hover .infoTooltip,
+#twoPay .link:hover .logo,
+#twoPay .link:hover .infoTooltip,
+#twoPay .link.hover .logo,
+#twoPay .link.hover .infoTooltip {
+    display: block
+}
+
+#directPay .link:hover .disabled,
+#directPay .link.hover .disabled,
+#twoPay .link:hover .disabled,
+#twoPay .link.hover .disabled {
+    display: block
+}
+
+#directPay h2,
+#twoPay h2 {
+    text-align: left
+}
+
+#directPay #coupon:after,
+#directPay #spnsrd:after,
+#twoPay #coupon:after,
+#twoPay #spnsrd:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#directPay #coupon .button,
+#directPay #spnsrd .button,
+#twoPay #coupon .button,
+#twoPay #spnsrd .button {
+    padding-left: 0
+}
+
+#directPay #coupon,
+#twoPay #coupon {
+    padding-bottom: 7px
+}
+
+#directPay #spnsrd,
+#twoPay #spnsrd {
+    padding-top: 7px;
+    border-top: 1px solid #333
+}
+
+#directPay.columns-1 .link,
+#twoPay.columns-1 .link {
+    width: 247px
+}
+
+#directPay.columns-2 .link,
+#twoPay.columns-2 .link {
+    width: 247px
+}
+
+#directPay.columns-3 .link,
+#twoPay.columns-3 .link {
+    width: 160.66667px
+}
+
+#directPay.columns-4 .link,
+#twoPay.columns-4 .link {
+    width: 117.5px
+}
+
+#directPay.columns-5 .link,
+#twoPay.columns-5 .link {
+    width: 91.6px;
+    font-size: 90%
+}
+
+#twoPay:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+#twoPay .button {
+    min-width: 0
+}
+
+#twoPay .button .label {
+    padding: 0 10px 0 15px
+}
+
+#footer {
+    font-size: 11px;
+    text-align: right;
+    margin-top: 13px;
+    color: #f2e69f;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0
+}
+
+#footer a,
+#footer a:link,
+#footer a:active,
+#footer a:visited {
+    color: #f2e69f
+}
+
+#footer #copyright {
+    float: left
+}
+
+#footer #links a {
+    margin-left: 10px
+}
+
+.jspContainer {
+    overflow: hidden;
+    position: relative;
+    background-color: #979797
+}
+
+.jspPane {
+    position: absolute;
+    margin-left: 0 !important;
+    width: 100% !important
+}
+
+.jspVerticalBar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%
+}
+
+.jspHorizontalBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar * {
+    margin: 0;
+    padding: 0
+}
+
+.jspCap {
+    display: none
+}
+
+.jspHorizontalBar .jspCap {
+    float: left
+}
+
+.jspTrack {
+    background: #eee;
+    position: relative
+}
+
+.jspDrag {
+    background: #979797;
+    position: relative;
+    top: 0;
+    left: 0;
+    cursor: pointer
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag {
+    float: left;
+    height: 100%
+}
+
+.jspArrow {
+    text-indent: -20000px;
+    display: block;
+    cursor: pointer
+}
+
+.jspArrow.jspDisabled {
+    cursor: default
+}
+
+.jspVerticalBar .jspArrow {
+    height: 20px
+}
+
+.jspHorizontalBar .jspArrow {
+    width: 20px;
+    float: left;
+    height: 100%
+}
+
+.jspVerticalBar .jspArrow:focus {
+    outline: none
+}
+
+.jspCorner {
+    float: left;
+    height: 100%
+}
+
+* html .jspCorner {
+    margin: 0 -3px 0 0
+}
+
+#error {
+    margin: 50px auto 20px auto;
+    width: 500px;
+    background-color: #000;
+    color: #f2e69f;
+    border: 1px solid #f2e69f;
+    padding: 50px
+}
+
+#error h1 {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 15px
+}
+
+#error p {
+    font-size: 16px
+}
+
+.popup {
+    position: absolute;
+    padding: 0px;
+    width: 360px;
+    z-index: 10000;
+    display: none;
+    color: #7b1300;
+    cursor: auto;
+    border: 2px solid #7b1300
+}
+
+.popup.iframe {
+    width: 230px
+}
+
+.popup .headline {
+    font-size: 11px;
+    font-style: normal;
+    padding: 5px 25px 5px 5px;
+    display: block;
+    background-color: #fff;
+    border-bottom: 1px solid #7b1300;
+    border-bottom-width: 1px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none
+}
+
+.popup .iframeContainer,
+.popup .content {
+    background-color: #fff
+}
+
+.popup .iframeContainer {
+    padding: 5px;
+    overflow: hidden;
+    text-align: center
+}
+
+.popup .content {
+    padding: 10px;
+    text-align: left
+}
+
+.popup iframe {
+    height: 270px;
+    border: 0;
+    width: 220px
+}
+
+.popup .close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-position: left -1650px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    _background-image: url(../images/donate/ltr_elements.gif?v=20170623)
+}
+
+.popup:after {
+    border-style: solid;
+    border-color: #7b1300 transparent transparent transparent;
+    border-width: 15px;
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    width: 0;
+    height: 0;
+    content: ''
+}
+
+.popup.left:after {
+    left: 5px
+}
+
+.popup.right:after {
+    right: 5px
+}
+
+.popup.center:after {
+    left: 50%;
+    margin-left: -15px
+}
+
+#rtl .popup .headline {
+    padding: 5px 5px 5px 25px
+}
+
+#rtl .popup .close {
+    right: auto;
+    left: -10px
+}
+
+#rtl .popup .content {
+    text-align: right
+}
+
+#container.itemshop #item {
+    background-position: right 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes_itemshop.png?v=20170623)
+}
+
+#container.itemshop #item .step {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#container.itemshop #item #itemOverview {
+    height: 191px;
+    overflow: hidden;
+    padding: 5px 0 0 10px;
+    position: relative
+}
+
+#container.itemshop #item #itemOverview #selectedItemLabel {
+    margin: 5px 0 10px 0
+}
+
+#container.itemshop #item #itemOverview #itemImage {
+    width: 160px;
+    height: 160px;
+    text-align: center;
+    overflow: hidden;
+    margin: 15px 0 0 0
+}
+
+#container.itemshop #item #itemOverview #itemImage.default {
+    background-image: url("../images/donate/default_item.png");
+    background-repeat: no-repeat
+}
+
+#container.itemshop #item #itemOverview #itemDescription {
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    max-width: 550px;
+    font-weight: bold;
+    font-size: 18px
+}
+
+#container.itemshop #item #itemOverview #itemDescription #itemDescriptionWrapper {
+    display: inline-block
+}
+
+#container.itemshop #item #itemOverview #itemDescription #itemPrice {
+    display: inline-block;
+    float: right;
+    padding: 0 25px
+}
+
+#container.itemshop #progress li.second {
+    cursor: pointer
+}
+
+#rtl .itemshop #item {
+    background-position: left 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes_itemshop.png?v=20170623)
+}
+
+#rtl .itemshop #item .step {
+    background-position: right 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl .itemshop #item #itemOverview {
+    padding: 5px 10px 0 0
+}
+
+#rtl .itemshop #item #itemOverview #itemDescription {
+    bottom: 15px;
+    left: 10px;
+    right: auto
+}
+
+#rtl .itemshop #item #itemOverview #itemDescription #itemPrice {
+    float: left
+}
+
+.steam #progress li {
+    width: 380px
+}
+
+.steam #payMethods {
+    display: none !important
+}
+
+.steam #checkout #orderInformation .bonus {
+    display: none
+}
+
+.extOrderPage {
+    color: #333;
+    background-color: #fff;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    min-width: 350px
+}
+
+.extOrderPage input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-color: #fff;
+    border: 1px solid #949494;
+    padding: 2px 4px;
+    display: inline-block
+}
+
+.extOrderPage #extOrderButtonSponsored {
+    background-color: #d2defc;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/logos_for_dark_background.png?v=20170623);
+    _background-image: url(../images/donate/logos_for_dark_background.gif?v=20170623);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+    width: 172px;
+    height: 50px;
+    margin-left: 50px;
+    margin-right: 50px
+}
+
+.extOrderPage #extOrderButtonSponsored:hover {
+    background-color: #b1bad0
+}
+
+.extOrderPage #extOrderPageContentSponsored {
+    padding: 20px 10px;
+    text-align: center
+}
+
+.extOrderPage #extOrderPageFooterSponsored {
+    padding: 10px;
+    background-color: #eee;
+    position: absolute;
+    margin-bottom: 2px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px
+}
+
+.extOrderPage #extOrderPageContent {
+    min-height: 100px;
+    padding: 20px 10px
+}
+
+.extOrderPage #extOrderPageAdvice,
+.extOrderPage #extOrderPageError {
+    padding: 10px
+}
+
+.extOrderPage #extOrderPageAdvice {
+    border-top: 1px solid #949494;
+    background-color: #d2defc
+}
+
+.extOrderPage #extOrderPageError {
+    border-top: 1px solid #949494;
+    background-color: #fdd
+}
+
+.extOrderPage .extOrderPageButton {
+    background-color: #008400;
+    color: #fff;
+    border: 1px solid #23531c;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14.3px;
+    display: inline-block;
+    background-color: #008400;
+    background: -moz-linear-gradient(top, #008400 0%, #009e00 48%, #008400 53%, #008400 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #008400), color-stop(48%, #009e00), color-stop(53%, #008400), color-stop(100%, #008400));
+    background: -webkit-linear-gradient(top, #008400 0%, #009e00 48%, #008400 53%, #008400 100%);
+    background: -o-linear-gradient(top, #008400 0%, #009e00 48%, #008400 53%, #008400 100%);
+    background: -ms-linear-gradient(top, #008400 0%, #009e00 48%, #008400 53%, #008400 100%);
+    background: linear-gradient(to bottom, #008400 0%, #009e00 48%, #008400 53%, #008400 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color1', GradientType=0)
+}
+
+.extOrderPage .extOrderPageButton:hover {
+    background-color: #008400;
+    background: -moz-linear-gradient(top, #008400 0%, #00b900 48%, #008400 53%, #008400 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #008400), color-stop(48%, #00b900), color-stop(53%, #008400), color-stop(100%, #008400));
+    background: -webkit-linear-gradient(top, #008400 0%, #00b900 48%, #008400 53%, #008400 100%);
+    background: -o-linear-gradient(top, #008400 0%, #00b900 48%, #008400 53%, #008400 100%);
+    background: -ms-linear-gradient(top, #008400 0%, #00b900 48%, #008400 53%, #008400 100%);
+    background: linear-gradient(to bottom, #008400 0%, #00b900 48%, #008400 53%, #008400 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color1', GradientType=0)
+}
+
+.extOrderPage .extOrderPageButton.disabled {
+    background-color: #949494;
+    background: -moz-linear-gradient(top, #949494 0%, #b2b2b2 48%, #949494 53%, #949494 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #949494), color-stop(48%, #b2b2b2), color-stop(53%, #949494), color-stop(100%, #949494));
+    background: -webkit-linear-gradient(top, #949494 0%, #b2b2b2 48%, #949494 53%, #949494 100%);
+    background: -o-linear-gradient(top, #949494 0%, #b2b2b2 48%, #949494 53%, #949494 100%);
+    background: -ms-linear-gradient(top, #949494 0%, #b2b2b2 48%, #949494 53%, #949494 100%);
+    background: linear-gradient(to bottom, #949494 0%, #b2b2b2 48%, #949494 53%, #949494 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color1', GradientType=0)
+}
+
+.extOrderPage #extOrderPageFooter {
+    padding: 10px;
+    background-color: #eee;
+    text-align: right
+}
+
+.extOrderPage #extOrderPageFooterNotice {
+    padding: 10px;
+    font-size: 85%
+}
+
+#gfcard.extOrderPage {
+    background-image: none !important
+}
+
+#gfcard.extOrderPage .code {
+    margin: 0 5px
+}
+
+#gfcard.extOrderPage .label {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold
+}
+
+#mindmatics {
+    font-size: 12px;
+    padding: 25px;
+    background-color: #fff;
+    color: #000;
+    line-height: 1.7em;
+    background-image: none
+}
+
+#mindmatics a,
+#mindmatics a:active,
+#mindmatics a:visited {
+    color: #399ad8;
+    text-decoration: underline
+}
+
+#mindmatics #mindmaticsHeader {
+    margin-bottom: 15px;
+    font-size: 14.4px
+}
+
+#mindmatics #mindmaticsHeader #code,
+#mindmatics #mindmaticsHeader #number {
+    font-weight: bold;
+    font-size: 20.4px
+}
+
+#mindmatics #mindmaticsDisclaimer .overview {
+    margin-bottom: 35px;
+    font-size: 14.4px
+}
+
+#mindmatics #mindmaticsDisclaimer .addition {
+    max-width: 600px
+}
+
+#mindmatics xmps {
+    display: none
+}
+
+#btrans {
+    font-size: 12px;
+    background-color: #fff;
+    color: #000;
+    padding: 25px;
+    line-height: 1.7em;
+    background-image: none
+}
+
+#btrans a,
+#btrans a:active,
+#btrans a:visited {
+    color: #399ad8;
+    text-decoration: underline
+}
+
+#btrans #btransHeader {
+    font-weight: normal;
+    margin-bottom: 25px;
+    font-size: 16px
+}
+
+#btrans #btransHeader em {
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px
+}
+
+#btrans table td {
+    padding-bottom: 7px
+}
+
+#btrans table .left {
+    font-weight: bold;
+    padding-right: 30px
+}
+
+#btrans #btransDisclaimer {
+    font-size: 11px;
+    line-height: 14px;
+    max-width: 600px
+}
+
+#btrans #btransDisclaimer b {
+    font-weight: normal
+}
+
+#btrans xmps {
+    display: none
+}
+
+#daopay {
+    font-size: 11px;
+    background-color: #fff;
+    color: #000;
+    padding: 15px 25px 25px 25px;
+    line-height: 1.5em;
+    background-image: none
+}
+
+#daopay a,
+#daopay a:active,
+#daopay a:visited {
+    color: #399ad8;
+    text-decoration: underline
+}
+
+#daopay table {
+    clear: both;
+    margin-bottom: 20px
+}
+
+#daopay table td {
+    padding-bottom: 10px
+}
+
+#daopay table .left {
+    min-width: 150px;
+    padding-right: 30px
+}
+
+#daopay .daopay_phone,
+#daopay .daopay_price,
+#daopay .daopay_orderno {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 8px 0
+}
+
+#daopay .refresh_link {
+    padding: 5px 0 15px 0
+}
+
+#daopay .refresh_link a {
+    display: inline-block;
+    margin-left: 180px;
+    padding: 3px 10px;
+    background-color: #ccc;
+    color: #000;
+    border-radius: 5px
+}
+
+#daopay .daopay_support {
+    padding-top: 10px;
+    border-top: 1px solid #ccc
+}
+
+#daopay .daopay_support img {
+    float: right;
+    margin: 0 0 0 15px
+}
+
+#daopay .daopay_support p {
+    display: inline
+}
+
+#daopay xmps {
+    display: none
+}
+
+.extOrderPage #extOrderPageCoupon #extOrderPageCouponLinks .label {
+    display: block;
+    margin: 30px 0 5px 0
+}
+
+.extOrderPage #extOrderPageCoupon #extOrderPageCouponLinks .couponWebsiteLinks {
+    color: black
+}
+
+.extOrderPage #extOrderPageCoupon #extOrderPageContent {
+    min-height: 80px;
+    padding: 20px 10px
+}
+
+.extOrderPage #extOrderPageCoupon #extOrderPageContent .couponTableTd {
+    padding-top: 15px
+}
+
+#amazonPayments.extOrderPage {
+    padding: 0
+}
+
+#amazonPayments.extOrderPage #extOrderPageContentContainer {
+    border: 2px solid #d2defc;
+    margin: 85px auto 10px auto;
+    width: 750px;
+    padding: 15px
+}
+
+#amazonPayments.extOrderPage #extOrderPageLogo {
+    height: 55px;
+    background-image: url("../images/donate/order/amazon/logo.jpg");
+    background-repeat: no-repeat
+}
+
+#amazonPayments.extOrderPage #extOrderPageContent {
+    overflow: hidden
+}
+
+#amazonPayments.extOrderPage #walletWidgetDiv {
+    width: 400px;
+    height: 228px;
+    float: left
+}
+
+#amazonPayments.extOrderPage #extOrderPageErrorHint {
+    float: right;
+    width: 290px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    min-height: 206px;
+    padding: 10px
+}
+
+#amazonPayments.extOrderPage #extOrderPageErrorHint u {
+    text-decoration: underline;
+    display: block
+}
+
+#amazonPayments.extOrderPage #extOrderPageErrorHint ol {
+    list-style-type: decimal
+}
+
+#amazonPayments.extOrderPage #extOrderPageErrorHint ol li {
+    margin: 20px 0 0 15px
+}
+
+#amazonPayments.extOrderPage #extOrderPageFooter {
+    position: relative
+}
+
+#amazonPayments.extOrderPage #extOrderPageFooterPurchaseDetailsWithTaxInfo {
+    background-color: #eee;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-align: left
+}
+
+#amazonPayments.extOrderPage #extOrderPageFooterPurchaseDetailsWithTaxInfo #extOrderPageAmountInformation {
+    font-weight: bold;
+    font-size: 18px
+}
+
+#amazonPayments.extOrderPage #extOrderPageFooterPurchaseDetailsWithTaxInfo #extOrderPageTaxInformation {
+    margin-top: 5px
+}
+
+#amazonPayments.extOrderPage #extOrderPageFooterOkbutton {
+    background-color: #eee;
+    text-align: right;
+    float: right
+}
+
+#pprt_tooltip_headline {
+    font-size: 14px
+}
+
+#rtl {
+    direction: rtl
+}
+
+#rtl #backButton {
+    left: auto;
+    right: 30px
+}
+
+#rtl #iconSelectedCategory,
+#rtl #iconSelectedTariff,
+#rtl #iconSelectedPPRT {
+    right: -10px;
+    left: auto;
+    background-position: right -1100px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    _background-image: url(../images/donate/rtl_elements.gif?v=20170623)
+}
+
+#rtl .method #iconSelectedCategory,
+#rtl .method #iconSelectedTariff,
+#rtl .method #iconSelectedPPRT,
+#rtl .specialTariff #iconSelectedCategory,
+#rtl .specialTariff #iconSelectedTariff,
+#rtl .specialTariff #iconSelectedPPRT {
+    left: auto;
+    right: 0
+}
+
+#rtl #header #secureUrl {
+    float: right;
+    background-position: right 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    _background-image: url(../images/donate/rtl_elements.gif?v=20170623)
+}
+
+#rtl #header #banner {
+    float: right
+}
+
+#rtl #header #banner #counter {
+    right: auto;
+    left: 5px
+}
+
+#rtl #countries {
+    left: 0;
+    right: auto
+}
+
+#rtl #countries .label {
+    left: 100%;
+    right: auto;
+    padding: 0 0 0 10px;
+    text-align: left
+}
+
+#rtl .jspVerticalBar {
+    right: 0;
+    left: auto
+}
+
+#rtl #progress li {
+    float: right
+}
+
+#rtl #progress li .number {
+    right: 0;
+    left: auto;
+    background-position: right -230px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    _background-image: url(../images/donate/rtl_elements.gif?v=20170623)
+}
+
+#rtl #progress li .text {
+    margin: 0 30px 0 0;
+    background-position: left -230px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    _background-image: url(../images/donate/rtl_elements.gif?v=20170623)
+}
+
+#rtl #progress li.last .number {
+    background-position: right -370px
+}
+
+#rtl #progress li.last .text {
+    background-position: left -370px
+}
+
+#rtl #progress li.active .number {
+    background-position: right -160px
+}
+
+#rtl #progress li.active .text {
+    background-position: left -160px
+}
+
+#rtl #progress li.last.active .number {
+    background-position: right -300px
+}
+
+#rtl #progress li.last.active .text {
+    background-position: left -300px
+}
+
+#rtl .badge {
+    right: auto;
+    left: -15px
+}
+
+#rtl #categories,
+#rtl #payMethods,
+#rtl #checkout,
+#rtl #orderPopup,
+#rtl #item {
+    margin: 5px 22px 0 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #categories .step,
+#rtl #payMethods .step,
+#rtl #checkout .step,
+#rtl #orderPopup .step,
+#rtl #item .step {
+    left: auto;
+    right: -22px;
+    background-position: right 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #categories {
+    background-position: left 0
+}
+
+#rtl #categories .emptyCategory,
+#rtl #categories .normalCategory,
+#rtl #categories .specialCategory {
+    margin-right: 20px;
+    margin-left: 0;
+    float: right
+}
+
+#rtl #categories .emptyCategory .information,
+#rtl #categories .emptyCategory .box,
+#rtl #categories .normalCategory .information,
+#rtl #categories .normalCategory .box,
+#rtl #categories .specialCategory .information,
+#rtl #categories .specialCategory .box {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #categories .normalCategory .information {
+    background-position: left -930px;
+    padding: 0 0 0 5px
+}
+
+#rtl #categories .normalCategory .information .box {
+    background-position: right -930px;
+    padding: 0 5px 0 0
+}
+
+#rtl #categories .normalCategory .information .box .amount .oldamount {
+    float: right;
+    padding: 5px 0 0 3px
+}
+
+#rtl #categories .normalCategory .information .box .price {
+    right: auto;
+    left: 5px;
+    text-align: left
+}
+
+#rtl #categories .normalCategory.hover .information {
+    background-position: left -1060px
+}
+
+#rtl #categories .normalCategory.hover .information .box {
+    background-position: right -1060px
+}
+
+#rtl #categories .normalCategory.selected .information {
+    background-position: left -1190px
+}
+
+#rtl #categories .normalCategory.selected .information .box {
+    background-position: right -1190px
+}
+
+#rtl #categories .specialCategory .information {
+    background-position: left -1320px;
+    padding: 0 0 0 5px
+}
+
+#rtl #categories .specialCategory .information .box {
+    background-position: right -1320px;
+    padding: 0 5px 0 0
+}
+
+#rtl #categories .specialCategory .information .itemName,
+#rtl #categories .specialCategory .information .amount {
+    left: 5px;
+    right: auto
+}
+
+#rtl #categories .specialCategory.hover .information {
+    background-position: left -1450px
+}
+
+#rtl #categories .specialCategory.hover .information .box {
+    background-position: right -1450px
+}
+
+#rtl #categories .specialCategory.selected .information {
+    background-position: left -1580px
+}
+
+#rtl #categories .specialCategory.selected .information .box {
+    background-position: right -1580px
+}
+
+#rtl #specialCategories #category_12 .information {
+    background-position: left -1710px
+}
+
+#rtl #specialCategories #category_12 .information .box {
+    background-position: right -1710px
+}
+
+#rtl #specialCategories #category_12.hover .information {
+    background-position: left -1840px
+}
+
+#rtl #specialCategories #category_12.hover .information .box {
+    background-position: right -1840px
+}
+
+#rtl #specialCategories #category_12.selected .information {
+    background-position: left -1970px
+}
+
+#rtl #specialCategories #category_12.selected .information .box {
+    background-position: right -1970px
+}
+
+#rtl #specialCategories #category_12 .methodLogos {
+    left: auto;
+    right: 2px
+}
+
+#rtl #specialCategories #category_12 .methodLogos li {
+    float: right
+}
+
+#rtl #specialMethods h2 {
+    padding: 0 65px 0 0
+}
+
+#rtl #specialMethods h2 .icon {
+    left: auto;
+    right: 0
+}
+
+#rtl #specialMethods .submenu li {
+    float: right;
+    padding: 0 0 0 5px;
+    background-position: left -3140px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #specialMethods .submenu li .label {
+    padding: 0 10px 0 5px;
+    background-position: right -3140px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #specialMethods .submenu li.active {
+    background-position: left -3270px
+}
+
+#rtl #specialMethods .submenu li.active .label {
+    background-position: right -3270px
+}
+
+#rtl #specialMethods .tariffs {
+    padding: 0 0 0 5px;
+    background-position: left -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #specialMethods .tariffs ul {
+    padding: 2px 5px 0 10px;
+    background-position: right -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #specialMethods .specialTariff {
+    margin: 15px 10px 5px 0;
+    float: right
+}
+
+#rtl #specialMethods .specialTariff .badge {
+    right: auto;
+    left: -7px
+}
+
+#rtl #specialMethods .specialTariff .information {
+    padding: 0 0 0 5px;
+    background-position: left -2100px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #specialMethods .specialTariff .information .box {
+    padding: 0 5px 0 0;
+    background-position: right -2100px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #specialMethods .specialTariff .information .price {
+    right: auto;
+    left: 5px
+}
+
+#rtl #specialMethods .specialTariff.hover .information {
+    background-position: left -2230px
+}
+
+#rtl #specialMethods .specialTariff.hover .information .box {
+    background-position: right -2230px
+}
+
+#rtl #specialMethods .specialTariff.selected .information {
+    background-position: left -2360px
+}
+
+#rtl #specialMethods .specialTariff.selected .information .box {
+    background-position: right -2360px
+}
+
+#rtl #payMethods {
+    padding: 10px 10px 0 0;
+    background-position: left -310px
+}
+
+#rtl #payMethods .step {
+    background-position: right -310px
+}
+
+#rtl #topMethods {
+    padding: 0 0 0 5px;
+    background-position: left -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #topMethods .list {
+    padding: 5px 5px 5px 0;
+    background-position: right -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #topMethods .list .method {
+    float: right
+}
+
+#rtl #regularMethods,
+#rtl #itemPayMethods {
+    margin-left: 10px
+}
+
+#rtl #regularMethods.wideMethods #scroll ul,
+#rtl #regularMethods.wideMethods #tariffElementsNormalScroll ul,
+#rtl #itemPayMethods.wideMethods #scroll ul,
+#rtl #itemPayMethods.wideMethods #tariffElementsNormalScroll ul {
+    margin-left: 119px
+}
+
+#rtl #regularMethods #scroll,
+#rtl #regularMethods #tariffElementsNormalScroll,
+#rtl #itemPayMethods #scroll,
+#rtl #itemPayMethods #tariffElementsNormalScroll {
+    float: right
+}
+
+#rtl #regularMethods #scroll ul,
+#rtl #regularMethods #tariffElementsNormalScroll ul,
+#rtl #itemPayMethods #scroll ul,
+#rtl #itemPayMethods #tariffElementsNormalScroll ul {
+    right: auto;
+    left: auto
+}
+
+#rtl #regularMethods .next,
+#rtl #regularMethods .prev,
+#rtl #itemPayMethods .next,
+#rtl #itemPayMethods .prev {
+    float: right
+}
+
+#rtl #infoBoxContainer {
+    right: auto;
+    left: 10px
+}
+
+#rtl #infoBoxContainer #infoBox {
+    padding: 0 0 0 5px;
+    background-position: left -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #infoBoxContainer #infoBox #noticeText {
+    padding: 10px 50px 5px 5px;
+    background-position: right -2620px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #infoBoxContainer #infoBox #noticeText.ppRTBox {
+    padding: 5px;
+    height: 90px;
+    width: 284px
+}
+
+#rtl #infoBoxContainer #infoBox #noticeText.ppRTBox h2 {
+    font-size: 15px;
+    padding: 0 0 3px 5px;
+    color: #7b1300;
+    overflow: hidden;
+    height: 19px;
+    max-width: 385px;
+    text-shadow: 0 0 5px #fff
+}
+
+#rtl #infoBoxContainer #infoBox #noticeText.ppRTBox .method {
+    float: right;
+    width: 250px
+}
+
+#rtl #infoBoxContainer #infoBox #noticeText .icon {
+    left: auto;
+    right: 10px;
+    background-position: right -550px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    _background-image: url(../images/donate/rtl_elements.gif?v=20170623)
+}
+
+#rtl #topMethods #noTopMethods,
+#rtl #topMethods.list {
+    padding: 10px 65px 5px 5px
+}
+
+#rtl #topMethods #noTopMethods .icon,
+#rtl #topMethods.list .icon {
+    right: 10px;
+    left: auto
+}
+
+#rtl #checkout {
+    background-position: left -620px
+}
+
+#rtl #checkout .step {
+    background-position: right -620px
+}
+
+#rtl #checkout #terms {
+    padding: 8px 33px 5px 5px
+}
+
+#rtl #checkout #terms #acceptTerms {
+    left: auto;
+    right: 10px
+}
+
+#rtl #checkout #checkoutButton,
+#rtl #checkout #disabledCheckoutButton {
+    right: auto;
+    left: 5px;
+    padding: 0 0 0 5px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #checkout #checkoutButton .box,
+#rtl #checkout #disabledCheckoutButton .box {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #checkout #checkoutButton .icon,
+#rtl #checkout #disabledCheckoutButton .icon {
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    _background-image: url(../images/donate/rtl_elements.gif?v=20170623)
+}
+
+#rtl #checkout #checkoutButton {
+    background-position: left -2880px
+}
+
+#rtl #checkout #checkoutButton .box {
+    padding: 0 10px 0 0;
+    background-position: right -2880px
+}
+
+#rtl #checkout #checkoutButton .icon {
+    left: 5px;
+    right: auto;
+    background-position: right -1320px
+}
+
+#rtl #checkout #checkoutButton .label {
+    padding: 0 0 0 30px
+}
+
+#rtl #checkout #checkoutButton.hover {
+    background-position: left -3010px
+}
+
+#rtl #checkout #checkoutButton.hover .box {
+    background-position: right -3010px
+}
+
+#rtl #checkout #checkoutButton.hover .icon {
+    background-position: right -1430px
+}
+
+#rtl #checkout #disabledCheckoutButton {
+    background-position: left -2750px
+}
+
+#rtl #checkout #disabledCheckoutButton .box {
+    background-position: right -2750px;
+    padding: 0 55px 0 23px
+}
+
+#rtl #checkout #disabledCheckoutButton .icon {
+    left: 0;
+    right: 15px;
+    background-position: right -550px
+}
+
+#rtl #checkout #orderInformation {
+    right: auto;
+    left: 317px
+}
+
+#rtl #orderContainer #orderPopup {
+    background-position: left 0;
+    padding: 0 130px 0 0;
+    margin-bottom: 150px
+}
+
+#rtl #directPay .button,
+#rtl #directPay .link,
+#rtl #directPay h2,
+#rtl #twoPay .button,
+#rtl #twoPay .link,
+#rtl #twoPay h2 {
+    float: right;
+    padding-right: 0;
+    padding-left: 5px
+}
+
+#rtl #directPay h2,
+#rtl #twoPay h2 {
+    text-align: right
+}
+
+#rtl #directPay .button,
+#rtl #directPay .link,
+#rtl #twoPay .button,
+#rtl #twoPay .link {
+    padding-right: 7px
+}
+
+#rtl #directPay .button .label,
+#rtl #directPay .link .label,
+#rtl #twoPay .button .label,
+#rtl #twoPay .link .label {
+    padding-left: 0;
+    padding-right: 5px
+}
+
+#rtl #directPay .button,
+#rtl #twoPay .button {
+    background-position: left -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #directPay .button .label,
+#rtl #twoPay .button .label {
+    background-position: right -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #directPay .link .logo,
+#rtl #twoPay .link .logo {
+    left: 0;
+    right: 7px
+}
+
+#rtl #directPay .link .infoTooltip,
+#rtl #twoPay .link .infoTooltip {
+    bottom: 2px;
+    right: auto;
+    left: 2px
+}
+
+#rtl #directPay .link:hover,
+#rtl #directPay .link.hover,
+#rtl #twoPay .link:hover,
+#rtl #twoPay .link.hover {
+    background-position: left -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #directPay .link:hover .label,
+#rtl #directPay .link.hover .label,
+#rtl #twoPay .link:hover .label,
+#rtl #twoPay .link.hover .label {
+    background-position: right -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_boxes.png?v=20170623)
+}
+
+#rtl #directPay #coupon .button,
+#rtl #directPay #spnsrd .button,
+#rtl #twoPay #coupon .button,
+#rtl #twoPay #spnsrd .button {
+    padding-right: 0
+}
+
+#rtl #footer {
+    text-align: left
+}
+
+#rtl #footer #copyright {
+    float: right
+}
+
+#rtl #footer #links a {
+    margin: 0 10px 0 0
+}
+
+#rtl .infoTooltip {
+    right: auto;
+    left: 0;
+    background-position: right -1540px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    _background-image: url(../images/donate/rtl_elements.gif?v=20170623)
+}
+
+#rtl .link .infoTooltip {
+    left: -7px;
+    right: auto
+}
+
+.ie7 #payMethods .fadeout .information,
+.ie8 #payMethods .fadeout .information,
+.ie9 #payMethods .fadeout .information {
+    padding-right: 6px
+}
+
+.ie8 #mainPage {
+    display: none
+}
+
+.ie8 #categories {
+    cursor: default
+}
+
+.ie8 #payMethods #topMethods .fadeout .information,
+.ie8 #payMethods #topMethods .fadeout .box,
+.ie8 #payMethods #regularMethods .fadeout .information,
+.ie8 #payMethods #regularMethods .fadeout .box {
+    -moz-opacity: .4;
+    opacity: .4;
+    filter: alpha(opacity=40);
+    zoom: 1
+}
+
+.ie8 #payMethods #topMethods .hover .information,
+.ie8 #payMethods #topMethods .hover .box,
+.ie8 #payMethods #regularMethods .hover .information,
+.ie8 #payMethods #regularMethods .hover .box {
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+*+html .hidden {
+    z-index: -100
+}
+
+*+html .badge {
+    cursor: pointer
+}
+
+*+html #countries .label {
+    width: 150px
+}
+
+*+html #countrySelectBox {
+    width: 210px
+}
+
+*+html #payMethods .step {
+    height: 196px
+}
+
+*+html #topMethods {
+    width: 395px
+}
+
+*+html #topMethods .position1 {
+    margin-left: 3px
+}
+
+*+html #topMethods .position3 {
+    margin-right: 0
+}
+
+*+html #topMethods .disabled,
+*+html #regularMethods .disabled {
+    zoom: 1;
+    z-index: 1000;
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+*+html #checkout #disabledCheckoutButton .text {
+    padding-top: 17px;
+    display: block
+}
+
+*+html #coupon,
+*+html #spnsrd,
+*+html #twoPay {
+    height: 50px;
+    clear: both
+}
+
+*+html #coupon .label,
+*+html #spnsrd .label,
+*+html #twoPay .label {
+    cursor: pointer
+}
+
+*+html #directPay .button {
+    width: 215px
+}
+
+*+html #twoPay h2 {
+    width: 215px
+}
+
+*+html #rtl #content {
+    position: relative;
+    height: 196px
+}
+
+*+html #rtl #normalCategories .normalCategory.hover .information {
+    background-position: left -1060px
+}
+
+*+html #rtl #normalCategories .normalCategory.hover .information .box {
+    background-position: right -1060px
+}
+
+*+html #rtl #normalCategories .normalCategory.selected .information {
+    background-position: left -1190px
+}
+
+*+html #rtl #normalCategories .normalCategory.selected .information .box {
+    background-position: right -1190px
+}
+
+*+html #rtl #specialCategories #category_11 .amount,
+*+html #rtl #specialCategories #category_11 .itemName {
+    display: none
+}
+
+*+html #rtl #specialCategories #category_11 .methodLogos {
+    position: relative;
+    margin-top: 8px
+}
+
+*+html #rtl .tooltip {
+    right: auto;
+    left: -15px
+}
+
+*+html #rtl #specialMethods .submenu {
+    direction: ltr
+}
+
+*+html #rtl #specialMethods .submenu li {
+    direction: rtl
+}
+
+*+html #rtl #specialMethods .tooltip {
+    left: -10px
+}
+
+*+html #mainPage {
+    display: none
+}
+
+*+html #categories {
+    cursor: default
+}
+
+*+html #payMethods #topMethods .fadeout .information,
+*+html #payMethods #topMethods .fadeout .box,
+*+html #payMethods #regularMethods .fadeout .information,
+*+html #payMethods #regularMethods .fadeout .box {
+    -moz-opacity: .4;
+    opacity: .4;
+    filter: alpha(opacity=40);
+    zoom: 1
+}
+
+*+html #payMethods #topMethods .hover .information,
+*+html #payMethods #topMethods .hover .box,
+*+html #payMethods #regularMethods .hover .information,
+*+html #payMethods #regularMethods .hover .box {
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+*+html #topMethods .badge,
+*+html #regularMethods .badge,
+*+html #specialMethods .badge {
+    right: -10px
+}
+
+*+html #specialMethods .tariffs {
+    width: 405px
+}
+
+*+html .specialButton {
+    display: inline
+}
+
+*+html #payMethods .fadeout .information {
+    zoom: 1
+}
+
+*+html #rtl #specialMethods .badge {
+    right: auto;
+    left: -10px
+}
+
+* html .hidden {
+    z-index: -100
+}
+
+* html .badge {
+    cursor: pointer
+}
+
+* html #countries .label {
+    width: 150px
+}
+
+* html #countrySelectBox {
+    width: 210px
+}
+
+* html #payMethods .step {
+    height: 196px
+}
+
+* html #topMethods {
+    width: 395px
+}
+
+* html #topMethods .position1 {
+    margin-left: 3px
+}
+
+* html #topMethods .position3 {
+    margin-right: 0
+}
+
+* html #topMethods .disabled,
+* html #regularMethods .disabled {
+    zoom: 1;
+    z-index: 1000;
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+* html #checkout #disabledCheckoutButton .text {
+    padding-top: 17px;
+    display: block
+}
+
+* html #coupon,
+* html #spnsrd,
+* html #twoPay {
+    height: 50px;
+    clear: both
+}
+
+* html #coupon .label,
+* html #spnsrd .label,
+* html #twoPay .label {
+    cursor: pointer
+}
+
+* html #directPay .button {
+    width: 215px
+}
+
+* html #twoPay h2 {
+    width: 215px
+}
+
+* html #rtl #content {
+    position: relative;
+    height: 196px
+}
+
+* html #rtl #normalCategories .normalCategory.hover .information {
+    background-position: left -1060px
+}
+
+* html #rtl #normalCategories .normalCategory.hover .information .box {
+    background-position: right -1060px
+}
+
+* html #rtl #normalCategories .normalCategory.selected .information {
+    background-position: left -1190px
+}
+
+* html #rtl #normalCategories .normalCategory.selected .information .box {
+    background-position: right -1190px
+}
+
+* html #rtl #specialCategories #category_11 .amount,
+* html #rtl #specialCategories #category_11 .itemName {
+    display: none
+}
+
+* html #rtl #specialCategories #category_11 .methodLogos {
+    position: relative;
+    margin-top: 8px
+}
+
+* html #rtl .tooltip {
+    right: auto;
+    left: -15px
+}
+
+* html #rtl #specialMethods .submenu {
+    direction: ltr
+}
+
+* html #rtl #specialMethods .submenu li {
+    direction: rtl
+}
+
+* html #rtl #specialMethods .tooltip {
+    left: -10px
+}
+
+* html #mainPage {
+    display: none
+}
+
+* html #categories {
+    cursor: default
+}
+
+* html #payMethods #topMethods .fadeout .information,
+* html #payMethods #topMethods .fadeout .box,
+* html #payMethods #regularMethods .fadeout .information,
+* html #payMethods #regularMethods .fadeout .box {
+    -moz-opacity: .4;
+    opacity: .4;
+    filter: alpha(opacity=40);
+    zoom: 1
+}
+
+* html #payMethods #topMethods .hover .information,
+* html #payMethods #topMethods .hover .box,
+* html #payMethods #regularMethods .hover .information,
+* html #payMethods #regularMethods .hover .box {
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+* html .method .disabled,
+* html .category .disabled {
+    width: 90%
+}
+
+* html .tooltip {
+    zoom: 1
+}
+
+* html #header {
+    height: 50px
+}
+
+* html .badge {
+    height: 30px
+}
+
+* html .specialButton {
+    width: 270px
+}
+
+* html .specialButton .label {
+    width: 270px
+}
+
+* html #progress li.active .number {
+    background-position: left -160px
+}
+
+* html #progress li.active .text {
+    background-position: right -160px
+}
+
+* html #progress li.active .numberLast {
+    background-position: left -300px
+}
+
+* html #progress li.active .textLast {
+    background-position: right -300px
+}
+
+* html #categories .step,
+* html #orderContainer .step {
+    height: 196px
+}
+
+* html #categories .emptyCategory,
+* html #categories .normalCategory,
+* html #categories .specialCategory {
+    display: inline
+}
+
+* html #categories #specialCategories .specialCategory .information .amount,
+* html #categories #specialCategories .specialCategory .information .itemName {
+    display: block
+}
+
+* html #categories #specialCategories .fadeout .disabled {
+    z-index: 1000
+}
+
+* html #payMethods .step {
+    height: 196px
+}
+
+* html #payMethods .method {
+    margin: 0 4px 10px 5px
+}
+
+* html #payMethods #topMethods {
+    width: 400px
+}
+
+* html #payMethods #specialMethods .submenu .link {
+    width: 110px
+}
+
+* html #payMethods #specialMethods .tariffs,
+* html #payMethods #specialMethods .tariffs ul {
+    display: inline-block;
+    width: 390px
+}
+
+* html #payMethods .information .box .name span {
+    width: 100%
+}
+
+* html #checkout .step {
+    height: 72px
+}
+
+* html #checkout #checkoutButton,
+* html #checkout #disabledCheckoutButton {
+    margin-right: 3px
+}
+
+* html #rtl #progress li.active .number {
+    background-position: right -160px
+}
+
+* html #rtl #progress li.active .text {
+    background-position: left -160px
+}
+
+* html #rtl #progress li.active .numberLast {
+    background-position: right -300px
+}
+
+* html #rtl #progress li.active .textLast {
+    background-position: left -300px
+}
+
+* html #rtl #categories .step {
+    right: 0
+}
+
+* html #rtl #checkout #checkoutButton,
+* html #rtl #checkout #disabledCheckoutButton {
+    margin-left: 3px
+}
+
+#container:not(.itemshop) #mainPage.pl .itemName {
+    font-size: 10px;
+    line-height: 10px
+}
+
+#container:not(.itemshop) #mainPage.pl #checkout #orderInformation .amount,
+#container:not(.itemshop) #mainPage.pl #checkout #orderInformation .bonus,
+#container:not(.itemshop) #mainPage.pl #checkout #orderInformation .price {
+    font-size: 16px
+}
+
+#container:not(.itemshop) #mainPage.ogame .information .amount .oldamount {
+    font-size: 11px;
+    line-height: 18px
+}
+
+#container:not(.itemshop) #mainPage.ogame .information .amount .realamount {
+    font-size: 13px
+}
+
+#container:not(.itemshop) #mainPage.ogame #checkout #orderInformation .amount,
+#container:not(.itemshop) #mainPage.ogame #checkout #orderInformation .bonus,
+#container:not(.itemshop) #mainPage.ogame #checkout #orderInformation .price {
+    font-size: 16px
+}
+
+#container:not(.itemshop) #mainPage.ogame.sk #specialCategories .specialCategory .information .amount,
+#container:not(.itemshop) #mainPage.ogame.gr #specialCategories .specialCategory .information .amount,
+#container:not(.itemshop) #mainPage.ogame.cs #specialCategories .specialCategory .information .amount {
+    line-height: 13px
+}
+
+#container:not(.itemshop) #mainPage.cs #specialCategories .specialCategory .information .name,
+#container:not(.itemshop) #mainPage.gr #specialCategories .specialCategory .information .name,
+#container:not(.itemshop) #mainPage.sk #specialCategories .specialCategory .information .name {
+    font-size: 12px
+}
+
+#container:not(.itemshop) #mainPage.metin2.style_ingame #checkout #orderInformation {
+    text-align: right
+}
+
+#container:not(.itemshop) #mainPage.country_tr #coupon .link {
+    color: #fff;
+    background-position: right -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#container:not(.itemshop) #mainPage.country_tr #coupon .link .label {
+    line-height: 1000px;
+    background-position: left -2490px;
+    background-repeat: no-repeat;
+    background-image: url(../images/donate/ltr_boxes.png?v=20170623)
+}
+
+#container:not(.itemshop) #mainPage.country_tr #coupon .link .logo,
+#container:not(.itemshop) #mainPage.country_tr #coupon .link .infoTooltip {
+    display: block
+}
+
+#container:not(.itemshop) #rtl #mainPage.metin2.style_ingame #checkout #orderInformation {
+    text-align: left
+}
+
+#container:not(.itemshop) #mainPage.ogame #normalCategories .dynamicCampaign .information .amount .realamount {
+    padding-top: 23px
+}
+
+#container:not(.itemshop) #mainPage.ogame #normalCategories .dynamicCampaign .information .amount .realamount.dynamicCampaign {
+    padding-top: 0px
+}
+
+#container:not(.itemshop) .anchorCurrency #mainPage.ogame #normalCategories .dynamicCampaign .information .amount .realamount {
+    padding-top: 18px
+}
+
+#container:not(.itemshop) .anchorCurrency #mainPage.ogame #normalCategories .dynamicCampaign .information .amount .realamount.dynamicCampaign {
+    padding-top: 2px
+}
+
+#container:not(.itemshop) #mainPage.bitefight.fr #categories.dynamicCampaign .category .information .itemName {
+    font-size: 11px
+}
+
+#container:not(.itemshop) #mainPage.bitefight.fr #normalCategories .dynamicCampaign .information .amount .realamount {
+    line-height: 16px
+}
+
+#normalCategories .dynamicCampaign .information .amount .realamount {
+    padding-top: 18px;
+    line-height: 16px
+}
+
+#normalCategories .dynamicCampaign .information .amount:after {
+    content: "\A";
+    white-space: pre
+}
+
+#normalCategories .dynamicCampaign .information .amount .oldamount {
+    float: none;
+    display: block;
+    font-size: 12px
+}
+
+#normalCategories .dynamicCampaign .information .amount .realamount.dynamicCampaign {
+    padding-top: 0px;
+    font-size: 16px;
+    line-height: 16px
+}
+
+#normalCategories .dynamicCampaign .information .amount .unit {
+    font-size: 11px
+}
+
+.dynamic_campaign_badge {
+    background-image: url(../images/donate/dynamic_campaign_badge.png?v=20170623);
+    background-position: 0 0;
+    width: 50px;
+    height: 50px;
+    line-height: 53px;
+    top: -12px;
+    padding: 0
+}
+
+.anchorCurrency #mainPage #normalCategories .normalCategory .information .amount .oldamount {
+    font-size: 11px;
+    line-height: 11px
+}
+
+.anchorCurrency #mainPage #normalCategories .normalCategory .information .amount .realamount {
+    font-size: 13px;
+    line-height: 13px
+}
+
+.anchorCurrency #mainPage #checkout #orderInformation .amount,
+.anchorCurrency #mainPage #checkout #orderInformation .bonus,
+.anchorCurrency #mainPage #checkout #orderInformation .price {
+    font-size: 16px
+}
+
+.anchorCurrency #mainPage #normalCategories .normalCategory .information .price .realPrice .value {
+    line-height: 16px
+}
+
+#mainPage #normalCategories .dynamicCampaign .information .amount .realamount {
+    padding-top: 22px
+}
+
+#mainPage #normalCategories .dynamicCampaign .information .amount .realamount.dynamicCampaign {
+    padding-top: 3px
+}
+
+.anchorCurrency #mainPage #normalCategories .dynamicCampaign .information .amount .realamount {
+    padding-top: 17px
+}
+
+.anchorCurrency #mainPage #normalCategories .dynamicCampaign .information .amount .realamount.dynamicCampaign {
+    padding-top: 1px
+}
+
+#rtl #categories .normalCategory.dynamicCampaign .information .box .amount .oldamount {
+    float: none
+}
+
+#infosite {
+    height: 100%;
+    overflow-y: hidden
+}
+
+#infosite body {
+    background-color: #000;
+    background-image: none;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    height: 100%;
+    overflow-y: hidden
+}
+
+#infosite .header {
+    background-color: #4b2017;
+    color: #f5f5f5;
+    margin: 0;
+    position: relative;
+    height: 5%;
+    min-height: 40px;
+    padding-left: 20px
+}
+
+@media (min-width: 100px) and (max-width: 761px) {
+    #infosite .header {
+        padding-left: 15px
+    }
+}
+
+#infosite .header-wrapper {
+    position: absolute;
+    top: 50%;
+    height: 32px;
+    margin-top: -16px
+}
+
+#infosite .header-text {
+    font-size: 2.3em;
+    text-align: left;
+    white-space: nowrap;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
+    height: 32px
+}
+
+#infosite .header-text span {
+    margin: 0 10px 0 0;
+    display: block;
+    float: left
+}
+
+#infosite .header i {
+    display: block;
+    color: white;
+    height: 30px;
+    width: 30px;
+    float: left
+}
+
+#infosite .header .icon-rtl {
+    display: none
+}
+
+#infosite .gradient {
+    width: 28%;
+    float: right;
+    height: 100%;
+    min-height: 40px
+}
+
+#infosite .success .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(left, #4b2017 0%, #97bf0d 60%, #97bf0d 60%);
+    background: -webkit-linear-gradient(left, #4b2017 0%, #97bf0d 60%, #97bf0d 60%);
+    background: linear-gradient(to right, #4b2017 0%, #97bf0d 60%, #97bf0d 60%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4b2017', endColorstr='#97bf0d', GradientType=1)
+}
+
+#infosite .success .header i {
+    background-image: url("../../../_general/static/_global/success.png")
+}
+
+#infosite .info .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(left, #4b2017 0%, #f6a800 60%, #f6a800 100%);
+    background: -webkit-linear-gradient(left, #4b2017 0%, #f6a800 60%, #f6a800 100%);
+    background: linear-gradient(to right, #4b2017 0%, #f6a800 60%, #f6a800 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4b2017', endColorstr='#f6a800', GradientType=1)
+}
+
+#infosite .info .header i {
+    background-image: url("../../../_general/static/_global/info.png")
+}
+
+#infosite .error .gradient,
+#infosite .fail .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(left, #4b2017 0%, #960000 60%, #960000 100%);
+    background: -webkit-linear-gradient(left, #4b2017 0%, #960000 60%, #960000 100%);
+    background: linear-gradient(to right, #4b2017 0%, #960000 60%, #960000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4b2017', endColorstr='#960000', GradientType=1)
+}
+
+#infosite .error .header i,
+#infosite .fail .header i {
+    background-image: url("../../../_general/static/_global/error.png")
+}
+
+#infosite .pending .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(left, #4b2017 0%, #727272 60%, #727272 100%);
+    background: -webkit-linear-gradient(left, #4b2017 0%, #727272 60%, #727272 100%);
+    background: linear-gradient(to right, #4b2017 0%, #727272 60%, #727272 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4b2017', endColorstr='#727272', GradientType=1)
+}
+
+#infosite .pending .header i {
+    background-image: url("../../../_general/static/_global/pending.png")
+}
+
+#infosite .content-area {
+    height: 100%;
+    padding: 5% 0;
+    background: url("../../../_general/static/metin2/infosite_background.jpg") no-repeat center top fixed
+}
+
+#infosite .pending .content-area {
+    background: url("../../../_general/static/metin2/infosite_background.jpg") no-repeat center top fixed
+}
+
+#infosite .info .content-area {
+    background: url("../../../_general/static/metin2/infosite_background.jpg") no-repeat center top fixed
+}
+
+#infosite .error .content-area {
+    background: url("../../../_general/static/metin2/infosite_background.jpg") no-repeat center top fixed
+}
+
+#infosite .success .content-area {
+    background: url("../../../_general/static/metin2/infosite_background.jpg") no-repeat center top fixed
+}
+
+#infosite .fail .content-area {
+    background: url("../../../_general/static/metin2/infosite_background.jpg") no-repeat center top fixed
+}
+
+#infosite .content-box {
+    background-color: #4b2017;
+    background-color: rgba(75, 32, 23, 0.8);
+    width: 40%;
+    padding: 15px;
+    min-width: 500px;
+    min-height: 180px;
+    margin: 0 auto;
+    text-align: left;
+    color: #f5f5f5
+}
+
+#infosite .content-box a,
+#infosite .content-box a:active,
+#infosite .content-box a:visited {
+    color: #ffffff;
+    text-decoration: underline
+}
+
+#infosite .content-box a:hover {
+    text-decoration: none
+}
+
+#infosite .content-box h2 {
+    margin: 0 0 18px 0;
+    font-size: 1.7em;
+    text-shadow: none;
+    background-image: none;
+    padding-left: 0px
+}
+
+#infosite .content-box p {
+    font-size: 1.4em;
+    text-align: left
+}
+
+#infosite .additional-info {
+    margin-top: 15px
+}
+
+#infosite .additional-info td {
+    text-align: left;
+    font-size: 1.3em
+}
+
+#infosite .additional-info td.value {
+    padding-left: 5px
+}
+
+#infosite .success-pprt {
+    font-size: 1.3em;
+    text-align: left
+}
+
+#infosite .rtl .header {
+    direction: rtl;
+    padding-left: 0;
+    padding-right: 20px
+}
+
+#infosite .rtl .content-box {
+    text-align: right
+}
+
+#infosite .rtl .icon-rtl {
+    display: block
+}
+
+#infosite .rtl .icon-ltr {
+    display: none
+}
+
+#infosite .rtl .gradient {
+    float: left
+}
+
+#infosite .rtl .content-box p {
+    text-align: right
+}
+
+#infosite .rtl .header-text span {
+    margin-left: 10px
+}
+
+#infosite .rtl.success .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(right, #4b2017 0%, #97bf0d 60%, #97bf0d 60%);
+    background: -webkit-linear-gradient(right, #4b2017 0%, #97bf0d 60%, #97bf0d 60%);
+    background: linear-gradient(to left, #4b2017 0%, #97bf0d 60%, #97bf0d 60%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#97bf0d', endColorstr='#4b2017', GradientType=1)
+}
+
+#infosite .rtl.info .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(right, #4b2017 0%, #f6a800 60%, #f6a800 60%);
+    background: -webkit-linear-gradient(right, #4b2017 0%, #f6a800 60%, #f6a800 60%);
+    background: linear-gradient(to left, #4b2017 0%, #f6a800 60%, #f6a800 60%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6a800', endColorstr='#4b2017', GradientType=1)
+}
+
+#infosite .rtl.error .gradient,
+#infosite .rtl.fail .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(right, #4b2017 0%, #960000 60%, #960000 60%);
+    background: -webkit-linear-gradient(right, #4b2017 0%, #960000 60%, #960000 60%);
+    background: linear-gradient(to left, #4b2017 0%, #960000 60%, #960000 60%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#960000', endColorstr='#4b2017', GradientType=1)
+}
+
+#infosite .rtl.pending .gradient {
+    background: #4b2017;
+    background: -moz-linear-gradient(right, #4b2017 0%, #727272 60%, #727272 60%);
+    background: -webkit-linear-gradient(right, #4b2017 0%, #727272 60%, #727272 60%);
+    background: linear-gradient(to left, #4b2017 0%, #727272 60%, #727272 60%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#727272', endColorstr='#4b2017', GradientType=1)
+}
+
+* html#infosite .content-box {
+    background: #4b2017
+}
+
+*+html#infosite .content-box {
+    background: url("../../../_general/static/metin2/infosite_ie_content_box_background.png")
+}
+
+#tariffElementsNormalScroll {
+    width: 736px;
+    overflow: hidden;
+    height: 94px;
+    height: 104px;
+    position: relative;
+    float: left
+}
+
+#tariffElementsNormalScroll ul {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+#tariffElementsNormalScroll .category,
+#tariffElementsNormalScroll .emptyCategory {
+    margin-bottom: 13px
+}
+
+#tariffElementsNormal {
+    width: 725;
+    height: 104px
+}
+
+#categories .prev,
+#categories .next,
+#tariffElementsNormal .prev,
+#tariffElementsNormal .next,
+#tariffElementsNormalScroll .prev,
+#tariffElementsNormalScroll .next {
+    background-repeat: no-repeat;
+    cursor: default;
+    float: left;
+    height: 100px;
+    position: absolute;
+    top: 3px;
+    width: 40px;
+    z-index: 3;
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+#categories .prev.disabled,
+#categories .next.disabled,
+#tariffElementsNormal .prev.disabled,
+#tariffElementsNormal .next.disabled,
+#tariffElementsNormalScroll .prev.disabled,
+#tariffElementsNormalScroll .next.disabled {
+    cursor: auto;
+    display: none;
+    transition: opacity .8s ease;
+    -moz-transition: opacity .8s ease;
+    -moz-opacity: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    z-index: 0
+}
+
+#categories .prev.hide,
+#categories .next.hide,
+#tariffElementsNormal .prev.hide,
+#tariffElementsNormal .next.hide,
+#tariffElementsNormalScroll .prev.hide,
+#tariffElementsNormalScroll .next.hide {
+    display: none
+}
+
+#categories .prev,
+#tariffElementsNormal .prev,
+#tariffElementsNormalScroll .prev {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -2167px;
+    left: 0
+}
+
+#categories .prev .prev-btn,
+#tariffElementsNormal .prev .prev-btn,
+#tariffElementsNormalScroll .prev .prev-btn {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -1766px;
+    cursor: pointer;
+    display: block;
+    height: 80px;
+    left: 19px;
+    position: absolute;
+    top: 9px;
+    width: 22px
+}
+
+#categories .prev .prev-btn:hover,
+#tariffElementsNormal .prev .prev-btn:hover,
+#tariffElementsNormalScroll .prev .prev-btn:hover {
+    background-position: left -1966px
+}
+
+#categories .next,
+#tariffElementsNormal .next,
+#tariffElementsNormalScroll .next {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -2267px;
+    border-top-right-radius: 8px;
+    left: 698px
+}
+
+#categories .next .next-btn,
+#tariffElementsNormal .next .next-btn,
+#tariffElementsNormalScroll .next .next-btn {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -1866px;
+    cursor: pointer;
+    display: block;
+    height: 80px;
+    left: 0;
+    position: absolute;
+    top: 9px;
+    width: 22px
+}
+
+#categories .next .next-btn:hover,
+#tariffElementsNormal .next .next-btn:hover,
+#tariffElementsNormalScroll .next .next-btn:hover {
+    background-position: left -2066px
+}
+
+#categories .emptyCategory,
+#tariffElementsNormal .emptyCategory,
+#tariffElementsNormalScroll .emptyCategory {
+    margin-top: 13px
+}
+
+#regularMethods #scroll,
+#rtl #regularMethods #tariffElementsNormalScroll,
+#regularMethods #rtl #itemPayMethods #tariffElementsNormalScroll,
+#itemPayMethods #scroll,
+#itemPayMethods #rtl #regularMethods #tariffElementsNormalScroll,
+#rtl #itemPayMethods #tariffElementsNormalScroll {
+    height: 70px;
+    width: 708px;
+    margin-left: 5px
+}
+
+#regularMethods .prev,
+#regularMethods .next,
+#itemPayMethods .prev,
+#itemPayMethods .next {
+    cursor: default;
+    display: block;
+    float: left;
+    height: 64px;
+    position: absolute;
+    width: 40px;
+    z-index: 2
+}
+
+#regularMethods .prev.disabled,
+#regularMethods .next.disabled,
+#itemPayMethods .prev.disabled,
+#itemPayMethods .next.disabled {
+    cursor: none;
+    display: none;
+    transition: opacity .8s ease;
+    -moz-transition: opacity .8s ease;
+    -moz-opacity: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    z-index: 0
+}
+
+#regularMethods .prev.hide,
+#regularMethods .next.hide,
+#itemPayMethods .prev.hide,
+#itemPayMethods .next.hide {
+    background-image: none;
+    width: 5px
+}
+
+#regularMethods .prev,
+#itemPayMethods .prev {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -2375px;
+    left: 0;
+    margin-top: 0
+}
+
+#regularMethods .prev .prev-btn,
+#itemPayMethods .prev .prev-btn {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -2537px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 19px;
+    height: 64px;
+    width: 22px
+}
+
+#regularMethods .prev .prev-btn:hover,
+#itemPayMethods .prev .prev-btn:hover {
+    background-position: left -2617px
+}
+
+#regularMethods .prev:hover,
+#itemPayMethods .prev:hover {
+    background-position: left -2375px
+}
+
+#regularMethods .next,
+#itemPayMethods .next {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -2456px;
+    left: 698px;
+    position: absolute;
+    margin-top: 0
+}
+
+#regularMethods .next .next-btn,
+#itemPayMethods .next .next-btn {
+    background-image: url(../images/donate/ltr_elements.png?v=20170623);
+    background-position: left -2698px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 64px;
+    width: 22px
+}
+
+#regularMethods .next .next-btn:hover,
+#itemPayMethods .next .next-btn:hover {
+    background-position: left -2776px
+}
+
+#regularMethods .next:hover,
+#itemPayMethods .next:hover {
+    background-position: left -2456px
+}
+
+#regularMethods {
+    width: 720px
+}
+
+#regularMethods .hide {
+    display: none
+}
+
+*+html #categories .next,
+*+html #categories .prev,
+#tariffElementsNormal .next,
+#tariffElementsNormal .prev,
+#tariffElementsNormalScroll .next,
+#tariffElementsNormalScroll .prev {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/donate/rtl_elements.png?v=20170623', sizingMethod='crop')
+}
+
+.ie7 #regularMethods .prev,
+.ie7 #itemPayMethods .prev {
+    margin-top: 5px
+}
+
+.ie7 .appt_prev_category .tooltip {
+    top: 15px;
+    font-size: 9px;
+    right: -10px;
+    width: 100px
+}
+
+.ie7 .appt_next_category .tooltip {
+    top: 15px;
+    left: -10px;
+    font-size: 9px;
+    width: 100px
+}
+
+#rtl #tariffElementsNormalScroll {
+    float: right
+}
+
+#rtl #tariffElementsNormalScroll ul {
+    right: 0;
+    left: auto
+}
+
+#rtl #tariffElementsNormalScroll #normalCategories {
+    margin-right: 15px
+}
+
+#rtl #categories .emptyCategory,
+#rtl #categories .normalCategory,
+#rtl #tariffElementsNormalScroll .emptyCategory,
+#rtl #tariffElementsNormalScroll .normalCategory {
+    margin-right: 0px;
+    margin-left: 20px;
+    float: left
+}
+
+#rtl #categories #specialCategories .emptyCategory,
+#rtl #categories #specialCategories specialCategory,
+#rtl #tariffElementsNormalScroll #specialCategories .emptyCategory,
+#rtl #tariffElementsNormalScroll #specialCategories specialCategory {
+    float: right
+}
+
+#rtl .next,
+#rtl .prev {
+    float: right
+}
+
+#rtl .next {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2167px;
+    border-radius: 0;
+    right: 0
+}
+
+#rtl .prev {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2267px;
+    border-top-left-radius: 8px;
+    right: 698px
+}
+
+#rtl #regularMethods #tariffElementsNormalScroll,
+#rtl #itemPayMethods #tariffElementsNormalScroll {
+    float: right
+}
+
+#rtl #regularMethods #tariffElementsNormalScroll ul li,
+#rtl #itemPayMethods #tariffElementsNormalScroll ul li {
+    float: left
+}
+
+#rtl #regularMethods #scroll,
+#rtl #regularMethods #tariffElementsNormalScroll,
+#rtl #itemPayMethods #scroll,
+#rtl #itemPayMethods #tariffElementsNormalScroll {
+    margin-left: 0
+}
+
+#rtl #regularMethods #scroll ul,
+#rtl #regularMethods #tariffElementsNormalScroll ul,
+#rtl #itemPayMethods #scroll ul,
+#rtl #itemPayMethods #tariffElementsNormalScroll ul {
+    margin-left: 55.5px
+}
+
+#rtl #regularMethods .next,
+#rtl #regularMethods .prev,
+#rtl #itemPayMethods .next,
+#rtl #itemPayMethods .prev {
+    background-repeat: no-repeat;
+    position: absolute
+}
+
+#rtl #regularMethods .next,
+#rtl #itemPayMethods .next {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2375px;
+    left: 19px
+}
+
+#rtl #regularMethods .next .next-btn,
+#rtl #itemPayMethods .next .next-btn {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2537px;
+    right: 19px
+}
+
+#rtl #regularMethods .next .next-btn:hover,
+#rtl #itemPayMethods .next .next-btn:hover {
+    background-position: right -2617px
+}
+
+#rtl #regularMethods .prev,
+#rtl #itemPayMethods .prev {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2456px;
+    left: 698px
+}
+
+#rtl #regularMethods .prev .prev-btn,
+#rtl #itemPayMethods .prev .prev-btn {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2698px;
+    left: 19px
+}
+
+#rtl #regularMethods .prev .prev-btn:hover,
+#rtl #itemPayMethods .prev .prev-btn:hover {
+    background-position: right -2776px
+}
+
+#rtl #scroll,
+#rtl #regularMethods #tariffElementsNormalScroll,
+#rtl #itemPayMethods #tariffElementsNormalScroll {
+    margin-left: 0
+}
+
+#rtl .next,
+#rtl .prev {
+    background-repeat: no-repeat;
+    position: absolute
+}
+
+#rtl .next {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2167px;
+    left: 19px
+}
+
+#rtl .next .next-btn {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -1766px;
+    right: 19px
+}
+
+#rtl .next .next-btn:hover {
+    background-position: right -1966px
+}
+
+#rtl .prev {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -2267px;
+    left: 693px
+}
+
+#rtl .prev .prev-btn {
+    background-image: url(../images/donate/rtl_elements.png?v=20170623);
+    background-position: right -1866px;
+    left: 19px
+}
+
+#rtl .prev .prev-btn:hover {
+    background-position: right -2066px
+}
+
+*+html #rtl .next,
+*+html #rtl .prev {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/donate/rtl_elements.png?v=20170623', sizingMethod='crop')
+}
+
+#rtl .ie7 #regularMethods .next,
+#rtl .ie7 #itemPayMethods .next {
+    margin-top: 5px
+}
+
+#rtl .ie7 #regularMethods .prev,
+#rtl .ie7 #itemPayMethods .prev {
+    margin-top: 0
+}
