@@ -1,0 +1,56 @@
+.nativelooktop {
+    background: url(https://en-wiki.metin2.gameforge.com/images/1/1c/Nativelooktop.jpg) no-repeat;
+    padding: 0px;
+    width: 190px;
+    height: 10px;
+}
+.nativelookbackground {
+    background-image: url(https://en-wiki.metin2.gameforge.com/images/1/12/Nativelookbackground.jpg);
+    background-repeat: repeat-y;
+    padding: 0px;
+    width: 190px;
+}
+.nativelookbottom {
+    background: url(https://en-wiki.metin2.gameforge.com/images/8/8b/Nativelookbottom.jpg) no-repeat;
+    padding: 0px;
+    width: 190px;
+    height: 10px;
+}
+.title{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    text-shadow: -1px -1px 0.1px black, -1px 1px 0.1px black, 1px 1px 0.1px black, 1px -1px 0.1px black, -1px 0px 0.1px black, 1px 0px 0.1px black, 0px 1px 0.1px black, 0px -1px 0.1px black;
+    color: #dec257;
+	text-position:center;
+}
+.content{
+	padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+   
+}
+.tooltip.show {
+  opacity: 1;
+}
+
+.tooltip-inner {
+  background-color: inherit;
+  opacity: 1 !important;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+  border-right-color: inherit !important;
+}
+
+.tooltip.bs-tooltip-left .arrow:before {
+ border-left-color: inherit !important;
+}
+
+.tooltip.bs-tooltip-bottom .arrow:before {
+ border-bottom-color: inherit !important;
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+ border-top-color: inherit !important;
+}

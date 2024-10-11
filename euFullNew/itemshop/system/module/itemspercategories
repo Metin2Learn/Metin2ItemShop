@@ -1,0 +1,180 @@
+<div class="products">
+<?php
+	if(isset($_GET['catid']) && $_GET['catid']!=0)
+	{
+		$show = array();
+		$show = User_Shop::ItemsCategories($_GET['catid']);
+		if(count($show)<1) 
+			print '<br><div class="alert alert-info alert-sm" style="width:300px;margin-left:50px;">Empty category...</div>';
+		else
+		{
+			foreach($show as $item)
+			{
+				?>
+				<div class="single-product-sm">
+					<div class="p-inner">
+						<div class="p-data">
+							<div class="p-img tooltip_item" data-item="<?=$item['vnum'];?>" data-category="<?=$item['category'];?>" data-keywords="<?=$item['vnum'];?><?=$item['category'];?>" onclick="iwanttobuy(<?=$item['id'];?>);">
+							<img src="<?=Basic::URL().'style/universal/'.Item::Image($item['vnum']);?>" alt="<?=Item::Name($item['vnum']);?>"></div>
+							<div class="data-area">
+								<a class="strong" data-fancybox="" data-type="iframe" data-src="index.php?s=buy&amp;product=10040&amp;duration=0&amp;nobonus=0" href="javascript:;">
+									<?=Item::Name($item['vnum']);?>
+								</a>
+								<b class="specialtext"></b>
+								<span>
+									<?=$item['description'];?>
+								</span>
+								<div class="counting counting_div2" style="display: block;">
+									<div class="endTime" data-time="-63867962560"></div>
+								</div>
+								<div class="buy-section-sm" onclick="iwanttobuy(<?=$item['id'];?>);">
+									<a data-fancybox="" data-type="iframe" onclick="iwanttobuy(<?=$item['id'];?>);">
+										<div class="buy-small ">
+											<div class="ins-bs"><b class="pricetag2"><?= Item::Price($item['id']); ?></b></div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php 
+			}
+		}
+	}
+	elseif((isset($_GET['catid']) && !isset($_GET['word'])) || (isset($_GET['catid']) && $_GET['catid']=0))
+	{
+		$show = array();
+		$show = User_Shop::ItemsCategories(0);
+		$stop = 1;
+		if(count($show)>0)
+		{
+			foreach($show as $item)
+			{
+				?>
+				<div class="single-product-sm">
+					<div class="p-inner">
+						<div class="p-data">
+							<div class="p-img tooltip_item" data-item="<?=$item['vnum'];?>" data-category="<?=$item['category'];?>" data-keywords="<?=$item['vnum'];?><?=$item['category'];?>" onclick="iwanttobuy(<?=$item['id'];?>);">
+							<img src="<?=Basic::URL().'style/universal/'.Item::Image($item['vnum']);?>" alt="<?=Item::Name($item['vnum']);?>"></div>
+							<div class="data-area">
+								<a class="strong" data-fancybox="" data-type="iframe" data-src="index.php?s=buy&amp;product=10040&amp;duration=0&amp;nobonus=0" href="javascript:;">
+									<?=Item::Name($item['vnum']);?>
+								</a>
+								<b class="specialtext"></b>
+								<span>
+									<?=$item['description'];?>
+								</span>
+								<div class="counting counting_div2" style="display: block;">
+									<div class="endTime" data-time="-63867962560"></div>
+								</div>
+								<div class="buy-section-sm" onclick="iwanttobuy(<?=$item['id'];?>);">
+									<a data-fancybox="" data-type="iframe" onclick="iwanttobuy(<?=$item['id'];?>);">
+										<div class="buy-small ">
+											<div class="ins-bs"><b class="pricetag2"><?= Item::Price($item['id']); ?></b></div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php 
+				$stop ++;
+				if($stop==10)
+					break;
+			}
+		}
+	}
+	elseif(isset($_GET['word']) && !empty($_GET['word']))
+	{
+		$search_keyword = $_GET['word'];
+		
+		$show = array();
+		$show = User_Shop::ItemsCategories(0);
+		if(count($show) > 0)
+		{
+			foreach($show as $item)
+			{
+				$item_name = Item::Name($item['vnum']);
+				similar_text($item_name, $search_keyword, $similarityPercentage);
+				if($similarityPercentage >= 30) 
+				{
+					?>
+					<div class="single-product-sm">
+					<div class="p-inner">
+						<div class="p-data">
+							<div class="p-img tooltip_item" data-item="<?=$item['vnum'];?>" data-category="<?=$item['category'];?>" data-keywords="<?=$item['vnum'];?><?=$item['category'];?>" onclick="iwanttobuy(<?=$item['id'];?>);">
+							<img src="<?=Basic::URL().'style/universal/'.Item::Image($item['vnum']);?>" alt="<?=Item::Name($item['vnum']);?>"></div>
+							<div class="data-area">
+								<a class="strong" data-fancybox="" data-type="iframe" data-src="index.php?s=buy&amp;product=10040&amp;duration=0&amp;nobonus=0" href="javascript:;">
+									<?=Item::Name($item['vnum']);?>
+								</a>
+								<b class="specialtext"></b>
+								<span>
+									<?=$item['description'];?>
+								</span>
+								<div class="counting counting_div2" style="display: block;">
+									<div class="endTime" data-time="-63867962560"></div>
+								</div>
+								<div class="buy-section-sm" onclick="iwanttobuy(<?=$item['id'];?>);">
+									<a data-fancybox="" data-type="iframe" onclick="iwanttobuy(<?=$item['id'];?>);">
+										<div class="buy-small ">
+											<div class="ins-bs"><b class="pricetag2"><?= Item::Price($item['id']); ?></b></div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					<?php
+				}
+			}
+		}
+	}
+	else
+	{
+		$show = array();
+			$show = User_Shop::ItemsCategories($_GET['catid']);
+			if(count($show)<1) 
+				print '<br><div class="alert alert-info alert-sm" style="width:300px;margin-left:50px;">Empty...</div>';
+			else
+			{
+				foreach($show as $item)
+				{
+					?>
+					<div class="single-product-sm">
+						<div class="p-inner">
+							<div class="p-data">
+								<div class="p-img tooltip_item" data-item="<?=$item['vnum'];?>" data-category="<?=$item['category'];?>" data-keywords="<?=$item['vnum'];?><?=$item['category'];?>" onclick="iwanttobuy(<?=$item['id'];?>);">
+								<img src="<?=Basic::URL().'style/universal/'.Item::Image($item['vnum']);?>" alt="<?=Item::Name($item['vnum']);?>"></div>
+								<div class="data-area">
+									<a class="strong" data-fancybox="" data-type="iframe" data-src="index.php?s=buy&amp;product=10040&amp;duration=0&amp;nobonus=0" href="javascript:;">
+										<?=Item::Name($item['vnum']);?>
+									</a>
+									<b class="specialtext"></b>
+									<span>
+										<?=$item['description'];?>
+									</span>
+									<div class="counting counting_div2" style="display: block;">
+										<div class="endTime" data-time="-63867962560"></div>
+									</div>
+									<div class="buy-section-sm" onclick="iwanttobuy(<?=$item['id'];?>);">
+										<a data-fancybox="" data-type="iframe" onclick="iwanttobuy(<?=$item['id'];?>);">
+											<div class="buy-small ">
+												<div class="ins-bs"><b class="pricetag2"><?= Item::Price($item['id']); ?></b></div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php 
+				}
+			}
+	}
+
+?>
+</div>

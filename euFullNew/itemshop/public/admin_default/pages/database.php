@@ -1,0 +1,1 @@
+<iframe src="<?=Basic::URL();?>style/sqlite_database.php" style="border:0px #ffffff none;" allowtransparency="yes" width="100%" height="1600" style="border:0; position:absolute; top:0; left:0; width:100%; height:1200px; min-height: 400px; overflow:auto"></iframe>

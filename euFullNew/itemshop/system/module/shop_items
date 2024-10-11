@@ -1,0 +1,371 @@
+<div class="row">
+<?php
+    $totalPages = 0;
+    $search = isset($_GET['search']) ? $_GET['search'] : null;
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $perPage = isset($_GET['per_page']) ? intval($_GET['per_page']) : 10;
+    $offset = ($page - 1) * $perPage;
+
+    if ($search == 'null') {
+        $filteredItems = [];
+        $query = "SELECT * FROM items_for_sell LIMIT $offset, $perPage";
+        $stmt = $database->Sqlite($query);
+        $stmt->execute();
+        $filteredItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $countQuery = "SELECT COUNT(*) AS total FROM items_for_sell";
+        $countStmt = $database->Sqlite($countQuery);
+        $countStmt->execute();
+        $totalItems = $countStmt->fetchColumn();
+        $totalPages = ceil($totalItems / $perPage);
+        $itemsToDisplay = $filteredItems;
+    } else {
+        $itemsToDisplay = [];
+        $countsearchresult = 0;
+        $query = "SELECT * FROM items_for_sell WHERE vnum = :item";
+        $stmt = $database->Sqlite($query);
+        $searchParam = $_GET['search'];
+        $stmt->execute(array(':item'=> $searchParam));
+        $itemsToDisplay = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($itemsToDisplay)) {
+            $itemsToDisplay[] = [
+                'vnum' => '',
+                'itemName' => 'Item not found',
+            ];
+        }
+    }
+
+	$currentPage = $page;
+
+    foreach ($itemsToDisplay as $item): ?>
+		<?php if(isset($item['attrtype0'],$item['attrtype1'],$item['attrtype2'],$item['attrtype3'],$item['attrtype4'],$item['attrtype5'],$item['attrtype6'],$item['category'])) { ?>
+							<div class="col-md-4">
+								<div class="card card-secondary">
+									<div class="card-header">
+										<?= Item::Name($item['vnum']); ?>
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-6">
+												<center>
+													<img src="<?= Basic::URL().'style/universal/'.Item::Image($item['vnum']); ?>">
+													<br><small><b>Vnum:</b> <?=$item['vnum'];?></small>
+												</center>
+											</div>
+											<div class="col-md-6">
+												<center>
+													<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#makeitfeatured<?=$item['id']; ?>"><i class="fas fa-bullhorn"></i></a> &nbsp; 
+													<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#discountprice<?=$item['id']; ?>"><i class="fas fa-percent"></i></a> &nbsp; 
+													<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteitem<?=$item['id']; ?>"><i class="fas fa-trash"></i></a>&nbsp;
+													<br><br>
+													<a class="btn btn-dark btn-sm" data-toggle="modal" data-target="#itemdetails<?=$item['id']; ?>"><i class="fas fa-info-circle"></i> Item details</a>
+												</center>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--MODAL DETAILS --->
+							<div class="modal fade" id="itemdetails<?=$item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content modal-lg">
+										<div class="modal-header">
+											<h5 class="modal-title" style="color:black;">Item Details</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-md-6">
+													<ul class="list-group">
+														<li class="list-group-item"><b>Description:</b> <?= User_Shop::Item($item['id'], 'description'); ?></li>
+														<?php if (Item::Type(User_Shop::Item($item['id'], 'vnum')) == 'ITEM_COSTUME'): ?>
+														<li class="list-group-item">
+															<?php
+															$givenTimeInMinutes = User_Shop::Item($item['id'], 'socket0');
+															$minutesInDay = 24 * 60;
+															$minutesInMonth = 30 * $minutesInDay;
+															$months = floor($givenTimeInMinutes / $minutesInMonth);
+															$remainingMinutes = $givenTimeInMinutes % $minutesInMonth;
+															$days = floor($remainingMinutes / $minutesInDay);
+															$remainingMinutes %= $minutesInDay;
+															$hours = floor($remainingMinutes / 60);
+															$result = "<i class='fa fa-clock'></i> <b>Item Time:</b> ";
+															if ($months > 0) {
+																$result .= "$months months, ";
+															}
+															if ($days > 0) {
+																$result .= "$days days, ";
+															}
+															if ($hours > 0) {
+																$result .= "$hours hours.";
+															} else {
+																$result = rtrim($result, ', ');
+															}
+															echo $result.'<br>';
+															?>
+														<?php endif; ?>
+														</li>
+														<?php if (User_Shop::Item($item['id'], 'expire') > 0): ?>
+														<li class="list-group-item">
+															<?php
+															$currentTime = time();
+															$diffInSeconds = User_Shop::Item($item['id'], 'expire') - $currentTime;
+															$secondsInDay = 24 * 60 * 60;
+															$secondsInHour = 60 * 60;
+															$secondsInMinute = 60;
+															$days = floor($diffInSeconds / $secondsInDay);
+															$remainingSeconds = $diffInSeconds % $secondsInDay;
+															$hours = floor($remainingSeconds / $secondsInHour);
+															$remainingSeconds %= $secondsInHour;
+															$minutes = floor($remainingSeconds / $secondsInMinute);
+															$seconds = $remainingSeconds % $secondsInMinute;
+															$deadline = "<i class='fa fa-clock'></i> <b>Expire in:</b> ";
+															if ($days > 0) {
+																$deadline .= "$days days, ";
+															}
+															if ($hours > 0) {
+																$deadline .= "$hours hours, ";
+															}
+															if ($minutes > 0) {
+																$deadline .= "$minutes minutes";
+															}
+															echo $deadline;
+															?>
+														<?php endif; ?>
+														</li>
+														<?php if (User_Shop::Item($item['id'], 'item_unique') > 0): ?>
+														<li class="list-group-item">
+															<i class="fa fa-ban" aria-hidden="true"></i> <b>Purchase limit: </b><?= User_Shop::Item($item['id'], 'item_unique'); ?>
+														</li>
+														<?php endif; ?>
+														
+														<?php if($item['discount'] >0 ) {?>
+														<li class="list-group-item">
+															<i class="fa fa-percent" aria-hidden="true"></i> <b>Discount: </b><?= User_Shop::Item($item['id'], 'discount'); ?>% | <b>expire:</b> <?= User_Shop::Item($item['id'], 'discount_expire'); ?>
+														</li> 
+														
+														<?php } ?>
+														
+														<li class="list-group-item" style="vertical-align:middle;">
+														<?php 
+															$who_can_use = Item::Race_Can_Use(User_Shop::Item($item['id'], 'vnum'));
+															if ($who_can_use != 'NONE'):
+																print '<i class="fa fa-user" aria-hidden="true"></i> <b>Can be used by:</b> ';
+																$list_characters = array("ANTI_MUSA", "ANTI_ASSASSIN", "ANTI_SURA", "ANTI_MUDANG");
+																$makearray = explode(" | ", $who_can_use);
+																$charactersowing = array();
+																foreach ($list_characters as $element) {
+																	if (!in_array($element, $makearray)) {
+																		$charactersowing[] = $element;
+																	}
+																}
+																foreach ($charactersowing as $element) {
+																	echo '<img style="height:20px;" class="rounded-circle" src="'.Basic::URL().'style/universal/characters/'.$element.'.png">&nbsp;';
+																}
+															endif;
+														?>
+														</li>
+													</ul>
+												</div>
+												<div class="col-md-6">
+													<ul class="list-group">
+														<li class="list-group-item">
+															<?php Item::Bonus($item['id']); ?>
+														</li>
+														<?php	
+															if (Item::Stone(User_Shop::Item($item['id'], 'socket0'))): ?>
+															<li class="list-group-item">
+																<div class="row">
+																	<div class="col-md-2">
+																		<center><img style="margin-top:8px;" src="<?= Basic::URL().'style/universal/'.Item::Image(User_Shop::Item($item['id'], 'socket0')); ?>"></center>
+																	</div>
+																	<div class="col-md-10">
+																		<div class="title" style="float:left;"><?= Item::Name(User_Shop::Item($item['id'], 'socket0')); ?></div>
+																		<div class="equipdesc2" style="float:left;"><?= Item::Stone_Bonus_Name('TOOLTIP_'.Item::Stone_Bonus(User_Shop::Item($item['id'], 'socket0')), Item::Stone_Bonus_Value(User_Shop::Item($item['id'], 'socket0'))); ?></div>
+																	</div>
+																</div>
+															</li>
+														<?php endif; ?>
+														<?php
+															if (Item::Stone(User_Shop::Item($item['id'], 'socket1'))): ?>
+																<li class="list-group-item">
+																	<div class="row">
+																		<div class="col-md-2">
+																			<center><img style="margin-top:8px;" src="<?= Basic::URL().'style/universal/'.Item::Image(User_Shop::Item($item['id'], 'socket1')); ?>"></center>
+																		</div>
+																		<div class="col-md-10">
+																			<div class="title" style="float:left;"><?= Item::Name(User_Shop::Item($item['id'], 'socket1')); ?></div>
+																			<div class="equipdesc2" style="float:left;"><?= Item::Stone_Bonus_Name('TOOLTIP_'.Item::Stone_Bonus(User_Shop::Item($item['id'], 'socket1')), Item::Stone_Bonus_Value(User_Shop::Item($item['id'], 'socket1'))); ?></div>
+																		</div>
+																	</div>
+																</li>
+														<?php endif; ?>
+														<?php
+															if (Item::Stone(User_Shop::Item($item['id'], 'socket2'))): ?>
+																<li class="list-group-item">
+																	<div class="row">
+																		<div class="col-md-2">
+																			<center><img style="margin-top:8px;" src="<?= Basic::URL().'style/universal/'.Item::Image(User_Shop::Item($item['id'], 'socket2')); ?>"></center>
+																		</div>
+																		<div class="col-md-10">
+																			<div class="title" style="float:left;"><?= Item::Name(User_Shop::Item($item['id'], 'socket2')); ?></div>
+																			<div class="equipdesc2" style="float:left;"><?= Item::Stone_Bonus_Name('TOOLTIP_'.Item::Stone_Bonus(User_Shop::Item($item['id'], 'socket2')), Item::Stone_Bonus_Value(User_Shop::Item($item['id'], 'socket2'))); ?></div>
+																		</div>
+																	</div>
+																</li>
+														<?php endif; ?>
+														
+													</ul>
+												</div>
+											</div>
+											
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--//MODAL DETAILS --->
+							<!--MODAL PROMOTE --->
+							<div class="modal fade" id="makeitfeatured<?=$item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" style="color:black;">Promote item in first page</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+										</div>
+										<form method="POST">
+											<div class="modal-body">
+												<input type="hidden" name="promote_id" value="<?= Ads::Get($item['id'], 'id'); ?>">
+												<input type="hidden" name="promote_offer" value="<?=$item['id']; ?>">
+												<div class="input-group mb-4">
+													<input class="form-control" value="Title" disabled>
+													<input type="text" class="form-control" style="width:60%" value="<?= Ads::Get($item['id'], 'title'); ?>" name="promote_title">
+												</div>
+												
+												<label style="color:black;">Description:</label>
+												<div class="input-group mb-4">
+													<textarea class="form-control" name="promote_desc"><?= Ads::Get($item['id'], 'desc'); ?></textarea>
+												</div>
+												
+												<small style="color:black;">Image size: 968x370</small>
+												<div class="input-group mb-4">
+													<input class="form-control" value="Image URL" disabled>
+													<input type="text" class="form-control" style="width:60%" value="<?= Ads::Get($item['id'], 'image'); ?>" name="promote_img">
+													
+												</div>
+												
+												<div class="modal-footer">
+													<button type="submit" name="stopromote" class="btn btn-danger">Stop promote</button>
+													
+													<button type="submit" name="gopromote" class="btn btn-dark"><?php if(Ads::Exist($item['id'])) print 'Start promote'; else print 'Edit promote'; ?></button>
+													
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!--//MODAL PROMOTE --->
+							
+							<!--MODAL DISCOUNT --->
+							<div class="modal fade" id="discountprice<?=$item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" style="color:black;">Discount item</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+										</div>
+										<form method="POST">
+											<div class="modal-body">
+												<input type="hidden" name="id_item_discount" value="<?=$item['id']; ?>">
+												<div class="input-group mb-4">
+													<input class="form-control" value="Discount percent" disabled="">
+													<input type="number" class="form-control" value="<?=$item['discount']; ?>" name="percentdisc">
+												</div>
+												<div class="input-group mb-4">
+													<input class="form-control" value="Discount expire" disabled="">
+													<input type="datetime-local" class="form-control" value="<?=$item['discount_expire']; ?>" name="discount_expire">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+													<button type="submit" name="save_discount" class="btn btn-dark">Apply discount</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!--//MODAL DISCOUNT --->
+							
+							<!--MODAL DELETE --->
+							<div class="modal fade" id="deleteitem<?=$item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel" style="color:black;">Delete item</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+										</div>
+										<form method="POST">
+											<div class="modal-body" style="color:black;">
+												Are you sure?
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+												<input type="hidden" name="id_item_d" value="<?=$item['id']; ?>">
+												<button type="submit" name="delete_item" class="btn btn-primary">Yes</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!--//MODAL DELETE --->
+						<?php } ?>
+						
+    <?php endforeach; ?>
+	</div>
+    <?php if ($totalPages > 1): ?>
+        <ul class="pagination justify-content-end">
+            <?php if ($currentPage > 1): ?>
+                <li class="page-item">
+                    <button class="page-link" onclick="itemlist('<?= $search; ?>', <?= $currentPage - 1; ?>, <?= $perPage; ?>)" aria-label="Previous">
+                        Previous
+                    </button>
+                </li>
+            <?php endif; ?>
+
+            <?php
+            $startPage = max(1, $currentPage - 2);
+            $endPage = min($startPage + 4, $totalPages);
+
+            if ($endPage - $startPage < 4) {
+                $startPage = max(1, $endPage - 4);
+            }
+
+            if ($endPage > 5) {
+                $startPage = $endPage - 3;
+            }
+
+            for ($i = $startPage; $i <= $endPage; $i++) :
+            ?>
+                <li class="page-item <?= $i === $currentPage ? 'active' : ''; ?>">
+                    <button class="page-link" onclick="itemlist('<?= $search; ?>', <?= $i; ?>, <?= $perPage; ?>)"><?= $i; ?></button>
+                </li>
+			<?php endfor; ?>
+
+<?php if ($currentPage < $totalPages): ?>
+    <li class="page-item">
+        <button class="page-link" onclick="itemlist('<?= $search; ?>', <?= $currentPage + 1; ?>, <?= $perPage; ?>)" aria-label="Next">
+            Next
+        </button>
+    </li>
+<?php endif; ?>
+</ul>
+<?php endif; ?>

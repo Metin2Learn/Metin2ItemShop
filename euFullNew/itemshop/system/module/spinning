@@ -1,0 +1,60 @@
+<?php
+$caseId = $_GET['case_id'];
+if(isset($_GET['demo']))
+	$demo = $_GET['demo'];
+$query = "SELECT * FROM case_items WHERE case_id=:caseId ORDER BY id ASC";
+$stmt = $database->Sqlite($query);
+$stmt->bindValue(':caseId', $caseId, PDO::PARAM_INT);
+$stmt->execute();
+$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$totalChances = 0;
+foreach ($items as $item) {
+    $totalChances += $item['chance'];
+}
+$randomNumber = mt_rand(1, (int)$totalChances);
+$accumulatedChances = 0;
+$winningItem = null;
+foreach ($items as $item) {
+    $accumulatedChances += $item['chance'];
+    if ($randomNumber <= $accumulatedChances) {
+        $winningItem = $item;
+        break;
+    }
+}
+if ($winningItem) 
+{
+	if(Roll::Price($caseId) > User::Account('coins') || isset($demo) && $demo==1) 
+	{
+		$result = array(
+			'itemCode' => $winningItem['id'],
+			'itemName' => Item::Name($winningItem['item_vnum']),
+			'img' => Basic::URL() . 'style/universal/' . Item::Image($item['item_vnum']),
+			'itemVnum' => $winningItem['item_vnum']
+		);
+		echo json_encode($result);
+	}
+	elseif(!isset($_GET['demo']))
+	{
+		if(User::TakeCoins(Roll::Price($caseId)))
+		{
+			$result = array(
+				'itemCode' => $winningItem['id'],
+				'itemName' => Item::Name($winningItem['item_vnum']),
+				'img' => Basic::URL() . 'style/universal/' . Item::Image($item['item_vnum']),
+				'newballance' => User::Account("coins"),
+				'itemVnum' => $winningItem['item_vnum']
+			);
+			echo json_encode($result);
+			if(Roll::GetPrize($winningItem['item_vnum']))
+			{
+				Roll::Logs(User::Username($_SESSION['id']), date('Y-m-d H:i:s'), $winningItem['case_id'], $winningItem['item_vnum'], $winningItem['chance']);
+			}
+			else
+			{
+				E('No space in deposit!');
+				User::GiveBackCoins(Roll::Price($caseId));
+			}
+		}
+	}
+}
+?>

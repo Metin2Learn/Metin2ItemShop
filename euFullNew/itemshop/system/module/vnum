@@ -1,0 +1,6 @@
+<?php 
+if(isset($_GET['vnum']))
+	print Item::Description($_GET['vnum']); 
+else
+	print 'API Error';
+?>

@@ -1,0 +1,32 @@
+<?php
+	if(isset($_POST["txn_id"], $_POST["item_price"], $_POST["method"], $_POST["uu"], $_POST["cc"], $_POST["ue"], $_POST["payment_status"]))
+	{
+		$call_api = curl_init();
+		$url = API_CALL;
+		$data = array(
+			"verificator" => $_POST["txn_id"],
+			"price" => $_POST["item_price"],
+			"ipverificator" => gethostbyname(gethostname())
+		);
+		curl_setopt($call_api, CURLOPT_URL, $url);
+		curl_setopt($call_api, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($call_api, CURLOPT_POST, true);
+		curl_setopt($call_api, CURLOPT_POSTFIELDS, $data);
+		$response = curl_exec($call_api);
+		curl_close($call_api);
+		if($response === $_POST["cc"]) 
+		{
+			Payments::AddCoins($_POST['uu'], $_POST['ue'], $_POST['cc']);
+			$file_creator = fopen("system/database/payments/".$_POST['txn_id'].'.php', "w") or die("Unable to open file!");
+			$input_files = '<b>Transaction ID: </b>'.$_POST['txn_id'].'<br><b>Item Price: </b>'.$_POST['item_price'].'<br><b>Coins Value: </b>'.$_POST['cc'].'<br><b>Method: </b>'.$_POST['method'].'<br><b>Status: </b>'.$_POST['payment_status'].'<br><b>Username: </b>'.$_POST['uu'].'<br><b>Email: </b>'.$_POST['ue'];
+			fwrite($file_creator, $input_files);
+			fclose($file_creator);
+		}
+		else
+		{
+			$create_error = fopen("PAYMENT_ERROR_".$_POST["uu"]."_".time().".txt", "w");
+			$content = "Error: " .$response;
+			fwrite($create_error, $content);
+		}
+	}
+?>

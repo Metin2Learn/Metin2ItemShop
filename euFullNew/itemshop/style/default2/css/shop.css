@@ -1,0 +1,2811 @@
+.header a,.header ac {
+    display: block;
+    text-indent: -9999px
+}
+
+.buystrip .row,.buystrip .row .col-sm {
+    min-height: 38px!important;
+    max-height: 38px!important
+}
+
+.nav-item,.searchbutton {
+    margin-right: 4px;
+    color: #f2e69f;
+    padding: 4px 12px 5px 13px;
+    cursor: pointer
+}
+
+.bgover,.main {
+    left: 50%;
+    top: 50%
+}
+
+.bottomstrip .row .second .coins,.buycoinsmain .coins,.coincost .coins,.header .coins {
+    -webkit-text-fill-color: transparent
+}
+
+.bottomstrip .row .first .form-control,.home .bottom .top .second:hover,.sellbox .title {
+    text-decoration: none
+}
+
+* {
+    user-select: none;
+    user-drag: none;
+    box-sizing: border-box
+}
+
+#navbarColor01>form>input:focus,.btn-default:active,.btn-default:focus,:active,:focus {
+    outline: 0
+}
+
+@font-face {
+    font-family: roboto;
+    src: url("../fonts/Roboto-Regular.ttf");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: itemshopfonts;
+    src: url("../fonts/itemshopfonts.ttf");
+    font-weight: 400;
+    font-style: normal
+}
+
+body {
+    font-family: roboto;
+    font-weight: 600;
+    background-color: #662d12;
+    color: #3c1e16
+}
+
+.main {
+    height: 654px;
+    width: 1018px;
+    background-color: #0f0604;
+    background-repeat: no-repeat;
+    position: fixed;
+    margin-left: -509px;
+    margin-top: -327px
+}
+
+.main .header {
+    background: url('../img/top_slide.png');
+    color: #f2e69f;
+    box-shadow: 0 1px 2px #000;
+    height: 50px;
+    width: 100%;
+    padding: 5px 50px 5px 20px;
+    background-color: transparent!important;
+    box-shadow: 0 1px 2px #662d12
+}
+
+.main .bluroverlay {
+    height: 604px;
+    width: 1018px;
+    background: url('../img/bg_bottom.png') no-repeat;
+    position: fixed
+}
+
+
+
+.header ac {
+    background: url(../img/coin.png) 0 50%/contain no-repeat;
+    height: 32px;
+    margin: -42px 0 0;
+    opacity: .95;
+    width: 143px;
+    position: absolute;
+    right: -102px
+}
+
+.header .coins {
+    margin-top: -44px;
+    color: #e3bc3d;
+    font-size: 17px;
+    position: absolute;
+    right: 50px;
+    font-weight: 600;
+    font-family: Roboto;
+    background: -webkit-linear-gradient(#eee,#333);
+    background: linear-gradient(90deg,#dfc86e 0,#dfcd82 35%,#f2e69f 100%);
+    -webkit-background-clip: text;
+    text-shadow: brown
+}
+
+.header .login {
+    margin-top: -34px;
+    color: #e3bc3d;
+    font-size: 17px;
+    position: absolute;
+    right: 50px;
+}
+.header .coins:after {
+    background: 0 0;
+    content: attr(data-text);
+    left: 0;
+    position: absolute;
+    text-shadow: 1px 1px 2px #000;
+    top: 0;
+    z-index: -1
+}
+
+.header .coins2 {
+    margin-top: -22px;
+    color: #fffada;
+    font-size: 9px;
+    position: absolute;
+    right: 51px;
+    font-weight: 500;
+    font-family: "Trebuchet MS",Helvetica,sans-serif
+}
+
+.buystrip {
+    height: 38px;
+    background-image: linear-gradient(to right,rgb(0 0 0 / 51%),rgb(0 0 0 / 28%),rgba(255,255,255,0));
+    margin-top: 5px;
+    cursor: pointer;
+    width: 247px;
+    max-width: 247px;
+    min-width: 247px;
+    min-height: 38px;
+    max-height: 38px
+}
+
+.buystrip .row {
+    height: 38px!important;
+    width: 252px!important;
+    max-width: 252px!important;
+    min-width: 252px!important;
+    margin-left: 0!important;
+    margin-right: 0!important
+}
+
+.itemlist .row,.itemlistbg .sidemenu i {
+    margin-right: 10px
+}
+
+.buystrip .row .col-sm {
+    max-width: 200px!important;
+    min-width: 38px!important;
+    height: 38px!important;
+    display: inline-block;
+    float: none;
+    padding-right: 0!important;
+    padding-left: 0!important
+}
+
+.buystrip .row .col-sm.first {
+    max-width: 38px!important;
+    width: 38px!important;
+    height: 38px!important
+}
+
+.buystrip .row .col-sm.second {
+    max-width: 105px!important;
+    min-width: 104px!important;
+    width: 104px!important;
+    overflow: hidden!important
+}
+
+.buystrip .row .col-sm.third {
+    width: 110px!important;
+    max-width: 110px!important;
+    min-width: 110px!important
+}
+
+.coincost img {
+    width: 18px;
+    right: 6px;
+    position: absolute;
+    margin-top: 6px
+}
+
+.buystrip img {
+    width: 28px;
+    margin-left: 5px;
+    margin-top: 5px
+}
+
+.coincost .coins {
+    color: #e3bc3d;
+    font-size: 15px;
+    position: absolute;
+    font-weight: 600;
+    font-family: Roboto;
+    background: linear-gradient(90deg,#dfc86e 0,#dfcd82 35%,#f2e69f 100%);
+    -webkit-background-clip: text;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .5));
+    top: 4px;
+    right: 29px;
+    text-align: right
+}
+
+.buystrip .coins2 {
+    color: #fffada;
+    font-size: 9px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "Trebuchet MS",Helvetica,sans-serif;
+    text-shadow: 1px 1px 2px #000000d9;
+    top: 22px;
+    left: 1px
+}
+
+.itemtooltip .bonus,.itemtooltip .cooldowndesc,.itemtooltip .equipdesc1,.itemtooltip .equipdesc2,.itemtooltip .igdesc,.itemtooltip .title {
+    text-shadow: 2px 2px 2px #000;
+    font-weight: 400
+}
+
+.buystrip .btn-default {
+    margin-top: 8px;
+    width: 105px;
+    font-size: 12px;
+    margin-left: 0
+}
+
+.buystrip .btn-default:active {
+    filter: brightness(.9)!important;
+    opacity: .9
+}
+
+.header .buycoins {
+    position: absolute;
+    height: 50px;
+    width: 145px;
+    margin-top: -51px;
+    right: 0;
+    cursor: pointer
+}
+
+.itemlistbg {
+    height: 529px;
+    width: 976px;
+    position: absolute;
+    background-color: #0000007d;
+    bottom: 12px;
+    right: 17px;
+    z-index: -1
+}
+
+.itemlistbg .sidemenu {
+    height: 525px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 177px;
+    margin-left: -18px;
+    position: absolute;
+    margin-top: 4px
+}
+
+.itemlistbg .sidemenu:hover {
+    overflow-y: scroll
+}
+
+.itemlistbg .sidemenu i.adjustpx1 {
+    margin-right: 9px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx2 {
+    margin-right: 8px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx3 {
+    margin-right: 7px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx4,.itemlistbg .sidemenu i.adjustpx6 {
+    margin-right: 6px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx5 {
+    margin-right: 5px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx11 {
+    margin-right: 11px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx12 {
+    margin-right: 12px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx13 {
+    margin-right: 13px!important
+}
+
+.itemlistbg .sidemenu i.adjustpx10 {
+    margin-right: 10px!important
+}
+
+.itemlistbg .sidemenu::-webkit-scrollbar {
+    width: 0;
+    background: 0 0
+}
+
+.itemlistbg .sidemenu::-webkit-scrollbar-thumb {
+    background: red;
+    cursor: pointer
+}
+
+.itemlistbg .sidemenu .category:last-child {
+    border-bottom: none
+}
+
+.itemlistbg .sidemenu .category {
+    background-color: #120400;
+    height: 35px;
+    transition: .1s;
+    line-height: 34px;
+    border-bottom: 1px solid #f5deb31a
+}
+
+.itemlistbg .sidemenu .category:not(.active) {
+    padding-left: 10px
+}
+
+.itemlistbg .sidemenu .category:hover:not(.active) {
+    cursor: pointer;
+    background: #450503!important
+}
+
+.itemlistbg .sidemenu .category.active {
+    padding-left: 10px;
+    border-left: 3px solid;
+    border-image: linear-gradient(to bottom,#d5bf81,#b6a5725c) 1 100%;
+    background: linear-gradient(90deg,#680603 24%,#120400 117%)
+}
+
+.acouponcode:hover,.buycoinsterms .bottom .proceed:hover,.buyvipbtn:hover,.confirmagree:hover,.confirmbuybtn:hover,.itemlistbg .sidemenu .category:active:not(.active),.paypal .confirm:hover,.showitem:hover {
+    filter: brightness(.75)
+}
+
+.itemlistbg .sidemenu .category img {
+    align-content: center;
+    margin-left: 35%;
+    margin-top: 10px
+}
+
+.itemlistbg .sidemenu .category span {
+    color: #f2e69f;
+    font-size: 13px;
+    font-weight: 500
+}
+
+.itemlistbg .itemlist {
+    position: absolute;
+    background-color: transparent;
+    height: 500px;
+    width: 871px;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+    overflow-x: hidden
+}
+
+.home .item,.itemlistbg .itemlist .item {
+    background: url(..//img//item_bg.jpg) no-repeat;
+    height: 182px;
+    width: 267px;
+    display: inline-block;
+    box-shadow: 0 1px 2px #000
+}
+
+.itemlist .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 851px;
+    height: 182px;
+    margin-left: 0;
+    margin-bottom: 17px
+}
+
+.itemlist .row .item {
+    background-color: teal
+}
+
+.itemlist .row .col-sm {
+    margin-left: 17px
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    cursor: pointer
+}
+
+::-webkit-scrollbar-track {
+    background: #522511
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f2e69fc9;
+    transition: .15s
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f2e69f;
+    cursor: pointer
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #a89e75;
+    cursor: pointer
+}
+
+.itemlist .row .item .title {
+    margin-top: 7px;
+    margin-left: -5px;
+    margin-bottom: 5px;
+    color: #662d12
+}
+
+.itemlist .row .item .blackbox {
+    background-color: #00000038;
+    height: 135px;
+    margin-left: -5px
+}
+
+.itemlist .row .item .blackbox img {
+    height: 135px;
+    margin-left: 22%
+}
+
+.itemlist .row .item .blackbox .buystrip {
+    width: inherit;
+    position: absolute;
+    background-color: #000000a6;
+    bottom: 11px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: none
+}
+
+.itemlist .row .item .blackbox .buystrip:hover {
+    background-color: #000000bf;
+    cursor: pointer
+}
+
+.itemlist .row .item .blackbox .buystrip span {
+    background: linear-gradient(90deg,#dfc86e 0,#dfcd82 35%,#ffd24b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
+.itemlist .row .item .blackbox .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    width: 247px;
+    height: 135px;
+    margin-left: 0;
+    margin-bottom: 0
+}
+
+.itemlist .row .item .blackbox .row .col-sm {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0
+}
+
+body>div>nav {
+    margin-top: 21px;
+    background: 0 0!important
+}
+
+.nav-item {
+    min-width: 43px;
+    border: 1px solid transparent;
+    font-size: 12px;
+    font-family: itemshopfonts;
+    height: 26px;
+    line-height: 15px;
+    background-color: transparent;
+    font-weight: 300
+}
+
+.nav-item:hover {
+    border-bottom: 1px solid #f2e69f
+}
+
+.nav-item .active,.nav-item.active,.nav-item:active {
+    font-weight: 500;
+    border-bottom: 1px solid
+}
+
+.searchbutton {
+    background: url(..//img//etc.png) 0 -226px!important;
+    height: 36px;
+    border: 2px solid transparent;
+    border-width: 2px 0 0;
+    width: 85px;
+    font-size: 13px;
+    border-radius: 0;
+    line-height: 25px
+}
+
+.nav-item span {
+    font-family: Roboto;
+    text-shadow: brown;
+    font-size: 13px;
+    margin-left: 5px;
+    text-transform: uppercase
+}
+
+.nav-item span::after {
+    z-index: -1;
+    text-shadow: 2px 2px 4px #000
+}
+
+.navbar {
+    height: 50px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .2rem 1rem;
+    margin-top: 7px;
+    background: #1b0a03;
+    background: linear-gradient(270deg,rgb(27 10 3 / 72%) 48%,rgba(27,10,3,.44861694677871145) 83%,rgb(27 10 3 / 0%) 100%)
+}
+
+.form-control,.form-control:focus {
+    color: #495057;
+    background-color: #fff
+}
+
+.navbar a {
+    color: transparent
+}
+
+.navbar .nav-item .all {
+    width: 14px;
+    margin-right: 5px;
+    margin-top: -4px;
+    display: none
+}
+
+.navbar .nav-item .wheel {
+    width: 17px;
+    margin-right: 5px;
+    margin-top: -2px
+}
+
+.navbar .nav-item .premium {
+    width: 17px;
+    margin-right: 3px;
+    margin-top: -2px
+}
+
+.navbar .nav-item .star {
+    width: 19px;
+    margin-right: 5px;
+    margin-top: -4px
+}
+
+.navbar .nav-item .home {
+    width: 18px;
+    margin-right: 0;
+    margin-top: -8px
+}
+
+.navbar .nav-item .battlepass {
+    width: 18px;
+    margin-right: 5px;
+    margin-top: -2px
+}
+
+#navbarColor01>form>input {
+    border-radius: 0;
+    border: 1px solid #ccc;
+    height: 35px;
+    font-size: 14px
+}
+
+.form-control:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+    border: none;
+    box-shadow: none
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+.searchicon {
+    position: absolute;
+    margin-left: 3px
+}
+
+.btn-outline-info:hover {
+    color: #f2e69f;
+    background-color: #e8a314;
+    border-color: #e8a314
+}
+
+.navigationdisplay {
+    margin-top: 22px;
+    width: 96%;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 17px;
+    border-bottom: 1px solid;
+    color: #f2e69f;
+    font-weight: 500!important;
+    padding-bottom: 2px;
+    border: none
+}
+
+.middlestrip .second img,.sellbox {
+    width: 200px
+}
+
+.navbar-expand-lg .navbar-collapse {
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    margin-left: -90px;
+    margin-right: -15px;
+    padding-left: 100px
+}
+
+.header .datetime,.header .usericon {
+    position: absolute;
+    margin-left: 13%;
+    font-family: itemshopfonts;
+    font-size: 10px
+}
+
+.header .usericon {
+    margin-top: -42px;
+    margin-right: 5px
+}
+
+.coinsconfirm i,.couponcode .acouponcode i,.header .usericon img,.navbar-nav i:not(.homemain) {
+    margin-right: 5px
+}
+
+.header .datetime span,.header .usericon span {
+    font-size: 12px;
+    font-weight: 400!important;
+    font-family: roboto;
+    margin-left: 5px
+}
+
+.header .datetime {
+    margin-top: -26px
+}
+
+.premium .buypremium,.premium .descbox {
+    margin-left: 54px;
+    color: #f2e69f;
+    position: absolute
+}
+
+.premium .buypremium {
+    margin-right: 4px;
+    height: 36px;
+    min-width: 50px;
+    border: 2px solid transparent;
+    border-width: 2px 0 0;
+    padding: 4px 12px 5px 13px;
+    cursor: pointer;
+    font-weight: 500!important;
+    width: 700px;
+    bottom: 60px;
+    background-color: #872f12
+}
+
+.premium .buypremium:hover {
+    filter: brightness(1.1)
+}
+
+.premium img.premiumbg {
+    margin-left: 31px;
+    position: absolute;
+    margin-top: 10px
+}
+
+.premium .premium {
+    width: 17px;
+    margin-right: 5px;
+    margin-top: -3px
+}
+
+.premium .descbox {
+    background-color: #13090794;
+    height: 417px;
+    top: 15%;
+    width: 700px;
+    font-size: 12px;
+    font-weight: 400!important;
+    backdrop-filter: blur(6px)
+}
+
+.premium .descbox .strip {
+    background-color: rgba(0,0,0,.5);
+    height: 352px;
+    width: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    display: none
+}
+
+.premium .descbox .strip:hover {
+    background-color: rgba(0,0,0,.2)
+}
+
+.premium .descbox .title {
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 10px;
+    text-decoration: underline;
+    text-underline-position: under
+}
+
+.premium .descbox ul li {
+    margin-top: 2px
+}
+
+.navigationdisplay .form-inline {
+    position: absolute;
+    margin-top: -36px;
+    right: 17px;
+    border-radius: 0
+}
+
+.navigationdisplay .form-inline .form-control {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+    border-radius: 0;
+    width: 170px;
+    padding-left: 33px;
+    padding-top: 2px;
+    font-size: 14px
+}
+
+.navigationdisplay .form-inline .searchbutton {
+    height: 32px;
+    line-height: 21px;
+    width: 89px
+}
+
+.mx-sm-2,.navigationdisplay .mr-sm-2 {
+    margin-right: 0!important
+}
+
+.bottom .slick-list .sellbox {
+    margin-top: 0
+}
+
+.sellbox {
+	display: inline-block;
+    background: url(../img/itembg.png) no-repeat;
+    height: 140px;
+    cursor: pointer
+}
+
+.sellbox .blackbox {
+    height: 102px;
+    background: #000;
+    background: linear-gradient(18deg,rgb(0 0 0 / 25%) 1%,rgb(0 0 0 / 23%) 17%,rgb(0 0 0 / 0%) 89%)
+}
+
+.sellbox .blackbox .row {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 100%
+}
+
+.sellbox .blackbox .row .col-sm {
+    padding-right: 0;
+    padding-left: 0;
+    white-space: normal
+}
+
+.sellbox .blackbox .row .first {
+    font-size: .78em;
+    font-weight: 500!important;
+    padding-top: 0;
+    padding-left: 0;
+    color: #52240f;
+    padding-right: 0;
+    list-style-position: inside;
+    text-overflow: ellipsis;
+    text-shadow: 1px 1px 2px #00000000;
+    overflow: hidden
+}
+
+.sellbox .blackbox .row .first ul li {
+    margin: -2px
+}
+
+.sellbox .blackbox .row ul {
+    margin: 5px;
+    padding: 0
+}
+
+.sellbox .blackbox .row .second img {
+    width: 100px;
+    height: 100px;
+    margin-top: 3px
+}
+
+.sellbox .title {
+    color: #662d12;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-word;
+    text-align: left;
+    font-weight: 600;
+    font-family: Roboto;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: -7px
+}
+
+.coinsconfirm .midstrip2,.couponcode .midstrip2 {
+    color: #f2e69fdb;
+    font-weight: 200;
+    text-align: center
+}
+
+.btn-default {
+    box-shadow: rgba(0,0,0,.3) 2px 2px 0 1px;
+    border: 1px solid #810000;
+    text-shadow: 1px 1px 0 #020000;
+    border-color: #711a0f!important;
+    color: #f2e69f;
+    background: url(..//img//etc.png) 0 -2px!important;
+    filter: none!important
+}
+
+.btn-default:hover {
+    background: url(..//img//etc.png) 0 -39px!important
+}
+
+.btn-default img {
+    width: 12px;
+    margin-right: 5px
+}
+
+.btn-default span {
+    font-weight: 500;
+    font-family: Roboto;
+    color: #dfca76
+}
+
+.span5 {
+    width: 40.42553191489362%
+}
+
+.bgover {
+    height: 604px;
+    width: 1018px;
+    margin-left: -509px;
+    margin-top: -277px;
+    position: fixed;
+    z-index: 9997;
+    padding-top: 290px;
+    background: rgba(0,0,0,.3)
+}
+
+.buyvip,.coinsconfirm,.couponcode,.overdetails,.langsel {
+    background-color: #150601;
+    z-index: 9998;
+    position: absolute
+}
+
+.overdetails {
+    width: 750px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 375px)
+}
+
+.langsel {
+    width: 350px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 200px)
+}
+
+.buyvip,.coinsconfirm,.couponcode {
+    width: 450px;
+    left: calc(50% - 225px)
+}
+.close-icon {
+      position: absolute;
+      top: 30%;
+      right: 7%;
+      transition: brightness 0.3s ease; 
+    }
+
+   
+.close-icon:hover {
+    webkit-filter: blur(1px);
+    filter: blur(1px);
+}
+
+
+.buyvip,.couponcode {
+    height: 240px;
+    top: calc(50% - 95px)
+}
+
+.buyvip .topstrip2,.coinsconfirm .topstrip2,.couponcode .topstrip2 {
+    width: 450px;
+    height: 50px;
+    position: absolute;
+    background-color: #0e0403;
+    padding-top: 15px;
+    padding-left: 15px;
+    border-bottom: 1px solid #e8a31442
+}
+
+.buyvip .midstrip2,.couponcode .midstrip2 {
+    padding-top: 15px;
+    height: 190px;
+    margin-top: 50px;
+    font-size: 13px
+}
+
+.coinsconfirm {
+    height: 485px;
+    top: calc(50% - 217px)
+}
+
+.coinsconfirm .terms {
+    padding: 12px;
+    font-size: 12px;
+    position: absolute;
+    width: 420px;
+    bottom: 68px
+}
+
+.buycoinsterms a,.coinsconfirm .terms a {
+    color: #619ddd
+}
+
+.coinsconfirm .midstrip2 {
+    padding-top: 15px;
+    padding-left: 15px;
+    height: 300px;
+    margin-top: 50px;
+    font-size: 13px;
+    margin-right: 15px
+}
+
+.topstrip {
+    width: 750px;
+    height: 50px;
+    position: absolute;
+    background-color: #0e0403;
+    padding-top: 13px;
+    padding-left: 15px;
+    border-bottom: 1px solid #e8a31414;
+    font-size: 17px
+}
+
+.middlestrip,.middlestrip .row {
+    width: 750px;
+    height: 312px;
+    background-color: #150601;
+    margin-top: 50px;
+    margin-right: 0;
+    margin-left: 0;
+    max-height: 312px
+}
+
+.middlestrip .col-sm {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+    max-height: 312px
+}
+
+.middlestrip .first {
+    padding-top: 5px;
+	min-width: 440px;
+    max-width: 440px;
+    background-color: #150601;
+    border-right: 1px solid #381308;
+    border-bottom: 1px solid #381308;
+    overflow: hidden;
+    font-weight: 400!important;
+    color: #f2e69f;
+    font-size: 13px;
+    padding-left: 15px;
+    overflow-y: scroll;
+	min-height: 313px;
+	max-height: 313px;
+	
+}
+
+.middlestrip .second {
+    max-width: 310px;
+    background-color: #190703;
+    border-bottom: 1px solid #381308;
+    overflow: hidden;
+    max-height: 312px
+}
+
+.middlestrip .second .igitem {
+    max-width: 310px;
+    background-color: #662d122e;
+    max-height: 150px;
+    min-height: 50px;
+    height: auto;
+    width: 310px;
+	color:#f2e69f;
+}
+
+.middlestrip .second .igitem img {
+    width: auto;
+    height: auto;
+    margin-top: 10px
+}
+
+.middlestrip .second .igitem .coins2 {
+    color: #fffada;
+    font-size: 10px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "Trebuchet MS",Helvetica,sans-serif;
+        left: 141px;
+    margin-top: -10px
+}
+
+.middlestrip .second .igitem .coins {
+    margin-top: 25px;
+    color: #e3bc3d;
+    font-size: 18px;
+    position: absolute;
+    font-weight: 600;
+    font-family: Roboto;
+    background: -webkit-linear-gradient(#eee,#333);
+    background: linear-gradient(90deg,#dfc86e 0,#dfcd82 35%,#f2e69f 100%);
+    -webkit-background-clip: text;
+    text-shadow: brown;
+	margin-top: -35px;
+        left: 141px;
+}
+
+.middlestrip .second .big {
+    text-align: center;
+    width: 100%
+}
+
+.middlestrip .first .dropigitem {
+    max-width: 435px;
+    background-color: #662d122e;
+    max-height: 150px;
+    position: absolute;
+    height: 50px;
+    width: 435px;
+    bottom: 0;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: hidden;
+    border-left: 2px solid #662d12bd
+}
+
+.middlestrip .first .dropigitem img {
+    width: 32px;
+    margin-top: 8px;
+    margin-right: 15px
+}
+
+.bottomstrip .nav-item {
+    width: 210px;
+    list-style-type: none
+}
+
+.bottomstrip .nav-item img {
+    width: 20px;
+    margin-right: 5px;
+    margin-top: -1px
+}
+
+.topstrip span,.topstrip2 span {
+    color: #f2e69f;
+    font-weight: 500
+}
+
+.bottomstrip .row {
+    height: 88px;
+    max-height: 88px;
+    border: none;
+    margin: 0;
+    background-color: #190703
+}
+
+.bottomstrip .first button {
+    width: 225px;
+    height: 33px;
+    margin-left: 24px;
+    margin-top: 28px;
+    border-radius: 1px;
+    background-color: #271208;
+    border: none;
+    color: #f8df9dd9;
+    font-size: 13px;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.bottomstrip .row .first {
+    min-width: 275px;
+    max-width: 275px;
+    background-color: #150601;
+    font-weight: 400!important;
+    color: #f2e69f;
+    font-size: 12px;
+    border: none;
+    padding: 0;
+    border-right: 2px groove #ffffff12;
+}
+
+.btn-secondary.focus,.btn-secondary:focus,.btn-secondary:not(:disabled):not(.disabled).active,.btn-secondary:not(:disabled):not(.disabled):active,.show>.btn-secondary.dropdown-toggle {
+    background-color: #271208;
+    color: #f8df9dd9;
+    border: none
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus,.btn-secondary:not(:disabled):not(.disabled):active:focus,.show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .1rem rgba(102,45,18,.53)
+}
+
+.bottomstrip .row .second,.bottomstrip .row .third {
+    background-color: #190703;
+    border-top: 1px solid #381308;
+    overflow: hidden
+}
+
+.btn-secondary.focus,.btn-secondary:focus {
+    box-shadow: none
+}
+
+.btn-secondary {
+    transition: .2s
+}
+
+.btn-secondary:active {
+    border: none;
+    box-shadow: none;
+    filter: brightness(.9)
+}
+
+.btn-secondary:hover {
+    filter: brightness(1.2)
+}
+
+.bottomstrip .row .first .countbox {
+    width: 120px;
+    height: 60px;
+    border: 1px solid #f0e68c73;
+    margin-left: 31%;
+    margin-top: 5%;
+    cursor: pointer
+}
+
+.bottomstrip .row .first .countbox:hover {
+    border: 1px solid #fff17185
+}
+
+.bottomstrip .row .first .countbox:active {
+    border: 1px solid #f0e68c73
+}
+
+.bottomstrip .row .second {
+	width: 200px;
+}
+
+.bottomstrip .row .second img {
+    width: 35px;
+    margin-top: 27px;
+	padding-left:20px;
+	float:left;
+}
+
+.bottomstrip .row .third {
+	min-width: 275px;
+    max-width: 275px;
+    position: static
+}
+
+.notification .fail .bg,.notification .succes .bg {
+    background: url(..//img//etc.png) 0 -276px!important;
+    opacity: .55;
+    width: 100%;
+    border-radius: 3px
+}
+
+.bottomstrip .row .first .form-control::placeholder,.bottomstrip .row .first .form-control:focus {
+    color: rgba(255,250,218,.8);
+    font-size: 12px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "Trebuchet MS",Helvetica,sans-serif
+}
+
+.itemtooltip {
+    background-color: rgba(0,0,0,.98);
+    width: 320px;
+	height:auto;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 3px;
+    position: absolute
+}
+
+.itemtooltip .title {
+    color: #f1e6c0;
+    font-size: 12px;
+    padding-top: 5px
+}
+
+.itemtooltip .igdesc {
+    color: #c1c1c1;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 8px
+}
+
+.itemtooltip .bonus {
+    color: #89b88d;
+    font-size: 12px;
+    padding-top: 0
+}
+
+.itemtooltip .equipdesc1 {
+    color: #c1c1c1;
+    font-size: 12px;
+    padding-top: 8px
+}
+
+.itemtooltip .cooldowndesc {
+    color: #c1c1c1;
+    font-size: 12px;
+    padding-top: 5px
+}
+
+.itemtooltip .equipdesc2 {
+    color: #c1c1c1;
+    font-size: 12px;
+    padding-top: 0
+}
+
+.itemtooltip .antiflagdesc1,.itemtooltip .antiflagdesc2 {
+    color: #e57875;
+    font-size: 12px;
+    text-shadow: 2px 2px 2px #000;
+    font-weight: 400
+}
+
+.home,.itemtooltip .antiflagdesc1 {
+    padding-top: 8px
+}
+
+.itemtooltip .antiflagdesc2 {
+    padding-top: 0
+}
+
+.buycoinsmain .coinbubble .coins2,.buycoinsmain .coins2,.coinsconfirm .coins2,.home .bottom .top,.notification {
+    text-shadow: 1px 1px 2px #000000d9
+}
+
+.blur {
+    filter: blur(135px)
+}
+
+.notification {
+    position: absolute;
+    height: 32px;
+    width: 44%;
+    top: 41px;
+    margin: 0 -50% 0 0;
+    left: 50%;
+    transform: translate(-50%);
+    color: #f2e69f;
+    font-weight: 400
+}
+
+.notification:hover {
+    filter: brightness(1.1);
+    cursor: pointer
+}
+
+.notification:active {
+    filter: brightness(.9);
+    cursor: pointer
+}
+
+.notification .fail {
+    width: 100%;
+    height: 100%;
+    background: #6e0808;
+    border-radius: 1px;
+    background: linear-gradient(270deg,rgb(110 8 8 / 62%) 23%,rgb(110 8 8 / 66%) 27%,#6e0808 61%,#6e0808 69%,#6e0808 75%,#6e0808 83%,#6e0808 100%)
+}
+
+.notification .fail .bg {
+    height: 100%;
+    filter: hue-rotate(-726deg)
+}
+
+.notification .succes {
+    width: 100%;
+    height: 100%;
+    background: #0c331b
+}
+
+.notification .succes .bg {
+    height: 100%;
+    filter: hue-rotate(-941deg)
+}
+
+.notification .text {
+    padding-top: 6px;
+    padding-left: 10px!important;
+    text-transform: uppercase;
+    font-size: 13px
+}
+
+.notification .row {
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: -32px
+}
+
+.notification .col-sm {
+    padding-right: 0;
+    padding-left: 0;
+    height: 32px
+}
+
+.notification .icon {
+    max-width: 32px;
+    width: 32px;
+    border-right: 1px solid #f2e69f30;
+    border-radius: 0;
+    padding-top: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #f2e69f;
+    padding-left: 13px
+}
+
+.home .bottom {
+    width: 938px;
+    height: 183px;
+    position: absolute;
+    bottom: -20px;
+    margin-left: rig;
+    right: 41px;
+    background-color: transparent
+}
+
+.home .bottom .top .first {
+    display: inline;
+    font-size: 14px
+}
+
+.home .bottom .top .second {
+    display: inline;
+    right: 0;
+    position: absolute;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+    text-decoration-color: #f2e69fa3;
+    transition: .2s
+}
+
+.home .bottom .top {
+    height: 24px;
+    max-height: 24px;
+    width: 100%;
+    position: absolute;
+    margin-top: -30px;
+    font-weight: 500;
+    font-family: Roboto;
+    font-size: 15px;
+    color: #f2e69ff0;
+    border-bottom: 2px groove #000;
+    border-color: #e8a314b8!important
+}
+
+.home .sellbox:not([class^=slick-cloned]) {
+    margin-left: 4px;
+    margin-right: 0
+}
+
+.rsArrow {
+    background: url(../img/etc.png) -116px -374px!important;
+    width: 28px;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1002
+}
+
+.slick-list {
+    padding-right: 32px;
+    padding-left: 37px
+}
+
+.rsArrow:hover {
+    background: url(../img/etc.png) -83px -374px!important;
+    filter: none!important
+}
+
+.rsArrow.rsRight {
+    right: -1px;
+    top: 0;
+    box-shadow: #662d12 -4px 0 7px
+}
+
+.rsArrowIcn {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #3c1e16;
+    height: 0;
+    opacity: .8;
+    width: 32px;
+    top: 53%;
+    left: 86%;
+    margin-top: -16px;
+    margin-left: -16px;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 2px
+}
+
+.rsArrowIcn.left {
+    border-left: 10px solid transparent;
+    border-right: 10px solid #3c1e16;
+    left: 10%
+}
+
+.home .cover {
+    width: 968px;
+    height: 313px;
+    margin-left: 25px;
+    margin-top: 5px
+}
+
+.home .mySlides {
+    display: none;
+    margin-top: 3px;
+    cursor: pointer
+}
+
+.home .cover img {
+    vertical-align: middle
+}
+
+.home .slideshow-container {
+    position: relative;
+    margin: -4px auto auto 25px;
+    width: 968px;
+    height: 370px;
+    background-color: #faebd7
+}
+
+.home .slideshow-container .navigationdots {
+    text-align: center;
+    position: absolute;
+    bottom: 14px;
+    right: 11px;
+    float: right
+}
+
+.home .slideshow-container .mySlides .text {
+    background-image: linear-gradient(to right,rgba(0,0,0,.85),rgba(0,0,0,.46),rgba(255,255,255,0));
+    margin-left: 0;
+    width: 450px;
+    font-weight: 500;
+    font-family: Roboto;
+    text-shadow: brown;
+    font-size: 16px;
+    color: #f2e69f;
+    text-align: left;
+    height: 57px;
+    line-height: 17px;
+    bottom: 0;
+    padding-top: 9px
+}
+
+.home .slideshow-container .mySlides .text2 {
+    font-weight: 500;
+    font-family: Roboto;
+    text-shadow: brown;
+    font-size: 12px;
+    color: #ded6a8;
+    margin-top: 4px;
+    margin-left: 0
+}
+
+.home .next,.home .prev {
+    cursor: pointer;
+    position: absolute;
+    top: 22px;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    transition: .6s;
+    border-radius: 0;
+    user-select: none;
+    height: calc(100% - 57px)
+}
+
+.home .prev:hover {
+    content: "\u10094"
+}
+
+.home .next:hover {
+    content: "\u10095"
+}
+
+.home .next {
+    right: 0;
+    border-radius: 3px 0 0 3px
+}
+
+.home .next:hover,.home .prev:hover {
+    background-image: linear-gradient(180deg,rgba(0,0,0,.08) 1.1%,rgba(0,0,0,.8) 130.5%,rgba(0,0,0,.08) 1.1%)
+}
+
+.home .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center
+}
+
+.buycoinsmain .bottom,.buycoinsterms .bottom {
+    border-top: 1px solid #e8a31414;
+    bottom: 0;
+    position: absolute
+}
+
+.home .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb63;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color .6s
+}
+
+.home .dot:hover,.home .slideshow-container .active {
+    background-color: #2f2a2a
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 6512351s
+}
+
+@-webkit-keyframes fade {
+    from,to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from,to {
+        opacity: 1
+    }
+}
+
+.site {
+    height: 604px
+}
+
+.itemlistbg .items {
+    height: 532px;
+    width: 821px;
+    right: -8px;
+    position: absolute;
+    overflow-y: scroll;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow-x: hidden
+}
+
+.sellbox {
+    margin-top: 4px;
+    margin-right: 4px;
+    padding: 13px 10px 10px
+}
+
+.buycoinsmain,.buycoinsterms {
+    position: absolute;
+    width: 500px;
+    height: 550px;
+    background-color: #150601;
+    top: 75px;
+    left: 259px;
+    z-index: 9998
+}
+
+.control input:focus~.control_indicator,.control:hover input~.control_indicator,.control_indicator {
+    background: #e1d39129
+}
+
+.buycoinsterms .top {
+    width: 100%;
+    height: 55px;
+    background-color: #0e0403;
+    padding-top: 15px;
+    padding-left: 15px;
+    border-bottom: 1px solid #e8a31442;
+    color: #f2e69f;
+    font-weight: 500
+}
+
+.buycoinsterms .middle {
+    width: 100%;
+    height: 455px;
+    padding-top: 5px;
+    font-weight: 400!important;
+    color: #f2e69fe8;
+    font-size: 12px;
+    padding-left: 15px;
+    padding-right: 20px;
+    overflow: hidden;
+    overflow-y: scroll
+}
+
+.buycoinsterms .bottom {
+    width: 100%;
+    height: 40px;
+    background-color: #471605ab;
+    transition: .2s
+}
+
+.buycoinsterms .bottom .proceed {
+    border-radius: 3px;
+    width: 91px;
+    height: 20px;
+    background-color: #f2e69fe8;
+    font-size: 11px;
+    padding-left: 19px;
+    line-height: 21px;
+    cursor: pointer;
+    transition: .2s;
+    position: absolute;
+    right: 9px;
+    top: 9px
+}
+
+.buycoinsmain .top {
+    width: 100%;
+    height: 50px;
+    background-color: #0e0403;
+    padding-top: 15px;
+    padding-left: 15px;
+    border-bottom: 1px solid #e8a31442;
+    color: #f2e69f;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 14px
+}
+
+.buycoinsmain .middle {
+    width: 100%;
+    height: 455px;
+    padding-top: 5px;
+    font-weight: 400!important;
+    color: #f2e69fe8;
+    font-size: 12px;
+    padding-left: 15px;
+    padding-right: 20px;
+    overflow: hidden
+}
+
+.buycoinsmain .middle .text {
+    width: 65%;
+    height: 40px;
+    font-size: 15px;
+    border: 2px dashed #eeeeee0a;
+    line-height: 35px;
+    margin-top: 35px;
+    border: transparent;
+    background: 0 0
+}
+
+.buycoinsmain .middle .option,.buycoinsmain .middle .sms .row .col-sm {
+    background-color: #170d0c;
+    font-size: 15px;
+    border: 2px dashed #eeeeee0a;
+    line-height: 35px;
+    margin-right: 10px;
+    transition: .2s;
+    cursor: pointer
+}
+
+.buycoinsmain .middle .option {
+    width: 30%;
+    height: 130px;
+    display: inline-block;
+    margin-top: 20px
+}
+
+.buycoinsmain .middle .sms .cost {
+    margin-top: 5px;
+    line-height: 10px;
+    margin-bottom: 15px;
+    font-size: 14px
+}
+
+.buycoinsmain .middle .row .phonenumber {
+    font-size: 14px;
+    margin-top: 5px
+}
+
+.buycoinsmain .middle .row .smstext {
+    font-size: 13px;
+    text-decoration: underline;
+    text-decoration-color: #f2e69f85;
+    line-height: 10px
+}
+
+.sms hr.first {
+    width: 80%;
+    height: 1px;
+    background-color: #e8a31461!important
+}
+
+line {
+    display: block;
+    margin: 10px 0
+}
+
+.buycoinsmain .middle .sms .row {
+    height: 140px;
+    margin-right: 0;
+    margin-left: 5px;
+    margin-top: 15px
+}
+
+.buycoinsmain .middle .sms .row .col-sm.third {
+    margin-right: 0
+}
+
+.buycoinsmain .middle .sms .row .col-sm:hover {
+    background-color: #1e1413
+}
+
+.buycoinsmain .sms .info {
+    height: 120px;
+    width: 98%;
+    overflow-y: scroll;
+    margin-top: 15px;
+    padding-right: 15px;
+    padding-left: 10px
+}
+
+.buycoinsmain .middle .sms {
+    padding-top: 15px
+}
+
+.buycoinsmain .bottom {
+    width: 100%;
+    height: 40px;
+    background-color: #150601;
+    transition: .2s;
+    color: #f2e69fe8;
+    font-weight: 500
+}
+
+.buycoinsmain .bottom i {
+    color: #f2e69fe8;
+    margin-right: 5px;
+    font-size: 18px
+}
+
+.buycoinsmain .bottom span {
+    font-size: 15px
+}
+
+.buycoinsmain .bottom .proceed {
+    border-radius: 8px;
+    width: 91px;
+    height: 20px;
+    background-color: #f2e69fe8;
+    font-size: 11px;
+    padding-left: 19px;
+    line-height: 21px;
+    cursor: pointer;
+    transition: .2s;
+    position: absolute;
+    right: 9px;
+    top: 9px
+}
+
+.buycoinsmain .bottom .proceed:hover {
+    background-color: #f2e69f
+}
+
+.buycoinsmain .bottom .proceed:active {
+    background-color: #f2e69fb8
+}
+
+.buycoinsmain .bottom .row {
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+    margin-left: 0
+}
+
+.buycoinsmain .row .sendtext {
+    font-size: 13px!important;
+    color: #b22222;
+    font-weight: 600!important;
+    line-height: 10px
+}
+
+.buycoinsmain .bottom .row .col-sm {
+    cursor: pointer;
+    padding-right: 0;
+    padding-left: 0;
+    transition: .15s;
+    max-height: 39px;
+    text-align: center;
+    line-height: 39px;
+    text-shadow: 2px 2px #00000096
+}
+
+.buycoinsmain .coinbubblebox {
+    max-height: 360px;
+    overflow-y: scroll
+}
+
+.buycoinsmain .bottom .row .col-sm:hover {
+    background-color: #b222225c
+}
+
+.buycoinsmain .bottom .row .col-sm.active,.buycoinsmain .bottom .row .col-sm:active {
+    background-color: #b22222b3
+}
+
+.buycoinsmain .bottom .row .col-sm img {
+    width: 125px;
+    height: 39px
+}
+
+.buycoinsmain .bottom .row .col-sm.first {
+    border-right: 1px solid #e8a31414
+}
+
+.buycoinsmain .coins {
+    color: #e3bc3d;
+    font-size: 16px;
+    position: relative;
+    left: 45px;
+    font-weight: 600;
+    font-family: Roboto;
+    background: linear-gradient(90deg,#dfc86e 0,#dfcd82 35%,#f2e69f 100%);
+    -webkit-background-clip: text;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .8));
+    bottom: 15px
+}
+
+.buycoinsmain .coins2 {
+    color: #fffada;
+    font-size: 9px;
+    position: absolute;
+    left: 45px;
+    font-weight: 500;
+    font-family: "Trebuchet MS",Helvetica,sans-serif;
+    bottom: 0
+}
+
+.buycoinsmain .first img,.buycoinsmain .second img,.buycoinsmain .third img {
+    width: 28px;
+    margin-left: 0;
+    margin-top: 16px;
+    margin-right: 0;
+    bottom: 13px;
+    position: absolute;
+    left: 10px
+}
+
+.buycoinsmain .first .gcoins,.buycoinsmain .second .gcoins,.buycoinsmain .third .gcoins {
+    margin-top: 0;
+    position: absolute;
+    bottom: 0
+}
+
+.coinsconfirm .first .gcoins {
+    margin-top: 0;
+    bottom: 0
+}
+
+.coinsconfirm .midstrip2 .fa-smile {
+    font-size: 18px;
+    margin-left: 5px
+}
+
+.coinsconfirm img {
+    width: 40px;
+    margin-left: 0;
+    margin-top: 18px;
+    margin-right: 0;
+    bottom: 13px;
+    left: 10px
+}
+
+.coinsconfirm .first {
+    background-color: rgb(28 16 15);
+    font-size: 15px;
+    line-height: 35px;
+    margin-right: 10px;
+    transition: .2s;
+    cursor: pointer;
+    width: 160px;
+    height: 75px;
+    margin-left: 130px;
+    border-radius: 5px
+}
+
+.buycoinsmain .coinbubble .coins,.coinsconfirm .coins {
+    font-family: Roboto;
+    background: linear-gradient(90deg,#dfc86e 0,#dfcd82 35%,#f2e69f 100%);
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .8))
+}
+
+.coinsconfirm .coins {
+    color: #e3bc3d;
+    font-size: 16px;
+    font-weight: 600;
+    -webkit-background-clip: text
+}
+
+.coinsconfirm .coins2 {
+    color: #fffada;
+    font-size: 9px;
+    font-weight: 500;
+    font-family: "Trebuchet MS",Helvetica,sans-serif
+}
+
+.coinsconfirm .row .col-sm {
+    padding-right: 0;
+    padding-left: 0
+}
+
+.coinsconfirm .row .col-sm .coinsholder {
+    float: right;
+    text-align: right;
+    margin-right: 20px;
+    padding-top: 13px
+}
+
+.coinsconfirm .row .col-sm .coinsholder br5 {
+    display: block;
+    margin: -17px 0
+}
+
+.coinsconfirm br6 {
+    display: block;
+    margin: 13px 0
+}
+
+.coinsconfirm .row {
+    margin-right: 0;
+    margin-left: 0;
+    height: 75px
+}
+
+.couponcode .form-control::placeholder {
+    color: #f2e69fdb;
+    font-size: 14px;
+    text-transform: uppercase
+}
+
+.couponcode .form-control {
+    text-align: center;
+    background-color: #bdb0791c;
+    background-clip: padding-box;
+    border: 1px solid #bdb079;
+    color: #f2e69fdb;
+    text-transform: uppercase;
+    font-size: 14px;
+    width: 360px
+}
+
+.buyvip .buyvipbtn,.coinsconfirm .confirmagree,.couponcode .acouponcode {
+    border-radius: 4px;
+    width: 350px;
+    height: 28px;
+    background-color: #f2e69fc2;
+    font-size: 13px;
+    line-height: 28px;
+    transition: .2s;
+    right: 50px;
+    position: absolute;
+    color: #150601;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center
+}
+
+.couponcode .acouponcode {
+    bottom: 32px
+}
+
+.confirmbuybtn i {
+    margin-right: 4px
+}
+
+.coinsconfirm .confirmagree {
+    bottom: 20px
+}
+
+.buycoinsterms .control-group {
+    color: #f2e69fe8;
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 9px;
+    margin-left: 13px
+}
+
+.control {
+    font-family: arial;
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 5px;
+    padding-top: 2px;
+    cursor: pointer
+}
+
+.control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0
+}
+
+.control_indicator {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    border: 2px solid #e1d391;
+    border-radius: 2px
+}
+
+.control input:checked~.control_indicator {
+    background: #e1d391
+}
+
+.control input:disabled~.control_indicator {
+    background: #e6e6e6;
+    opacity: .6;
+    pointer-events: none
+}
+
+.control_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none
+}
+
+.control input:checked~.control_indicator:after {
+    display: block
+}
+
+.control-checkbox .control_indicator:after {
+    left: 3px;
+    top: -1px;
+    width: 3px;
+    height: 9px;
+    border: solid #3c1e16;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg)
+}
+
+.control-checkbox input:disabled~.control_indicator:after {
+    border-color: #7b7b7b
+}
+
+.bottomdisabler {
+    opacity: .3;
+    width: 100%;
+    height: 100%;
+    z-index: 99999
+}
+
+.coinbubble {
+    height: 60px;
+    width: 420px;
+    background-color: #250d05b3;
+    border-radius: 10px;
+    line-height: 12%;
+    border: 2px dashed #f2e69f0a;
+    cursor: pointer;
+    transition: .15s;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    padding-left: 5px
+}
+
+.confirm,.confirmbuybtn,.showitem {
+    transition: .2s;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer
+}
+
+.hourglassIcon,.manWomanIcon {
+    margin-right: 4px;
+    margin-left: 3px
+}
+
+.icon,.icons {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    color: #fff;
+    font-family: sans-serif
+}
+
+.categoryicon,.classicons,.iconoo,.multicolored span,.searchbars,.timebadge {
+    font-family: itemshopfonts
+}
+
+.notification .row i {
+    padding-top: 8px;
+    padding-left: 13px;
+    color: #f2e69f;
+    font-size: 15px
+}
+
+.notification .row i.second {
+    padding-top: 9px;
+    padding-left: 10px;
+    color: #f2e69f;
+    font-size: 14px
+}
+
+.icon:hover:after,.icons:hover:after {
+    opacity: 1;
+    top: -350%;
+    left: -50%;
+    transition-property: left,top,opacity;
+    transition-duration: .55s,.55s,.15s;
+    transition-timing-function: ease
+}
+
+.icon:active:after,.icons:active:after {
+    opacity: 0
+}
+
+.coinbubble:hover {
+    background-color: #2d1006b3;
+    border: 2px dashed #f2e69f1f
+}
+
+.coinbuynew,.confirm {
+    border-radius: 3px;
+    position: absolute
+}
+
+.middle .paypal {
+    display: block;
+    margin-left: 5%;
+    margin-top: 3%
+}
+
+.paypal .toptext {
+    margin-top: -7px;
+    margin-bottom: 10px
+}
+
+.coinbubble .bubble {
+    background-color: #fff;
+    border-radius: 90px
+}
+
+.coinbubble img.coin1,.coinbubble img.coin2,.coinbubble img.coin5 {
+    width: 12%;
+    margin-top: -1px;
+    margin-left: 3%
+}
+
+.confirm {
+    width: 165px;
+    height: 22px;
+    background-color: #f2e69fe8;
+    font-size: 12px;
+    line-height: 23px;
+    right: 25px;
+    bottom: 12px;
+    color: #150601;
+    font-weight: 560;
+    background-color: #f2e69fc2
+}
+
+.summarybox {
+    width: 500px;
+    height: 46px;
+    background-color: #381307bf;
+    margin-top: 14px;
+    position: absolute;
+    bottom: 40px;
+    padding-top: 5px;
+    padding-left: 12px;
+    color: #f2e69fd1;
+    border-radius: -5px;
+    left: 0
+}
+
+.buycoinsmain .coinbubble .coins {
+    color: #e3bc3d;
+    font-size: 16px;
+    position: relative;
+    left: 6px;
+    font-weight: 600;
+    -webkit-background-clip: text;
+    bottom: 0
+}
+
+.buycoinsmain .coinbubble .coins2 {
+    color: #fffada;
+    font-size: 9px;
+    position: relative;
+    left: -34px;
+    font-weight: 500;
+    font-family: "Trebuchet MS",Helvetica,sans-serif;
+    bottom: -13px
+}
+
+.buycoinsmain .coinbubble img {
+    width: 42px;
+    margin-left: 5px;
+    margin-top: 7px
+}
+
+.triangle-bottomright {
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid red;
+    border-left: 100px solid transparent
+}
+
+.buycoinsmain .coinbubble .pricebubble {
+    background-color: #a0393921;
+    width: 135px;
+    height: 29px;
+    position: relative;
+    top: -35px;
+    right: -265px;
+    border-radius: 15px;
+    padding-top: 14px;
+    text-align: center;
+    font-weight: 560;
+    font-size: 13px;
+    color: #f2e69f
+}
+
+.coinbubble.active,.coinbubble:active {
+    filter: brightness(1.15);
+    border: 2px solid #f2e69f5c;
+    animation: 2s infinite pulse
+}
+
+.confirmbuybtn,.showitem {
+    border-radius: 4px;
+    background-color: #f2e69fc2;
+    right: 30px;
+    font-size: 13px;
+    position: absolute
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 #f2e69f1e
+    }
+
+    70% {
+        box-shadow: 0 0 0 5px #f2e69f15
+    }
+
+    100% {
+        box-shadow: 0 0 0 1px #a0393900
+    }
+}
+
+.coinbubbledisabled {
+    opacity: .6;
+    filter: grayscale(.5)
+}
+
+.confirmbuybtn {
+    width: 230px;
+    height: 28px;
+    line-height: 28px;
+    bottom: 29px;
+    color: #150601;
+    font-weight: 600
+}
+
+.showitem,.showitem span {
+    color: #150601!important;
+    font-weight: 600
+}
+
+.acouponcode:active,.buycoinsterms .bottom .proceed:active,.buyvipbtn:active,.confirmagree:active,.confirmbuybtn:active,.paypal .confirm:active,.showitem:active {
+    filter: brightness(.55)
+}
+
+.showitem {
+    width: 120px;
+    height: 24px;
+    line-height: 24px;
+    bottom: 12px;
+    outline: 0;
+    border: none
+}
+
+.showitem span {
+    font-size: 10px;
+    line-height: 20px;
+    display: inline-block;
+    transform: translateY(-2px)
+}
+
+.bottomstrip .row .dropup .dropdown-menu {
+    position: absolute;
+    transform: translate3d(24px,-83px,0);
+    top: 0;
+    left: 0;
+    will-change: transform;
+    width: 225px;
+    text-align: center;
+    background-color: #271208;
+    font-size: 13px;
+    color: #f8df9dd9;
+    border-left: 2px solid #beb17a
+}
+
+.bottomstrip .row .dropup .dropdown-item.active,.dropdown-item:active {
+    background-color: #beb17a;
+    color: #150601;
+    cursor: default
+}
+
+.bottomstrip .row .dropup .dropdown-item {
+    cursor: pointer
+}
+
+.bottomstrip .row .dropup .dropdown-item:focus,.dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #755c384a
+}
+
+body>div.overdetails.out-exit>div.bottomstrip>div>div.col-sm.first>div>button {
+    border-left: 2px solid #beb17a!important
+}
+
+.manWomanIcon {
+    font-size: 18px
+}
+
+.bonList {
+    margin-bottom: 0!important
+}
+
+.timebadge {
+    position: absolute;
+    font-size: 13px;
+    margin-top: -24px;
+    margin-left: 149px;
+    border-radius: 35px;
+    height: 21px;
+    width: 32px;
+    line-height: 18px
+}
+
+.searchbar,.searchbar:active,.searchbar:focus {
+    width: 170px;
+    outline: 0;
+    padding: 7px 21px 3px 10px;
+    margin: 0 15px 0 0;
+    line-height: 12px;
+    background: 0 0;
+    border: 1px solid #662d12;
+    color: #f2e69f;
+    border-radius: 0;
+    font-size: 12px;
+    border: none;
+    text-align: right;
+    border-bottom: 1px solid;
+}
+
+.buycoinsmain .top .iconoo,.coinbuynew .ico,.redeemticket .ico {
+    text-transform: none;
+    margin-right: 5px
+}
+
+.searchbar::placeholder {
+    font-size: 12px;
+    color: #f2e69f;
+    opacity: .9;
+    font-weight: 550
+}
+
+.newsliders {
+    width: 361px;
+    height: 519px;
+    background-color: #551a08;
+    margin-top: 9px;
+    margin-left: -5px;
+    display: inline-block;
+    background-image: url("iskepek_new.png")
+}
+
+.coinbuynew,.redeemticket {
+    margin-top: -38px;
+    height: 26px;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase
+}
+
+
+.coincost,.multicolored {
+    position: absolute;
+    margin-left: 0
+}
+
+.coinbuynew {
+    border: 1px solid #f2e69f;
+    width: 198px;
+    right: 15%;
+    text-align: center
+}
+
+.coinbuynew .textua,.redeemticket .textua {
+    margin-top: -5px;
+    display: inline-block
+}
+
+.coinbuynew .ico,.redeemticket .ico {
+    font-family: itemshopfonts;
+    display: inline-block;
+    margin-left: 0px;
+    margin-top: 4px;
+    font-size: 13px
+}
+
+.redeemticket .ico {
+    margin-left: 0
+}
+
+.coinbuynew:hover,.redeemticket:hover,.slideshow-container .coinbuynew:hover {
+    background-color: #f2e69f;
+    color: #1a0902;
+    font-weight: 500
+}
+
+.buttonind
+{
+	color: #f2e69f;text-align: center;height: 26px;background-color: transparent;font-weight: 500;font-size: 12px;cursor: pointer;text-transform: uppercase;border-radius: 3px;border: 1px solid #f2e69f;
+}
+
+.buttonind:hover
+{
+	background-color: #f2e69f;
+    color: #1a0902;
+    font-weight: 500
+}
+
+.coinbuynew:active,.redeemticket:active,.slideshow-container .coinbuynew:active {
+    background-color: #f2e69f;
+    color: #1a0902;
+    font-weight: 500;
+    filter: brightness(.78)
+}
+
+.redeemticket {
+    position: absolute;
+    border-radius: 3px;
+    width: 185px;
+    right: 36%;
+    text-align: center
+}
+
+.coincost {
+    width: 82px;
+    height: 30px;
+    background-image: linear-gradient(to right,rgb(0 0 0 / 19%),rgb(0 0 0 / 26%),rgb(0 0 0 / 38%),rgb(0 0 0 / 0%));
+    border-radius: 0;
+    margin-top: 47px
+}
+
+.searchbars {
+    font-size: 12px;
+    color: #f2e69f;
+    position: absolute;
+    right: 22px;
+    font-weight: 300
+}
+
+.classicons {
+    font-size: 13px;
+    color: #5a270f;
+    float: right;
+    flex: auti;
+    right: 0;
+    margin-right: 5px;
+    margin-top: 28px
+}
+
+.homeitemlistbg {
+    position: absolute;
+    right: 20px;
+    width: 660px;
+    margin-top: 18px;
+    height: 508px;
+    background: #1b0a03;
+    background: linear-gradient(0deg,rgb(27 10 3 / 47%) 1%,rgb(27 10 3 / 49%) 65%,rgb(27 10 3 / 17%) 100%);
+    display: inline-block
+}
+
+.diszcsik {
+    width: 500px;
+    height: 2px;
+    color: #fff
+}
+
+.home .itemlistbg .items {
+    width: 617px
+}
+
+.categoryiconbox {
+    width: 20px;
+    display: inline-block;
+    text-align: center
+}
+
+.categoryicon {
+    margin-right: 3px
+}
+
+.icons:after {
+    content: "";
+    position: absolute;
+    top: -110%;
+    left: -210%;
+    width: 200%;
+    height: 150%;
+    opacity: 0;
+    transform: rotate(20deg);
+    background: rgba(255,255,255,.13);
+    background: linear-gradient(to right,rgba(255,255,255,.13) 0,rgba(255,255,255,.13) 77%,rgba(255,255,255,.1) 92%,rgba(255,255,255,0) 100%)
+}
+
+.sellbox:hover {
+    filter: brightness(.88);
+    box-shadow: -1px 0 10px #f2e69f
+}
+
+.succes .col-sm.icon {
+    padding-left: 9px;
+    padding-top: 6px
+}
+
+.homeitems {
+    width: 500px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.multicolored,.switchimg img.active {
+    display: inline
+}
+
+span.iconoo.searchiconoo {
+    color: #f2e69f;
+    font-weight: 100;
+    margin-right: -167px;
+    margin-top: 8px;
+    font-size: 11px
+}
+
+.slideshow-container .coinbuynew {
+    margin-top: -42px;
+    right: 180px;
+    width: 240px;
+    color: #f2e69f;
+    text-align: center
+}
+
+.switchimg img,.toggler-wrapper input[type=checkbox] {
+    display: none
+}
+
+.selectitem {
+    padding: 3px;
+    cursor: pointer
+}
+
+.selectitem:hover {
+    background: #f2e69f60
+}
+
+.selectitem.active,.selectitem.active:hover {
+    background: #f2e69fc2
+}
+
+.multicolored {
+    text-transform: uppercase;
+    font-size: 8px;
+    padding: 2px;
+    margin-top: 4px;
+    background-image: linear-gradient(to right,rgb(251 251 251 / 26%),rgb(199 199 199 / 36%),rgb(227 227 227 / 24%),rgb(207 207 207 / 15%))
+}
+
+.multicolored span {
+    text-transform: none!important;
+    margin-right: 2px;
+    margin-left: 2px
+}
+
+.premiumSelector {
+    margin: 1em;
+    height: 70px
+}
+
+.premiumSelector div {
+    font-size: 16px;
+    background: rgb(235 141 94 / 20%);
+    border-left: 1px solid #000;
+    cursor: pointer
+}
+
+.premiumSelector div:last-child {
+    border-right: 1px solid #000
+}
+
+.premiumSelector div.selected {
+    background: #872f12;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.55)
+}
+
+.premiumSelector img {
+    width: 14px
+}
+
+.buffibox {
+    background: rgba(224,103,43,.2);
+    display: inline-block;
+    padding: 5px;
+    float: right;
+    margin-right: 12px;
+    line-height: 20px
+}
+
+.buffibox label {
+    margin: 0;
+    cursor: pointer
+}
+
+.toggler-wrapper {
+    display: inline-block;
+    width: 32px;
+    height: 16px;
+    cursor: pointer;
+    position: relative;
+    transform: translateY(3px)
+}
+
+.toggler-wrapper input[type=checkbox]:checked+.toggler-slider {
+    background-color: #e0672b
+}
+
+.toggler-wrapper .toggler-slider {
+    background-color: #f2e69fc9;
+    position: absolute;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: .3s;
+    transition: .3s
+}
+
+.toggler-wrapper .toggler-knob {
+    position: absolute;
+    -webkit-transition: .3s;
+    transition: .3s;
+    width: calc(16px - 6px);
+    height: calc(16px - 6px);
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    background-color: #f2e69f
+}
+
+.toggler-wrapper input[type=checkbox]:checked+.toggler-slider .toggler-knob {
+    left: calc(100% - 10px - 3px)
+}
+
+.buyvip .midstrip2>span {
+    color: #f2e69f;
+    text-shadow: 1px 1px 2px #000
+}
+
+.buyvip .midstrip2 {
+    font-weight: 400
+}
+
+.premiumSelector div:not(.selected):hover {
+    background: rgb(255 194 164 / 20%)
+}

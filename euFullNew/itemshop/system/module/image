@@ -1,0 +1,25 @@
+<?php 
+if(isset($_GET['vnum']))
+{
+	print '<center><img src="'.Basic::URL().'style/universal/'.Item::Image($_GET['vnum']).'"></center>';
+	print '<br>';
+	print '<ul class="list-group">';
+	print '<li class="list-group-item">'.l(33).' <span style="float:right;" class="badge badge-secondary">'.Item::Name($_GET['vnum']).'</span>';
+	print '</li>';
+	print '<ul class="list-group">';
+	print '<li class="list-group-item">'.l(34).' <span style="float:right;" class="badge badge-secondary">'.Item::Type($_GET['vnum']).'</span>';
+	print '</li>';
+	print '<ul class="list-group">';
+	print '<li class="list-group-item">'.l(35).' <span style="float:right;" class="badge badge-secondary">'.Item::SType($_GET['vnum']).'</span>';
+	print '</li>';
+	print '<ul class="list-group">';
+	print '<li class="list-group-item">'.l(36).' <span style="float:right;" class="badge badge-secondary">'.Item::Level($_GET['vnum']).'</span>';
+	print '</li>';
+	print '<ul class="list-group">';
+	print '<li class="list-group-item">'.l(37).' <span style="float:right;" class="badge badge-secondary">'.Item::Size($_GET['vnum']).' space</span>';
+	print '</li>';
+	print '</ul>';
+}
+else
+	print 'API Error';
+?>

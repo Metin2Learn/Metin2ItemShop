@@ -1,0 +1,252 @@
+<?php if (isset($_GET['itemid'])): ?>
+
+<div class="modal" tabindex="-1" role="dialog" id="closepanel" style="display:block;margin-top:100px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="height:30px;background-color:#0a111a;">
+        <h5 class="text-warning" style="margin-top:0px"><?= Item::Name(User_Shop::Item($_GET['itemid'], 'vnum')); ?></h5>
+		<span style="float:right;color:red;" onclick='document.getElementsByClassName("modal")[0].style.display = "none";document.getElementsByClassName("itemtooltip")[0].style.display = "none";'> x </span>
+      </div>
+      <div class="modal-body" style="background-color:#0a111a;">
+		<div class="middlestrip">
+			<div class="row">
+				<div class="col-md-6 text-white">
+					<div class="first">
+						<br>
+						<p><?= Item::Description(User_Shop::Item($_GET['itemid'], 'vnum')); ?></p>
+						<?php
+							if (Item::Type(User_Shop::Item($_GET['itemid'], 'vnum')) == 'ITEM_COSTUME') {
+							    $givenTimeInMinutes = User_Shop::Item($_GET['itemid'], 'socket0');
+							    $minutesInDay = 24 * 60;
+							    $minutesInMonth = 30 * $minutesInDay;
+							    $months = floor($givenTimeInMinutes / $minutesInMonth);
+							    $remainingMinutes = $givenTimeInMinutes % $minutesInMonth;
+							    $days = floor($remainingMinutes / $minutesInDay);
+							    $remainingMinutes %= $minutesInDay;
+							    $hours = floor($remainingMinutes / 60);
+							    $result = "<i class='fa fa-clock'></i> <b>".l(42).":</b> ";
+							    if ($months > 0) {
+							        $result .= "$months ".l(43).", ";
+							    }
+							    if ($days > 0) {
+							        $result .= "$days ".l(44).", ";
+							    }
+							    if ($hours > 0) {
+							        $result .= "$hours ".l(45).".";
+							    } else {
+							        $result = rtrim($result, ', ');
+							    }
+							    echo $result . '<br>';
+							}
+							
+							if (User_Shop::Item($_GET['itemid'], 'expire')>0) {
+							$expireTime = User_Shop::Item($_GET['itemid'], 'expire');
+								if ($expireTime > time()) 
+								{
+									$diffInSeconds = $expireTime - time();
+
+									
+									$deadline = "<br><i class='fa fa-clock'></i> <b>".l(46).":</b> ";
+									$deadline.= intval($diffInSeconds/3600) ." ".l(45);
+									
+									echo '<span style="color:red">' . $deadline . '</span>';
+								} 
+							}
+							
+							if (User_Shop::Item($_GET['itemid'], 'discount') > 0) {
+							    $currentTime = time();
+							    $diffInSeconds = strtotime(User_Shop::Item($_GET['itemid'], 'discount_expire')) - $currentTime;
+							    $secondsInDay = 24 * 60 * 60;
+							    $secondsInHour = 60 * 60;
+							    $secondsInMinute = 60;
+							    $days = floor($diffInSeconds / $secondsInDay);
+							    $remainingSeconds = $diffInSeconds % $secondsInDay;
+							    $hours = floor($remainingSeconds / $secondsInHour);
+							    $remainingSeconds %= $secondsInHour;
+							    $minutes = floor($remainingSeconds / $secondsInMinute);
+							    $seconds = $remainingSeconds % $secondsInMinute;
+							    $deadline = "<br><i class='fa fa-clock'></i> <b>".l(47).":</b> ";
+							    if ($days > 0) {
+							        $deadline .= "$days ".l(44).", ";
+							    }
+							    if ($hours > 0) {
+							        $deadline .= "$hours ".l(45).", ";
+							    }
+							    if ($minutes > 0) {
+							        $deadline .= "$minutes minutes, ";
+							    }
+							    $deadline .= "$seconds ".l(48)."";
+							    echo '<span style="color:red">' . $deadline . '</span>';
+							}
+							
+							if (User_Shop::Item($_GET['itemid'], 'item_unique') > 0) {
+							    echo '<br><br>';
+							    echo '<p style="float: left;"><i class="fa fa-ban" aria-hidden="true"></i> <b>'.l(49).':</b> ' . User_Shop::BuyLimitCount(User_Shop::Item($_GET['itemid'], 'id')) . '/' . User_Shop::Item($_GET['itemid'], 'item_unique') . '</p>';
+							}
+							
+							echo '<br><p style="margin-top:16px;">';
+							$who_can_use = Item::Race_Can_Use(User_Shop::Item($_GET['itemid'], 'vnum'));
+							if ($who_can_use != 'NONE') {
+							    echo '<i class="fa fa-user" aria-hidden="true"></i> <b>'.l(50).':</b><br>';
+							    $list_characters = ["ANTI_MUSA", "ANTI_ASSASSIN", "ANTI_SURA", "ANTI_MUDANG"];
+							    $makearray = explode("|", $who_can_use);
+							    $charactersowing = [];
+							    foreach ($list_characters as $element) {
+							        if (!in_array($element, $makearray)) {
+							            $charactersowing[] = $element;
+							        }
+							    }
+							    foreach ($charactersowing as $element) {
+							        echo '<img style="height:20px;margin-top:5px;" class="rounded-circle" src="' . Basic::URL() . 'style/universal/characters/' . $element . '.png">&nbsp;';
+							    }
+							}
+							echo '</p>';
+							?>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="second">
+						<center>
+							<div style="position: relative;display: inline-block;">
+								<br><img onmouseenter="var valueblock = document.getElementById('itemtooltip');if(valueblock.style.display === 'block') valueblock.style.display = 'none'; else valueblock.style.display = 'block';var mouseX = event.clientX-30;var mouseY = event.clientY+20;valueblock.style.left = mouseX + 'px';valueblock.style.top = mouseY + 'px';" onmouseleave="var valueblock = document.getElementById('itemtooltip');if(valueblock.style.display === 'block') valueblock.style.display = 'none';" src="<?= Basic::URL().'style/universal/'.Item::Image(User_Shop::Item($_GET['itemid'], 'vnum')); ?>"><br><br>
+								<div style="position: absolute;top: 10px;right: -50px;color: #888;" onmouseenter="var valueblock = document.getElementById('itemtooltip');if(valueblock.style.display === 'block') valueblock.style.display = 'none'; else valueblock.style.display = 'block';var mouseX = event.clientX-30;var mouseY = event.clientY+20;valueblock.style.left = mouseX + 'px';valueblock.style.top = mouseY + 'px';" onmouseleave="var valueblock = document.getElementById('itemtooltip');if(valueblock.style.display === 'block') valueblock.style.display = 'none';">
+									<i class="fa fa-info-circle"></i>
+								</div>
+								<?php if (User_Shop::Item($_GET['itemid'], 'count') > 1): ?>
+								<div style="position: absolute;bottom: 20px;right: -10px;color: #888;">
+									<span class="badge badge-warning" title="Amount purchasing"><small>x<?= User_Shop::Item($_GET['itemid'], 'count'); ?></small></span>
+								</div>
+								<?php endif; ?>
+							</div>
+						<?php
+						if (Logged()) {
+							$item_id = $_GET['itemid'];
+							if (User_Shop::Item($item_id, 'discount') > 0) {
+								$item_coin = User_Shop::Item($item_id, 'coins') - ((User_Shop::Item($item_id, 'discount') / 100) * User_Shop::Item($item_id, 'coins'));
+							} else {
+								$item_coin = User_Shop::Item($item_id, 'coins');
+							}
+						
+							if (intval($item_coin) <= intval(User::Account('coins'))) {
+								if (User_Shop::BuyLimit($item_id)) {
+									?>
+					<form method="POST">
+						<input type="hidden" name="item_id" value="<?= $item_id; ?>">
+						<button type="submit" class="btn btn-success btn-sm" name="buy_item"><i class="fa fa-shopping-cart"></i> <?=l(51); ?></button>
+					</form>
+					<?php
+						} else {
+							?>
+					<button class="btn btn-warning btn-sm" disabled><i class="fa fa-ban" aria-hidden="true"></i> <?=l(52); ?></button>
+					<?php
+						}
+						} else {
+						?>
+					<button class="btn btn-warning btn-sm" disabled><?=l(53); ?></button>
+					<?php
+						}
+						} else {
+						?>
+					<button class="btn btn-warning btn-sm" disabled><?=l(54); ?></button>
+					<?php
+						}
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<?php endif; ?>
+
+<div class="itemtooltip text-white" style="z-index: 9999999999; display: none;margin-left: 253px;
+    margin-top: 5px;background-color:#0a111a;" id="itemtooltip">
+	<center>
+	<br>
+	<div class="title text-primary"><b><?= Item::Name(User_Shop::Item($_GET['itemid'], 'vnum')); ?></b></div>
+	<?php if (Item::Level(User_Shop::Item($_GET['itemid'], 'vnum')) > 0 && Item::Level(User_Shop::Item($_GET['itemid'], 'vnum')) <= 250) { ?>
+	<p><div class="equipdesc2 text-warning">From level: <?= Item::Level(User_Shop::Item($_GET['itemid'], 'vnum')); ?></div></p>
+	<?php } ?>
+	<div class="bonus">
+	<?php 
+		$iid_item = User_Shop::Item($_GET['itemid'], 'vnum');
+		if(Item::Proto($iid_item, 'Type')=='ITEM_WEAPON')
+		{
+			print Item::Bonus_Name_Basic(53,Item::Proto($iid_item, 'Value5')+Item::Proto($iid_item, 'Value3').' - '.Item::Proto($iid_item, 'Value5')+Item::Proto($iid_item, 'Value4'));
+			if(Item::Proto($iid_item, 'Value1')!=Item::Proto($iid_item, 'Value2'))
+				print '<br>'.Item::Bonus_Name_Basic(55,Item::Proto($iid_item, 'Value5')+Item::Proto($iid_item, 'Value1').' - '.Item::Proto($iid_item, 'Value5')+Item::Proto($iid_item, 'Value2'));
+		}
+		elseif(Item::Proto($iid_item, 'Type')=='ITEM_ARMOR')
+		{
+			print Item::Bonus_Name_Basic(54,Item::Proto($iid_item, 'Value5')*2+Item::Proto($iid_item, 'Value1'));
+		}
+		print '<br>'.Item::Stone_Bonus_Name(Item::Proto($iid_item, 'ApplyType0'),Item::Proto($iid_item, 'ApplyValue0'));
+		print '<br>'.Item::Stone_Bonus_Name(Item::Proto($iid_item, 'ApplyType1'),Item::Proto($iid_item, 'ApplyValue1'));
+		print '<span style="color: #99c29c;text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);"><br>';
+		Item::Bonus($_GET['itemid']); 
+		print '</span>';
+		?>
+		<div class="title">
+			<?php
+				$charsname = array(
+				    "ANTI_MUSA" => "Warrior",
+				    "ANTI_ASSASSIN" => "Ninja",
+				    "ANTI_SURA" => "Sura",
+				    "ANTI_MUDANG" => "Shaman"
+				);
+				$lastElement = end($charactersowing);
+				foreach ($charactersowing as $element) {
+				    print $charsname[$element];
+				    if ($element !== $lastElement) {
+				        print ' ';
+				    }
+				}
+				print '</div>';
+				?>
+			<div style="margin-left:35px;">
+			<?php
+				if (Item::Stone(User_Shop::Item($_GET['itemid'], 'socket0'))): ?>
+			<br>
+			<div class="row">
+				<div class="col-md-2">
+					<center><img style="margin-top:8px;" src="<?= Basic::URL().'style/universal/'.Item::Image(User_Shop::Item($_GET['itemid'], 'socket0')); ?>"></center>
+				</div>
+				<div class="col-md-10">
+					<div class="title" style="float:left;"><?= Item::Name(User_Shop::Item($_GET['itemid'], 'socket0')); ?></div>
+					<div class="equipdesc2" style="float:left;"><?= Item::Stone_Bonus_Name('TOOLTIP_'.Item::Stone_Bonus(User_Shop::Item($_GET['itemid'], 'socket0')), Item::Stone_Bonus_Value(User_Shop::Item($_GET['itemid'], 'socket0'))); ?></div>
+				</div>
+			</div>
+			<?php endif; ?>
+			<?php
+				if (Item::Stone(User_Shop::Item($_GET['itemid'], 'socket1'))): ?>
+			<br>
+			<div class="row">
+				<div class="col-md-2">
+					<center><img style="margin-top:8px;" src="<?= Basic::URL().'style/universal/'.Item::Image(User_Shop::Item($_GET['itemid'], 'socket1')); ?>"></center>
+				</div>
+				<div class="col-md-10">
+					<div class="title" style="float:left;"><?= Item::Name(User_Shop::Item($_GET['itemid'], 'socket1')); ?></div>
+					<div class="equipdesc2" style="float:left;"><?= Item::Stone_Bonus_Name('TOOLTIP_'.Item::Stone_Bonus(User_Shop::Item($_GET['itemid'], 'socket1')), Item::Stone_Bonus_Value(User_Shop::Item($_GET['itemid'], 'socket1'))); ?></div>
+				</div>
+			</div>
+			<?php endif; ?>
+			<?php
+				if (Item::Stone(User_Shop::Item($_GET['itemid'], 'socket2'))): ?>
+			<br>
+			<div class="row">
+				<div class="col-md-2">
+					<center><img style="margin-top:8px;" src="<?= Basic::URL().'style/universal/'.Item::Image(User_Shop::Item($_GET['itemid'], 'socket2')); ?>"></center>
+				</div>
+				<div class="col-md-10">
+					<div class="title" style="float:left;"><?= Item::Name(User_Shop::Item($_GET['itemid'], 'socket2')); ?></div>
+					<div class="equipdesc2" style="float:left;"><?= Item::Stone_Bonus_Name('TOOLTIP_'.Item::Stone_Bonus(User_Shop::Item($_GET['itemid'], 'socket2')), Item::Stone_Bonus_Value(User_Shop::Item($_GET['itemid'], 'socket2'))); ?></div>
+				</div>
+			</div>
+			<?php endif; ?>
+			<br>
+			</div>
+		</div>
+</center>
+</div>
