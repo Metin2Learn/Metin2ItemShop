@@ -1,0 +1,571 @@
+itemshop = {}
+itemshop.config = {}
+itemshop.paths = {
+	get_locale_base_path().."/quest/itemshop/syserr",
+	get_locale_base_path().."/quest/itemshop/ITEMSHOP_CONFIG"	
+}
+itemshop.viewers = {}
+itemshop.item = {
+	['ITEMSHOP'] = {},
+	['DRSSHOP'] = {},
+	['3RDSHOP'] = {},
+	['MOSTBOUGHT'] = {}
+}
+itemshop.logs = {}
+
+function split(str, delim, maxNb)
+    if str == nil then return str end
+    if string.find(str, delim) == nil then return { str } end
+    if maxNb == nil or maxNb < 1 then maxNb = 0 end
+    local result = {}
+    local pat = "(.-)" .. delim .. "()"
+    local nb = 0
+    local lastPos
+    for part, pos in string.gfind(str, pat) do
+        nb = nb + 1
+        result[nb] = part
+        lastPos = pos
+        if nb == maxNb then break end
+    end
+    if nb ~= maxNb then result[nb + 1] = string.sub(str, lastPos) end
+    return result
+end
+
+function itemshop.syserr(err)
+	local syserr_ishop = io.open(itemshop.paths[1], "a+")
+	syserr_ishop:write(err)
+	syserr_ishop:close()
+end
+
+os.remove(itemshop.paths[1])
+if true then
+	local config_path = io.open(itemshop.paths[2], "r")
+	if config_path == nil then
+		itemshop.syserr("Can't load config file. Contact the creator.")
+		return false
+	end
+end
+
+function itemshop.get_coins()
+	local c,account = mysql_direct_query("SELECT "..itemshop.config.COINS_COLUMN.." as coins, "..itemshop.config.DRS_COLUMN.." as drs FROM "..itemshop.config.ACCOUNT_TABLE.." WHERE id = "..pc.get_account_id().." LIMIT 1;")
+	cmdchat('ITEMSHOP SEND_COINS#'..account[1].coins..'#'..account[1].drs)
+	return tonumber(account[1].coins)
+end
+
+function itemshop.get_drs()
+	local c,account = mysql_direct_query("SELECT "..itemshop.config.DRS_COLUMN.." as drs FROM "..itemshop.config.ACCOUNT_TABLE.." WHERE id = "..pc.get_account_id().." LIMIT 1;")
+	return tonumber(account[1].drs)
+end
+
+function itemshop.get_3rd()
+	local info
+	if string.find(itemshop.config.OTHER_SHOP_TABLE, 'account') then
+		info = pc.get_account_id()
+	elseif string.find(itemshop.config.OTHER_SHOP_TABLE, 'player') then
+		info = pc.get_player_id()
+	end
+	local c,qry = mysql_direct_query("SELECT "..(itemshop.config.OTHER_COLUMN).." as other FROM "..(itemshop.config.OTHER_SHOP_TABLE).." WHERE id = "..info.." LIMIT 1;")
+	cmdchat('ITEMSHOP SEND_3RD_SHOP_COIN#'..qry[1].other)
+	return tonumber(qry[1].other)
+end
+
+function itemshop.create_string(tab)
+	local str_c = ""
+	for i = 1, table.getn(tab) do
+		str_c = str_c..tab[i]..(i < table.getn(tab) and ',' or '')
+	end
+	return str_c
+end
+
+function itemshop.load_config()
+	local cfg = io.open(itemshop.paths[2], 'r')
+	local booleans = {'ENABLE_ADMIN_PANEL', 'WHEEL_COST_DRS'}
+	local tables = {'WHEEL_BAD_ITEMS', 'WHEEL_GOOD_ITEMS', 'ADMIN_PANEL_MEMBERS'}
+	for line in cfg:lines() do
+		tokens = split(line, ': ')
+		local key = tokens[1]
+		local value
+		if itemshop.config_is_in(key, booleans) then
+			if tonumber(tokens[2]) == 1 then
+				value = true
+			elseif tonumber(tokens[2]) == 0 then
+				value = false
+			end
+		elseif itemshop.config_is_in(key, tables) then
+			value = split(tokens[2], ',')
+		else
+			if tonumber(tokens[2]) then
+				value = tonumber(tokens[2])
+			else
+				value = tostring(tokens[2])
+			end
+		end
+		itemshop.config[key] = value
+	end
+end
+
+function itemshop.config_is_in(cfg_opt, tbl)
+	for i = 1, table.getn(tbl) do
+		if tbl[i] == cfg_opt then
+			return true
+		end
+	end
+	return false
+end
+
+itemshop.load_config()
+
+function itemshop.load_items_array()
+	itemshop.item['ITEMSHOP'] = {}
+	local c,items = mysql_direct_query("SELECT * FROM "..itemshop.config.ITEMSHOP_ITEMS_TABLE..";")
+	if c > 0 then
+		for i = 1,c do
+			itemshop.item['ITEMSHOP'][i] = {items[i].category, items[i].id, items[i].vnum, items[i].price, items[i].attrtype0, items[i].attrvalue0, items[i].attrtype1, items[i].attrvalue1, items[i].attrtype2, items[i].attrvalue2, items[i].attrtype3, items[i].attrvalue3, items[i].attrtype4, items[i].attrvalue4, items[i].attrtype5, items[i].attrvalue5, items[i].attrtype6, items[i].attrvalue6, items[i].socket0, items[i].socket1, items[i].socket2, items[i].time, items[i].percent}
+		end
+	end
+	itemshop.item['DRSSHOP'] = {}
+	local c,items = mysql_direct_query("SELECT * FROM "..itemshop.config.DRSSHOP_ITEMS_TABLE..";")
+	if c > 0 then
+		for i = 1,c do
+			itemshop.item['DRSSHOP'][i] = {items[i].category, items[i].id, items[i].vnum, items[i].price, items[i].attrtype0, items[i].attrvalue0, items[i].attrtype1, items[i].attrvalue1, items[i].attrtype2, items[i].attrvalue2, items[i].attrtype3, items[i].attrvalue3, items[i].attrtype4, items[i].attrvalue4, items[i].attrtype5, items[i].attrvalue5, items[i].attrtype6, items[i].attrvalue6, items[i].socket0, items[i].socket1, items[i].socket2, items[i].time, items[i].percent}
+		end
+	end
+	itemshop.item['3RDSHOP'] = {}
+	local c,items = mysql_direct_query("SELECT * FROM "..itemshop.config.OTHERSHOP_ITEMS_TABLE..";")
+	if c > 0 then
+		for i = 1,c do
+			itemshop.item['3RDSHOP'][i] = {items[i].category, items[i].id, items[i].vnum, items[i].price, items[i].attrtype0, items[i].attrvalue0, items[i].attrtype1, items[i].attrvalue1, items[i].attrtype2, items[i].attrvalue2, items[i].attrtype3, items[i].attrvalue3, items[i].attrtype4, items[i].attrvalue4, items[i].attrtype5, items[i].attrvalue5, items[i].attrtype6, items[i].attrvalue6, items[i].socket0, items[i].socket1, items[i].socket2, items[i].time, items[i].percent}
+		end
+	end
+end
+
+itemshop.load_items_array()
+
+function itemshop.unset_coins(amount)
+	mysql_direct_query("UPDATE "..itemshop.config.ACCOUNT_TABLE.." SET "..itemshop.config.COINS_COLUMN.." = "..itemshop.config.COINS_COLUMN.." - "..amount.." WHERE id = "..pc.get_account_id()..";")
+	mysql_direct_query("UPDATE "..itemshop.config.ACCOUNT_TABLE.." SET "..itemshop.config.DRS_COLUMN.." = "..itemshop.config.DRS_COLUMN.." + "..amount.." WHERE id = "..pc.get_account_id()..";")
+	itemshop.get_coins()
+end
+
+function itemshop.unset_drs(amount)
+	mysql_direct_query("UPDATE "..itemshop.config.ACCOUNT_TABLE.." SET "..itemshop.config.DRS_COLUMN.." = "..itemshop.config.DRS_COLUMN.." - "..amount.." WHERE id = "..pc.get_account_id()..";")
+	itemshop.get_coins()
+end
+
+function itemshop.unset_3rd(amount)
+	local info
+	if string.find(itemshop.config.OTHER_SHOP_TABLE, 'account') then
+		info = pc.get_account_id()
+	elseif string.find(itemshop.config.OTHER_SHOP_TABLE, 'player') then
+		info = pc.get_player_id()
+	end
+	mysql_direct_query("UPDATE "..(itemshop.config.OTHER_SHOP_TABLE).." SET "..(itemshop.config.OTHER_COLUMN).." = "..(itemshop.config.OTHER_COLUMN).." - "..amount.." WHERE id = "..info..";")
+	itemshop.get_3rd()
+end
+
+function itemshop.load_items()
+	if table.getn(itemshop.item['ITEMSHOP']) > 0 then
+		for k,items in pairs(itemshop.item['ITEMSHOP']) do
+			cmdchat('ITEMSHOP SET_ITEM#itemshop#'..items[1]..'#'..items[2]..'#'..items[3]..'#'..items[4]..'#'..items[5]..'#'..items[6]..'#'..items[7]..'#'..items[8]..'#'..items[9]..'#'..items[10]..'#'..items[11]..'#'..items[12]..'#'..items[13]..'#'..items[14]..'#'..items[15]..'#'..items[16]..'#'..items[17]..'#'..items[18]..'#'..items[19]..'#'..items[20]..'#'..items[21]..'#'..items[22]..'#0#'..items[23])
+		end
+	end
+	if table.getn(itemshop.item['DRSSHOP']) > 0 then
+		for k,items in pairs(itemshop.item['DRSSHOP']) do
+			cmdchat('ITEMSHOP SET_ITEM#drs_shop#'..items[1]..'#'..items[2]..'#'..items[3]..'#'..items[4]..'#'..items[5]..'#'..items[6]..'#'..items[7]..'#'..items[8]..'#'..items[9]..'#'..items[10]..'#'..items[11]..'#'..items[12]..'#'..items[13]..'#'..items[14]..'#'..items[15]..'#'..items[16]..'#'..items[17]..'#'..items[18]..'#'..items[19]..'#'..items[20]..'#'..items[21]..'#'..items[22]..'#0#'..items[23])
+		end
+	end
+	if table.getn(itemshop.item['3RDSHOP']) > 0 then
+		for k,items in pairs(itemshop.item['3RDSHOP']) do
+			cmdchat('ITEMSHOP SET_ITEM#3rd_shop#'..items[1]..'#'..items[2]..'#'..items[3]..'#'..items[4]..'#'..items[5]..'#'..items[6]..'#'..items[7]..'#'..items[8]..'#'..items[9]..'#'..items[10]..'#'..items[11]..'#'..items[12]..'#'..items[13]..'#'..items[14]..'#'..items[15]..'#'..items[16]..'#'..items[17]..'#'..items[18]..'#'..items[19]..'#'..items[20]..'#'..items[21]..'#'..items[22]..'#0#'..items[23])
+		end
+	end
+end
+
+function itemshop.load_hotoffers()
+	if table.getn(itemshop.item['ITEMSHOP']) > 0 then
+		for k,items in pairs(itemshop.item['ITEMSHOP']) do
+			if items[22] > get_time() then
+				cmdchat('ITEMSHOP SET_ITEM_HOTOFFERS#'..items[2]..'#'..items[3]..'#'..items[4]..'#'..items[5]..'#'..items[6]..'#'..items[7]..'#'..items[8]..'#'..items[9]..'#'..items[10]..'#'..items[11]..'#'..items[12]..'#'..items[13]..'#'..items[14]..'#'..items[15]..'#'..items[16]..'#'..items[17]..'#'..items[18]..'#'..items[19]..'#'..items[20]..'#'..items[21]..'#'..items[22]..'#0#'..items[23])
+			end
+		end
+	end
+end
+
+function itemshop.load_mostbought_array()
+	itemshop.item['MOSTBOUGHT'] = {}
+	local c,vnum = mysql_direct_query("SELECT vnum,count(vnum) c FROM "..itemshop.config.ITEMSHOP_LOGS_TABLE.." GROUP BY vnum ORDER BY c DESC LIMIT 10;")
+	if c > 0 then
+		for a = 1,c do
+			local co,items = mysql_direct_query("SELECT * FROM "..itemshop.config.ITEMSHOP_ITEMS_TABLE.." WHERE vnum = "..tonumber(vnum[a].vnum)..";")
+			for i = 1,co do
+				local array = {items[i].category, items[i].id, items[i].vnum, items[i].price, items[i].attrtype0, items[i].attrvalue0, items[i].attrtype1, items[i].attrvalue1, items[i].attrtype2, items[i].attrvalue2, items[i].attrtype3, items[i].attrvalue3, items[i].attrtype4, items[i].attrvalue4, items[i].attrtype5, items[i].attrvalue5, items[i].attrtype6, items[i].attrvalue6, items[i].socket0, items[i].socket1, items[i].socket2, items[i].time, items[i].percent}
+				table.insert(itemshop.item['MOSTBOUGHT'], array)
+			end
+		end
+	end
+end
+
+itemshop.load_mostbought_array()
+	
+function itemshop.load_mostbought()
+	if table.getn(itemshop.item['MOSTBOUGHT']) > 0 then
+		for k,items in pairs(itemshop.item['MOSTBOUGHT']) do
+			cmdchat('ITEMSHOP SET_ITEM_MOSTBOUGHT#'..items[2]..'#'..items[3]..'#'..items[4]..'#'..items[5]..'#'..items[6]..'#'..items[7]..'#'..items[8]..'#'..items[9]..'#'..items[10]..'#'..items[11]..'#'..items[12]..'#'..items[13]..'#'..items[14]..'#'..items[15]..'#'..items[16]..'#'..items[17]..'#'..items[18]..'#'..items[19]..'#'..items[20]..'#'..items[21]..'#'..items[22]..'#0#'..items[23])
+		end
+	end
+end
+
+function itemshop.load_logs_array()
+	itemshop.logs = {}
+	local c,logs = mysql_direct_query("SELECT * FROM "..itemshop.config.ITEMSHOP_LOGS_TABLE..";")
+	if c > 0 then
+		for i = 1,c do
+			if itemshop.logs[logs[i].pid] == nil then itemshop.logs[logs[i].pid] = {} end
+			itemshop.logs[logs[i].pid][i] = {logs[i].vnum, logs[i].amount, logs[i].price, (string.gsub(logs[i].date, ' ', '[_]')), logs[i].attrtype0, logs[i].attrvalue0, logs[i].attrtype1, logs[i].attrvalue1, logs[i].attrtype2, logs[i].attrvalue2, logs[i].attrtype3, logs[i].attrvalue3, logs[i].attrtype4, logs[i].attrvalue4, logs[i].attrtype5, logs[i].attrvalue5, logs[i].attrtype6, logs[i].attrvalue6, logs[i].socket0, logs[i].socket1, logs[i].socket2}
+		end
+	end
+end
+
+itemshop.load_logs_array()
+
+function itemshop.load_logs(order)
+	if itemshop.logs[pc.get_player_id()] ~= nil then
+		if order == 'all' then
+			if table.getn(itemshop.logs[pc.get_player_id()]) > 0 then
+				for k,logs in pairs(itemshop.logs[pc.get_player_id()]) do
+					cmdchat('ITEMSHOP SET_LOG#'..logs[1]..'#'..logs[2]..'#'..logs[3]..'#'..logs[4]..'#'..logs[5]..'#'..logs[6]..'#'..logs[7]..'#'..logs[8]..'#'..logs[9]..'#'..logs[10]..'#'..logs[11]..'#'..logs[12]..'#'..logs[13]..'#'..logs[14]..'#'..logs[15]..'#'..logs[16]..'#'..logs[17]..'#'..logs[18]..'#'..logs[19]..'#'..logs[20]..'#'..logs[21])
+				end
+			end
+		elseif order == 'last' then
+			if table.getn(itemshop.logs[pc.get_player_id()]) > 0 then
+				logs = itemshop.logs[pc.get_player_id()][table.getn(itemshop.logs[pc.get_player_id()])]
+				cmdchat('ITEMSHOP SET_LOG#'..logs[1]..'#'..logs[2]..'#'..logs[3]..'#'..logs[4]..'#'..logs[5]..'#'..logs[6]..'#'..logs[7]..'#'..logs[8]..'#'..logs[9]..'#'..logs[10]..'#'..logs[11]..'#'..logs[12]..'#'..logs[13]..'#'..logs[14]..'#'..logs[15]..'#'..logs[16]..'#'..logs[17]..'#'..logs[18]..'#'..logs[19]..'#'..logs[20]..'#'..logs[21])
+			end
+		end
+	end
+end
+
+function itemshop.create_categorys()
+	for i = 1, itemshop.config.ITEMSHOP_CATEGORY_COUNT do
+		cmdchat('ITEMSHOP CREATE_CATEGORY#itemshop#'..i)
+	end
+	for i = 1, itemshop.config.DRSSHOP_CATEGORY_COUNT do
+		cmdchat('ITEMSHOP CREATE_CATEGORY#drs_shop#'..i)
+	end
+	for i = 1, itemshop.config.OTHERSHOP_CATEGORY_COUNT do
+		cmdchat('ITEMSHOP CREATE_CATEGORY#3rd_shop#'..i)
+	end
+end
+
+function itemshop.open_shop()
+	if pc.is_gm() and itemshop.config.ENABLE_ADMIN_PANEL and (itemshop.config_is_in(pc.get_name(), itemshop.config.ADMIN_PANEL_MEMBERS) or itemshop.config_is_in(pc.get_player_id(), itemshop.config.ADMIN_PANEL_MEMBERS)) then
+		cmdchat('ITEMSHOP OPEN#1')
+	else
+		cmdchat('ITEMSHOP OPEN#0')
+	end
+	itemshop.add_viewer(pc.get_name())
+end
+
+function itemshop.close_shop()
+	itemshop.delete_viewer(pc.get_name())
+end
+
+function itemshop.buy_item(shop, id, amount)
+	if (amount < 1) then return end
+	local shop_info = {}
+	if shop == 'itemshop' then
+		shop_info[1] = itemshop.config.ITEMSHOP_ITEMS_TABLE
+		shop_info[2] = itemshop.get_coins()
+		shop_info[3] = itemshop.config.TXT_NO_COINS_BUY_ITEM
+		shop_info[4] = itemshop.config.TXT_COIN_NAME
+		shop_info[5] = itemshop.unset_coins
+	elseif shop == 'drs_shop' then
+		shop_info[1] = itemshop.config.DRSSHOP_ITEMS_TABLE
+		shop_info[2] = itemshop.get_drs()
+		shop_info[3] = itemshop.config.TXT_NO_DRS_BUY_ITEM
+		shop_info[4] = itemshop.config.TXT_DRS_NAME
+		shop_info[5] = itemshop.unset_drs
+	elseif shop == '3rd_shop' then
+		shop_info[1] = itemshop.config.OTHERSHOP_ITEMS_TABLE
+		shop_info[2] = itemshop.get_3rd()
+		shop_info[3] = itemshop.config.TXT_NO_3RD_BUY_ITEM
+		shop_info[4] = itemshop.config.TXT_3RD_NAME
+		shop_info[5] = itemshop.unset_3rd
+	end
+	local c,itemInfo = mysql_direct_query("SELECT * FROM "..shop_info[1].." WHERE id = "..id.." LIMIT 1;")
+	if c > 0 then
+		local price if tonumber(itemInfo[1].time)-get_time() > 0 then
+		price = tonumber(itemInfo[1].price)-(tonumber(itemInfo[1].price)/100)*tonumber(itemInfo[1].percent) else price = tonumber(itemInfo[1].price) end
+		if price < 0 or (price*amount) < 0 then return end
+		if shop_info[2] < price*amount then
+			syschat(shop_info[3])
+			return
+		end
+		if not pc.enough_inventory(tonumber(itemInfo[1].vnum)) then
+			syschat(itemshop.config.TXT_NOT_ENOUGH_INVENTORY)
+			return
+		end
+		local attributes = {{tonumber(itemInfo[1].attrtype0), tonumber(itemInfo[1].attrvalue0)},{tonumber(itemInfo[1].attrtype1), tonumber(itemInfo[1].attrvalue1)},{tonumber(itemInfo[1].attrtype2), tonumber(itemInfo[1].attrvalue2)},{tonumber(itemInfo[1].attrtype3), tonumber(itemInfo[1].attrvalue3)},{tonumber(itemInfo[1].attrtype4), tonumber(itemInfo[1].attrvalue4)},{tonumber(itemInfo[1].attrtype5), tonumber(itemInfo[1].attrvalue5)},{tonumber(itemInfo[1].attrtype6), tonumber(itemInfo[1].attrvalue6)}}
+		local sockets = {tonumber(itemInfo[1].socket0),tonumber(itemInfo[1].socket1),tonumber(itemInfo[1].socket2)}
+		pc.give_item2_select(tonumber(itemInfo[1].vnum), amount)
+		for attr = 0,6 do
+			item.set_value(attr, attributes[attr+1][1], attributes[attr+1][2])
+		end
+		for socket = 0,2 do
+			if sockets[socket+1] >= (86000/2) then
+				sockets[socket+1] = sockets[socket+1] + get_time()
+			end
+			item.set_socket(socket, sockets[socket+1])
+		end
+		if item.get_count() > 1 then
+			chat(string.format(itemshop.config.TXT_BOUGHT_ITEM_W_AMOUNT, amount, item.get_name(), price, shop_info[4]))
+		else
+			chat(string.format(itemshop.config.TXT_BOUGHT_ITEM_WO_AMOUNT, item.get_name(), price, shop_info[4]))
+		end
+		if shop == 'itemshop' then
+			itemshop.write_log(pc.get_player_id(), tonumber(itemInfo[1].vnum), amount, item.get_id(), attributes, sockets, price)
+		end
+		shop_info[5](price*amount)
+		itemshop.load_mostbought_array()
+		itemshop.send_global_data('MOSTBOUGHT')
+	end
+end
+
+function itemshop.write_log(pid, vnum, amount, itemID, attrs, sockets, price)
+	local s_attrs,s_sockets = '',''
+	for i = 1, table.getn(attrs) do
+		s_attrs = s_attrs..attrs[i][1]..','..attrs[i][2]..(i < 7 and ',' or '')
+	end
+	for i = 1, table.getn(sockets) do
+		s_sockets = s_sockets..sockets[i]..(i < 3 and ',' or '')
+	end
+	mysql_direct_query("INSERT INTO "..itemshop.config.ITEMSHOP_LOGS_TABLE.." (pid,vnum,amount,item_id,attrtype0,attrvalue0,attrtype1,attrvalue1,attrtype2,attrvalue2,attrtype3,attrvalue3,attrtype4,attrvalue4,attrtype5,attrvalue5,attrtype6,attrvalue6,socket0,socket1,socket2,price,date) VALUES ("..pid..","..vnum..","..amount..","..itemID..","..s_attrs..","..s_sockets..","..price..",'"..os.date("%Y-%m-%d %H:%M:%S").."');")
+	if itemshop.logs[pid] == nil then itemshop.logs[pid] = {} end
+	itemshop.logs[pid][table.getn(itemshop.logs[pid]) + 1] = {vnum, amount, price, (string.gsub(os.date("%Y-%m-%d %H:%M:%S"), ' ', '[_]')), attrs[1][1], attrs[1][2], attrs[2][1], attrs[2][2], attrs[3][1], attrs[3][2], attrs[4][1], attrs[4][2], attrs[5][1], attrs[5][2], attrs[6][1], attrs[6][2], attrs[7][1], attrs[7][2], sockets[1], sockets[2], sockets[3]}
+	itemshop.load_logs('last')
+end	
+
+function itemshop.load_wheel_items()
+	cmdchat('ITEMSHOP SET_WHEEL_PRIZE#G#'..itemshop.create_string(itemshop.config.WHEEL_GOOD_ITEMS))
+	cmdchat('ITEMSHOP SET_WHEEL_PRIZE#B#'..itemshop.create_string(itemshop.config.WHEEL_BAD_ITEMS))
+end
+
+function itemshop.request_spin_wheel()
+	local price = itemshop.config.WHEEL_COST_DRS and itemshop.get_drs() or itemshop.get_coins()
+	if price < itemshop.config.WHEEL_COST then
+		syschat(itemshop.config.TXT_NO_COINS_SPIN_WHEEL)
+		return
+	end
+	if pc.getf('itemshop', 'spin_time') ~= 0 and pc.getf('itemshop', 'spin_time') < get_time() then
+		pc.setf('itemshop', 'spin_time', 0)
+		pc.setf('itemshop', 'wheel_spins', 0)
+	end
+	if pc.getf('itemshop', 'wheel_spins') >= itemshop.config.WHEEL_LIMIT_SPINS_TIME then
+		if pc.getf('itemshop', 'spin_time') <= 0 then
+			pc.setf('itemshop', 'spin_time', get_time()+60*itemshop.config.WHEEL_LIMIT_TIME_SPINS_MINUTES)
+		end
+		syschat(itemshop.config.TXT_NO_MORE_SPINS)
+		local remain = pc.getf('itemshop', 'spin_time')-get_time()
+		local hours = math.floor(remain / 3600)
+		local minutes = 0
+		if hours >= 1 then
+			minutes = math.floor((remain - (hours*3600)) / 60)
+			syschat(string.format(itemshop.config.TXT_WHEEL_WAIT_TIME_W_HOURS, hours, minutes))
+		else
+			minutes = math.floor(remain / 60)
+			if minutes < 1 then
+				syschat(string.format(itemshop.config.TXT_WHEEL_WAIT_TIME_W_SEC, remain))
+			else
+				syschat(string.format(itemshop.config.TXT_WHEEL_WAIT_TIME_WO_HOURS, minutes))
+			end
+		end
+		return
+	end
+	pc.setf('itemshop', 'wheel_spins', pc.getf('itemshop', 'wheel_spins')+1)
+	if pc.getf('itemshop', 'wheel_spins') >= itemshop.config.WHEEL_LIMIT_SPINS_TIME then
+		if pc.getf('itemshop', 'spin_time') <= 0 then
+			pc.setf('itemshop', 'spin_time', get_time()+60*itemshop.config.WHEEL_LIMIT_TIME_SPINS_MINUTES)
+		end
+	end
+	pc.setf('itemshop_manager', 'enable_wheel', 1)
+	cmdchat('ITEMSHOP ALLOW_SPIN_WHEEL#')
+	if itemshop.config.WHEEL_COST_DRS then
+		itemshop.unset_drs(itemshop.config.WHEEL_COST)
+	else
+		itemshop.unset_coins(itemshop.config.WHEEL_COST)
+	end
+end
+	
+function itemshop.admin_add_item_time(item_id, item_time, percent, shop)
+	if itemshop.config.ENABLE_ADMIN_PANEL == false then return end
+	if not pc.is_gm() then return end
+	local shop_db
+	if shop == 0 then
+		shop_db = itemshop.config.ITEMSHOP_ITEMS_TABLE
+	elseif shop == 1 then
+		shop_db = itemshop.config.DRSSHOP_ITEMS_TABLE
+	elseif shop == 2 then
+		shop_db = itemshop.config.OTHERSHOP_ITEMS_TABLE
+	end
+	local realTime = item_time+get_time()
+	mysql_direct_query("UPDATE "..shop_db.." SET time = "..realTime..", percent = "..percent.." WHERE id = "..item_id..";")
+	local shop_name = {[0] = 'ITEMSHOP', [1] = 'DRSSHOP', [2] = '3RDSHOP'}
+	for k,items in pairs(itemshop.item[shop_name[shop]]) do
+		if items[2] == item_id then
+			items[22] = realTime
+			items[23] = percent
+			break
+		end
+	end
+	for k,items in pairs(itemshop.item['MOSTBOUGHT']) do
+		if items[2] == item_id then
+			items[22] = realTime
+			items[23] = percent
+			break
+		end
+	end
+	chat(string.format(itemshop.config.TXT_SUCCESS_TIME_ITEM, percent, item_time))
+	itemshop.send_global_data('DISCOUNT')
+end
+	
+function itemshop.admin_add_category_time(category, category_time, percent, shop)
+	if itemshop.config.ENABLE_ADMIN_PANEL == false then return end
+	if not pc.is_gm() then return end
+	local shop_db
+	if shop == 0 then
+		shop_db = itemshop.config.ITEMSHOP_ITEMS_TABLE
+	elseif shop == 1 then
+		shop_db = itemshop.config.DRSSHOP_ITEMS_TABLE
+	elseif shop == 2 then
+		shop_db = itemshop.config.OTHERSHOP_ITEMS_TABLE
+	end
+	local realTime = category_time+get_time()
+	mysql_direct_query("UPDATE "..shop_db.." SET time = "..realTime..", percent = "..percent.." WHERE category = "..category..";")
+	local shop_name = {[0] = 'ITEMSHOP', [1] = 'DRSSHOP', [2] = '3RDSHOP'}
+	for k,items in pairs(itemshop.item[shop_name[shop]]) do
+		if items[1] == category then
+			items[22] = realTime
+			items[23] = percent
+		end
+	end
+	for k,items in pairs(itemshop.item['MOSTBOUGHT']) do
+		if items[1] == category then
+			items[22] = realTime
+			items[23] = percent
+		end
+	end
+	chat(string.format(itemshop.config.TXT_SUCCESS_TIME_CATEGORY, percent, category_time, category))
+	itemshop.send_global_data('DISCOUNT')
+end
+
+function itemshop.admin_add_item(category, vnum, price, attributes, sockets, shop)
+	if itemshop.config.ENABLE_ADMIN_PANEL == false then return end
+	if not pc.is_gm() then return end
+	local s_attrs,s_sockets = '',''
+	for i = 1, table.getn(attributes) do
+		s_attrs = s_attrs..attributes[i][1]..','..attributes[i][2]..(i < 7 and ',' or '')
+	end
+	for i = 1, table.getn(sockets) do
+		s_sockets = s_sockets..sockets[i]..(i < 3 and ',' or '')
+	end
+	local shop_db
+	if shop == 0 then
+		shop_db = itemshop.config.ITEMSHOP_ITEMS_TABLE
+	elseif shop == 1 then
+		shop_db = itemshop.config.DRSSHOP_ITEMS_TABLE
+	elseif shop == 2 then
+		shop_db = itemshop.config.OTHERSHOP_ITEMS_TABLE
+	end
+	local shop_name = {[0] = 'ITEMSHOP', [1] = 'DRSSHOP', [2] = '3RDSHOP'}
+	mysql_direct_query("INSERT INTO "..shop_db.." (category,vnum,price,attrtype0,attrvalue0,attrtype1,attrvalue1,attrtype2,attrvalue2,attrtype3,attrvalue3,attrtype4,attrvalue4,attrtype5,attrvalue5,attrtype6,attrvalue6,socket0,socket1,socket2) VALUES ("..category..","..vnum..","..price..","..s_attrs..","..s_sockets..");")
+	itemshop.load_items_array()
+	chat(itemshop.config.TXT_SUCCESS_ADDED_ITEM)
+	itemshop.send_global_data('NEW_ITEM')
+end
+
+function itemshop.admin_delete_item(shop, item_id)
+	if itemshop.config.ENABLE_ADMIN_PANEL == false then return end
+	if not pc.is_gm() then return end
+	if not (itemshop.config_is_in(pc.get_name(), itemshop.config.ADMIN_PANEL_MEMBERS) or itemshop.config_is_in(pc.get_player_id(), itemshop.config.ADMIN_PANEL_MEMBERS)) then return end
+	local shop_db
+	if shop == 'itemshop' then
+		shop_db = itemshop.config.ITEMSHOP_ITEMS_TABLE
+	elseif shop == 'drs_shop' then
+		shop_db = itemshop.config.DRSSHOP_ITEMS_TABLE
+	elseif shop == '3rd_shop' then
+		shop_db = itemshop.config.OTHERSHOP_ITEMS_TABLE
+	end
+	mysql_direct_query("DELETE FROM "..shop_db.." WHERE id = "..item_id..";")
+	itemshop.load_items_array()
+	itemshop.load_mostbought_array()
+	itemshop.load_items_array()
+	chat(itemshop.config.TXT_SUCCESS_DELETED_ITEM)
+	itemshop.send_global_data('NONE')
+end
+
+function itemshop.admin_edit_item_price(shop, item_id, new_price)
+	if new_price == 0 then return end
+	if itemshop.config.ENABLE_ADMIN_PANEL == false then return end
+	if not pc.is_gm() then return end
+	if not (itemshop.config_is_in(pc.get_name(), itemshop.config.ADMIN_PANEL_MEMBERS) or itemshop.config_is_in(pc.get_player_id(), itemshop.config.ADMIN_PANEL_MEMBERS)) then return end
+	local shop_db
+	if shop == 'itemshop' then
+		shop_db = itemshop.config.ITEMSHOP_ITEMS_TABLE
+	elseif shop == 'drs_shop' then
+		shop_db = itemshop.config.DRSSHOP_ITEMS_TABLE
+	elseif shop == '3rd_shop' then
+		shop_db = itemshop.config.OTHERSHOP_ITEMS_TABLE
+	end
+	mysql_direct_query("UPDATE "..shop_db.." SET price = "..new_price.." WHERE id = "..item_id..";")
+	local shop_name = {['itemshop'] = 'ITEMSHOP', ['drs_shop'] = 'DRSSHOP', ['3rd_shop'] = '3RDSHOP'}
+	for k,items in pairs(itemshop.item[shop_name[shop]]) do
+		if items[2] == item_id then
+			items[4] = new_price
+			break
+		end
+	end
+	for k,items in pairs(itemshop.item['MOSTBOUGHT']) do
+		if items[2] == item_id then
+			items[4] = new_price
+			break
+		end
+	end
+	chat(itemshop.config.TXT_SUCCESS_DELETED_ITEM)
+	itemshop.send_global_data('CHANGED_PRICE')
+end
+
+function itemshop.add_viewer(name)
+	table.insert(itemshop.viewers, name)
+end
+
+function itemshop.delete_viewer(name)
+	for k,pname in pairs(itemshop.viewers) do
+		if pname == name then
+			table.remove(itemshop.viewers, k)
+		end
+	end
+end
+
+function itemshop.send_global_data(data)
+	local old_vid = pc.get_vid()
+	for k,pname in pairs(itemshop.viewers) do
+		local vid = find_pc_by_name(pname)
+		if vid > 0 then
+			pc.select(vid)
+			cmdchat('ITEMSHOP CLEAR_CONTENT#')
+			itemshop.create_categorys()
+			itemshop.load_items()
+			itemshop.load_hotoffers()
+			itemshop.load_mostbought()
+			if data == 'NEW_ITEM' then
+				chat(itemshop.config.TXT_GLOBAL_NEW_ITEM)
+			elseif data == 'DISCOUNT' then
+				chat(itemshop.config.TXT_GLOBAL_DISCOUNT)
+			elseif data == 'CHANGED_PRICE' then
+				chat(itemshop.config.TXT_GLOBAL_EDITED_PRICE)
+			end
+			cmdchat('ITEMSHOP REFRESH_CONTENT#')
+		end
+	end
+	pc.select(old_vid)
+end

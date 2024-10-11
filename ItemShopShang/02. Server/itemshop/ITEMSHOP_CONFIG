@@ -1,0 +1,42 @@
+ACCOUNT_TABLE: account.account
+COINS_COLUMN: coins
+DRS_COLUMN: drs
+OTHER_SHOP_TABLE: player.player
+OTHER_COLUMN: pz
+ITEMSHOP_ITEMS_TABLE: account.itemshop_items
+DRSSHOP_ITEMS_TABLE: account.drsshop_items
+OTHERSHOP_ITEMS_TABLE: account.3rdshop_items
+ITEMSHOP_LOGS_TABLE: account.itemshop_logs
+ITEMSHOP_CATEGORY_COUNT: 15
+DRSSHOP_CATEGORY_COUNT: 15
+OTHERSHOP_CATEGORY_COUNT: 15
+ENABLE_ADMIN_PANEL: 1
+ADMIN_PANEL_MEMBERS: Shang
+WHEEL_LIMIT_TIME_SPINS_MINUTES: 5
+WHEEL_LIMIT_SPINS_TIME: 2
+WHEEL_COST_DRS: 0
+WHEEL_COST: 10
+WHEEL_BAD_ITEMS: 41003,41004,41117,41118,41119,41120,41121,41122,41328,41329,41330,41331,41332,41333,41334,41335,41336,41337,41338,41339,41340,41341,41342,41343,41344,41345,41346,41347,41348,41349,41350,41351,41352,41353,41354,41355,41356,41357,41358,41359,41360,41361,41362,41363,41364,41365,41366,41367,41368,41369,41370,41371,41372,41373,41374,41375,41376,41377,41378,41379,41380,41381,41382,41383,41384,41385,41386,41387,41388,41389,41390,41391,41307,41308,41315,41316,45003,45004,45005,45006,45007,45008,45009,45010,45053,45054,45055,45056,45057,45058,45164,45165,45166,27001,27002,27003,27004,27005,27006,27001,27002,27003,27004,27005,27006,27001,27002,27003,27004,27005,27006,27001,27002,27003,27004,27005,27006,18049,18059,18069,18079
+WHEEL_GOOD_ITEMS: 25041,53002,72702,27992,27993,27994,71124,71125,50107,71015
+TXT_NO_COINS_BUY_ITEM: You don't have enough coins to buy this item.
+TXT_NO_DRS_BUY_ITEM: You don't have enough drs to buy this item.
+TXT_NO_3RD_BUY_ITEM: You don't have enough aps to buy this item.
+TXT_NO_COINS_SPIN_WHEEL: You don't have enough coins to spin the wheel.
+TXT_BOUGHT_ITEM_W_AMOUNT: You have bought %dx %s for %d %s!
+TXT_BOUGHT_ITEM_WO_AMOUNT: You have bought %s for %d %s!
+TXT_SUCCESS_ADDED_ITEM: You have added the item successfully!
+TXT_SUCCESS_TIME_CATEGORY: You have added a discount of %d%% during %d seconds to category %d!
+TXT_SUCCESS_TIME_ITEM: You have added a discount of %d%% during %d seconds to the item!
+TXT_COIN_NAME: MD's
+TXT_DRS_NAME: DR's
+TXT_3RD_NAME: AP's
+TXT_NO_MORE_SPINS: You have reached the limit spins of the wheel.
+TXT_WHEEL_WAIT_TIME_W_HOURS: You have to wait %dh and %dm to spin again the wheel.
+TXT_WHEEL_WAIT_TIME_WO_HOURS: You have to wait %dm to spin again the wheel.
+TXT_WHEEL_WAIT_TIME_W_SEC: You have to wait %ds to spint again the wheel.
+TXT_SUCCESS_DELETED_ITEM: You have deleted the item successfully!
+TXT_SUCCESS_CHANGED_ITEM_PRICE: You have changed the price of the item successfully!
+TXT_GLOBAL_NEW_ITEM: There are new items available on itemshop!
+TXT_GLOBAL_DISCOUNT: There are new discounts on some items on the itemshop!
+TXT_GLOBAL_EDITED_PRICE: Some items prices have been changed from the itemshop!
+TXT_NOT_ENOUGH_INVENTORY: You don't have enough inventory to buy the item!

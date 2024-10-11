@@ -1,0 +1,65 @@
+quest itemshop_manager begin
+	state start begin
+		
+		when login begin
+			cmdchat('ITEMSHOP QID#'..q.getcurrentquestindex())
+			cmdchat('ITEMSHOP CLEAR_WHEEL_CONTENT#')
+			itemshop.load_wheel_items()
+			itemshop.load_logs('all')
+		end
+		
+		when button begin
+			cmdchat('ITEMSHOP INPUT#1')
+			local shop = split(input(cmdchat('ITEMSHOP SEND#')), '#')
+			cmdchat('ITEMSHOP INPUT#0')
+			
+			if pc.is_gm() then
+				if shop[1] == 'ADD_ITEM_TIME' then
+					itemshop.admin_add_item_time(tonumber(shop[2]), tonumber(shop[3]), tonumber(shop[4]), tonumber(shop[5]))
+				elseif shop[1] == 'ADD_CATEGORY_TIME' then
+					itemshop.admin_add_category_time(tonumber(shop[2]), tonumber(shop[3]), tonumber(shop[4]), tonumber(shop[5]))
+				elseif shop[1] == 'ADD_ITEM' then
+					local attrs = {{tonumber(shop[4]),tonumber(shop[5])},{tonumber(shop[6]),tonumber(shop[7])},{tonumber(shop[8]),tonumber(shop[9])},{tonumber(shop[10]),tonumber(shop[11])},{tonumber(shop[12]),tonumber(shop[13])},{tonumber(shop[14]),tonumber(shop[15])},{tonumber(shop[16]),tonumber(shop[17])}}
+					local sockets = {tonumber(shop[18]),tonumber(shop[19]),tonumber(shop[20])}
+					itemshop.admin_add_item(tonumber(shop[2]), tonumber(shop[3]), tonumber(shop[21]), attrs, sockets, tonumber(shop[22]))
+				elseif shop[1] == 'DELETE_ITEM' then
+					itemshop.admin_delete_item(shop[2], tonumber(shop[3]))
+				elseif shop[1] == 'CHANGE_PRICE' then
+					itemshop.admin_edit_item_price(shop[2], tonumber(shop[3]), tonumber(shop[4]))
+				end
+			end
+			if shop[1] == 'REQUEST_SPIN_WHEEL' then
+				if pc.getqf('enable_wheel') == 1 then return end
+				itemshop.request_spin_wheel()
+			elseif shop[1] == 'REQUEST_PRIZE_WHEEL' then
+				if pc.getqf('enable_wheel') < 1 then
+					return
+				end
+				pc.give_item2(tonumber(shop[2]), 1)
+				pc.setqf('enable_wheel', 0)
+			elseif shop[1] == 'OPEN_SHOP' then
+				cmdchat('ITEMSHOP CLEAR_CONTENT#')
+				itemshop.get_coins()
+				itemshop.get_3rd()
+				itemshop.create_categorys()
+				itemshop.load_items()
+				itemshop.load_hotoffers()
+				itemshop.load_mostbought()
+				itemshop.open_shop()
+			elseif shop[1] == 'CLOSE_SHOP' then
+				itemshop.close_shop()
+			elseif shop[1] == 'BUY_ITEM' then
+				itemshop.buy_item(shop[2], tonumber(shop[3]), tonumber(shop[4]))
+			elseif shop[1] == 'UPDATE_COINS' then
+				if pc.getqf('update_coins') > get_time() then
+					syschat("Debes esperar "..(pc.getqf('update_coins')-get_time()).."s para volver a recargar las coins.")
+					return
+				end
+				itemshop.get_coins()
+				itemshop.get_3rd()
+				pc.setqf('update_coins', get_time() + 10)
+			end
+		end
+		
+	end
+end
