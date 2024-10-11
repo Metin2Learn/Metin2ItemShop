@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docs.sura-head.dev on sura_head.exe docs</title>
+    <link>https://docs.sura-head.dev/</link>
+    <description>Recent content in docs.sura-head.dev on sura_head.exe docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Sep 2022 17:11:21 +0200</lastBuildDate><atom:link href="https://docs.sura-head.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Serverfiles</title>
+      <link>https://docs.sura-head.dev/serverfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/serverfiles/</guid>
+      <description>Serverfiles What is special about this files?
+Nothing! Everything we did, you can do with enough work, time and effort. Why should you use this files?
+To create your own project on a safe and modern base. To start developing your own systems. What do you get?
+A clean state of the game based on latest v3. Local developing environment. Client, Client-Source, Server-Source, Mysql-Portable, Packer-Source, Dumper-Source. Discount on all our systems and services.</description>
+    </item>
+    <item>
+      <title>Installation</title>
+      <link>https://docs.sura-head.dev/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/installation/</guid>
+      <description>Installation here we will try to get into every basic of setting up your first server</description>
+    </item>
+    <item>
+      <title>Systems</title>
+      <link>https://docs.sura-head.dev/systems/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/</guid>
+      <description>Systems by sura_head </description>
+    </item>
+    <item>
+      <title>Fixes</title>
+      <link>https://docs.sura-head.dev/fixes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/fixes/</guid>
+      <description>Fixes by sura_head </description>
+    </item>
+  </channel>
+</rss>

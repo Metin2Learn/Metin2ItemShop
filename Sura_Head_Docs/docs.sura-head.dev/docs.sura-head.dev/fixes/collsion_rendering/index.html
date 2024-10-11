@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from docs.sura-head.dev/fixes/collsion_rendering/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Dec 2022 17:48:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.104.1">
+    <meta name="generator" content="Relearn 5.2.3+tip">
+    <meta name="description" content="">
+    <title>Collision rendering :: sura_head.exe docs</title>
+    <link href="index.xml" rel="alternate" type="application/rss+xml" title="sura_head.exe docs">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min8069.css?1670088480" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min8069.css?1670088480" rel="stylesheet"></noscript>
+    <link href="../../css/featherlight.min8069.css?1670088480" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min8069.css?1670088480" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete8069.css?1670088480" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete8069.css?1670088480" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min8069.css?1670088480" rel="stylesheet">
+    <link href="../../css/nucleus8069.css?1670088480" rel="stylesheet">
+    <link href="../../css/fonts8069.css?1670088480" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts8069.css?1670088480" rel="stylesheet"></noscript>
+    <link href="../../css/theme8069.css?1670088480" rel="stylesheet">
+    <link href="../../css/theme-blue8069.css?1670088480" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie8069.css?1670088480" rel="stylesheet">
+    <link href="../../css/variant8069.css?1670088480" rel="stylesheet">
+    <link href="../../css/print8069.css?1670088480" rel="stylesheet" media="print">
+    <script src="../../js/variant8069.js?1670088480"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="../../index.json";
+      var root_url="../../index.html";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='index.html\/\/docs.sura-head.dev/';
+      window.variants && variants.init( [ 'blue' ] );
+    </script>
+    <script src="../../js/jquery.min8069.js?1670088480" defer></script><link id="dark-mode-theme" rel="stylesheet" href="../../css/dark.css">
+  </head>
+  <body class="mobile-support html" data-url="/fixes/collsion_rendering/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+             <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
+          </div>
+          <div class="navigation">
+             <a class="nav nav-prev" href="../sectree_memory/index.html" title="SecTree Memory adjustment (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="../../index.html"><span itemprop="name">docs.sura-head.dev</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="../index.html"><span itemprop="name">Fixes</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="index.html" aria-disabled="true"><span itemprop="name">Collision rendering</span></a></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1>Collision rendering</h1>
+
+<p>Hello, today I saw that people are using the old collsion rendering code from ymir and I think its disgusting and useless to be honest. The new method is using wire framed 3d meshes instead of weird circles that look like a psychosis. You enable the collision rendering by opening the console and run the &ldquo;collision&rdquo; command</p>
+<h1 id="before">Before</h1>
+<p><img src="images/before.png" alt="before"></p>
+<h1 id="after">After</h1>
+<p><img src="images/after.png" alt="after"></p>
+<p>this is only in the client source.</p>
+<p><code>GameLib/ActorInstanceRender.cpp</code>
+search for void <code>CActorInstance::RenderCollisionData()</code> and replace whole function with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CActorInstance</span><span class="o">::</span><span class="n">RenderCollisionData</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="n">CScreen</span> <span class="n">screen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXVECTOR3</span> <span class="n">object_center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">sphere_radius</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GetBoundingSphere</span><span class="p">(</span><span class="n">object_center</span><span class="p">,</span> <span class="n">sphere_radius</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//render-box
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="c1">//nice but kinda useless, enable if needed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">isShow</span><span class="p">()</span> <span class="o">?</span> <span class="mi">255</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">isShow</span><span class="p">()</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">255</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">screen</span><span class="p">.</span><span class="n">RenderSphere</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="n">object_center</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="c1">//left - right
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">object_center</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="c1">// front - back
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">object_center</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="c1">// up - down
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">sphere_radius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="n">D3DFILL_WIREFRAME</span>
+</span></span><span class="line"><span class="cl">		<span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//hit-box
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">TCollisionPointInstance</span><span class="o">&amp;</span> <span class="nl">point</span> <span class="p">:</span> <span class="n">m_DefendingPointInstanceList</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">CDynamicSphereInstance</span><span class="o">&amp;</span> <span class="nl">collision</span> <span class="p">:</span> <span class="n">point</span><span class="p">.</span><span class="n">SphereInstanceVector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">			<span class="n">screen</span><span class="p">.</span><span class="n">RenderSphere</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="c1">//left - right
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="c1">// front - back
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="c1">// up - down
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">collision</span><span class="p">.</span><span class="n">fRadius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="n">D3DFILL_WIREFRAME</span>
+</span></span><span class="line"><span class="cl">			<span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//click-box
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">TCollisionPointInstance</span><span class="o">&amp;</span> <span class="nl">point</span> <span class="p">:</span> <span class="n">m_BodyPointInstanceList</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">CDynamicSphereInstance</span><span class="o">&amp;</span> <span class="nl">collision</span> <span class="p">:</span> <span class="n">point</span><span class="p">.</span><span class="n">SphereInstanceVector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">			<span class="n">screen</span><span class="p">.</span><span class="n">RenderSphere</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="c1">//left - right
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="c1">// front - back
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="c1">// up - down
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">collision</span><span class="p">.</span><span class="n">fRadius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="n">D3DFILL_WIREFRAME</span>
+</span></span><span class="line"><span class="cl">			<span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//AoE-Skill-box
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">CDynamicSphereInstance</span><span class="o">&amp;</span> <span class="nl">collision</span> <span class="p">:</span> <span class="n">m_kSplashArea</span><span class="p">.</span><span class="n">SphereInstanceVector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">screen</span><span class="p">.</span><span class="n">RenderSphere</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="c1">//left - right
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="c1">// front - back
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">collision</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="c1">// up - down
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">collision</span><span class="p">.</span><span class="n">fRadius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="n">D3DFILL_WIREFRAME</span>
+</span></span><span class="line"><span class="cl">		<span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>EterLib/GrpScreen.h</code>
+change</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">RenderD3DXMesh</span><span class="p">(</span><span class="n">LPD3DXMESH</span> <span class="n">lpMesh</span><span class="p">,</span> <span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fx</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fy</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fz</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">);</span>
+</span></span></code></pre></div><p>to</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">RenderBox</span><span class="p">(</span><span class="n">D3DXMATRIX</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="n">D3DXVECTOR3</span> <span class="n">size</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span> <span class="o">=</span> <span class="n">D3DFILL_SOLID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">RenderD3DXMesh</span><span class="p">(</span><span class="n">LPD3DXMESH</span> <span class="n">lpMesh</span><span class="p">,</span> <span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">);</span>
+</span></span></code></pre></div><p><code>EterLib/GrpScreen.cpp</code>
+add</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span></span></span></code></pre></div><p>at the top</p>
+<p>change</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CScreen</span><span class="o">::</span><span class="n">RenderD3DXMesh</span><span class="p">(</span><span class="n">LPD3DXMESH</span> <span class="n">lpMesh</span><span class="p">,</span> <span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fx</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fy</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fz</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>to</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CScreen</span><span class="o">::</span><span class="n">RenderD3DXMesh</span><span class="p">(</span><span class="n">LPD3DXMESH</span> <span class="n">lpMesh</span><span class="p">,</span> <span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">matWorld</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CD3DXMeshRenderingOption</span> <span class="nf">SetRenderingOption</span><span class="p">(</span><span class="n">d3dFillMode</span><span class="p">,</span> <span class="o">*</span><span class="n">matWorld</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if DIRECT3D_VERSION &gt;= 0x0900 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="n">LPDIRECT3DINDEXBUFFER9</span> <span class="n">lpIndexBuffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LPDIRECT3DVERTEXBUFFER9</span> <span class="n">lpVertexBuffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetIndexBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lpIndexBuffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetVertexBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lpVertexBuffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetFVF</span><span class="p">(</span><span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetFVF</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="n">LPDIRECT3DINDEXBUFFER8</span> <span class="n">lpIndexBuffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LPDIRECT3DVERTEXBUFFER8</span> <span class="n">lpVertexBuffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetIndexBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lpIndexBuffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetVertexBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lpVertexBuffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetVertexShader</span><span class="p">(</span><span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetFVF</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetIndices</span><span class="p">(</span><span class="n">lpIndexBuffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetStreamSource</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lpVertexBuffer</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">DrawIndexedPrimitive</span><span class="p">(</span><span class="n">D3DPT_TRIANGLELIST</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetNumVertices</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lpMesh</span><span class="o">-&gt;</span><span class="n">GetNumFaces</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>change</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CScreen</span><span class="o">::</span><span class="n">RenderSphere</span><span class="p">(</span><span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fx</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fy</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fz</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>to</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CScreen</span><span class="o">::</span><span class="n">RenderSphere</span><span class="p">(</span><span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fx</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fy</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fz</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">matTranslation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">matScaling</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMatrixTranslation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">matTranslation</span><span class="p">,</span> <span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">fz</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMatrixScaling</span><span class="p">(</span><span class="o">&amp;</span><span class="n">matScaling</span><span class="p">,</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">fRadius</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">matWorld</span> <span class="o">=</span> <span class="n">matScaling</span> <span class="o">*</span> <span class="n">matTranslation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">c_pmatWorld</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">matWorld</span> <span class="o">*=</span> <span class="o">*</span><span class="n">c_pmatWorld</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">RenderD3DXMesh</span><span class="p">(</span><span class="n">ms_lpSphereMesh</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">matWorld</span><span class="p">,</span> <span class="n">d3dFillMode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>change</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CScreen</span><span class="o">::</span><span class="n">RenderCylinder</span><span class="p">(</span><span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fx</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fy</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fz</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fRadius</span><span class="p">,</span> <span class="kt">float</span> <span class="n">height</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span></code></pre></div><p>to</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CScreen</span><span class="o">::</span><span class="n">RenderCylinder</span><span class="p">(</span><span class="k">const</span> <span class="n">D3DXMATRIX</span> <span class="o">*</span> <span class="n">c_pmatWorld</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fx</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fy</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fz</span><span class="p">,</span> <span class="kt">float</span> <span class="n">fRadius</span><span class="p">,</span> <span class="kt">float</span> <span class="n">height</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">matTranslation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">matScaling</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMatrixTranslation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">matTranslation</span><span class="p">,</span> <span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">fz</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMatrixScaling</span><span class="p">(</span><span class="o">&amp;</span><span class="n">matScaling</span><span class="p">,</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">fRadius</span><span class="p">,</span> <span class="n">fRadius</span> <span class="o">+</span> <span class="n">height</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">matWorld</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">matWorld</span> <span class="o">=</span> <span class="n">matScaling</span> <span class="o">*</span> <span class="n">matTranslation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">c_pmatWorld</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">matWorld</span> <span class="o">*=</span> <span class="o">*</span><span class="n">c_pmatWorld</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">RenderD3DXMesh</span><span class="p">(</span><span class="n">ms_lpCylinderMesh</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">matWorld</span><span class="p">,</span> <span class="n">d3dFillMode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CScreen</span><span class="o">::</span><span class="n">RenderBox</span><span class="p">(</span><span class="n">D3DXMATRIX</span> <span class="n">world</span><span class="p">,</span> <span class="n">D3DXVECTOR3</span> <span class="n">size</span><span class="p">,</span> <span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">scale</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//width, height, depth
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">D3DXMatrixScaling</span><span class="p">(</span><span class="o">&amp;</span><span class="n">scale</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">result</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">world</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RenderD3DXMesh</span><span class="p">(</span><span class="n">ms_lpBoxMesh</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">,</span> <span class="n">d3dFillMode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>EterLib/GrpDevice.cpp</code>
+find</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">	<span class="n">D3DXCreateCylinder</span><span class="p">(</span><span class="n">ms_lpd3dDevice</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ms_lpCylinderMesh</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span></code></pre></div><p>add below</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">	<span class="n">D3DXCreateBox</span><span class="p">(</span><span class="n">ms_lpd3dDevice</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ms_lpBoxMesh</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span></code></pre></div><p>find</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">	<span class="n">safe_release</span><span class="p">(</span><span class="n">ms_lpCylinderMesh</span><span class="p">);</span>
+</span></span></code></pre></div><p>add below</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">	<span class="n">safe_release</span><span class="p">(</span><span class="n">ms_lpBoxMesh</span><span class="p">);</span>
+</span></span></code></pre></div><p><code>EterLib/GrpBase.h</code>
+find</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">		<span class="k">static</span> <span class="n">LPD3DXMESH</span>				<span class="n">ms_lpCylinderMesh</span><span class="p">;</span>
+</span></span></code></pre></div><p>add below</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">		<span class="k">static</span> <span class="n">LPD3DXMESH</span>				<span class="n">ms_lpBoxMesh</span><span class="p">;</span>
+</span></span></code></pre></div><p><code>EterLib/GrpBase.cpp</code>
+find</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">LPD3DXMESH</span>				<span class="n">CGraphicBase</span><span class="o">::</span><span class="n">ms_lpCylinderMesh</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span></code></pre></div><p>add below</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">LPD3DXMESH</span>				<span class="n">CGraphicBase</span><span class="o">::</span><span class="n">ms_lpBoxMesh</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span></code></pre></div><p><code>EterLib/CollisionData.h</code>
+find</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">	<span class="n">D3DXVECTOR3</span> <span class="n">v3InsideVector</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span></code></pre></div><p>add below</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">	<span class="n">D3DXVECTOR3</span> <span class="n">size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">D3DXMATRIX</span> <span class="n">trans</span><span class="p">;</span>
+</span></span></code></pre></div><p>find every</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">D3DFILL_SOLID</span>
+</span></span></code></pre></div><p>inside the <code>EterLib/CollisionData.h</code> file and replace with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">D3DFILL_WIREFRAME</span>
+</span></span></code></pre></div><p><code>EterLib/CollisionData.cpp</code>
+find</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">				<span class="n">D3DXVec3Cross</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PlaneData</span><span class="p">.</span><span class="n">v3InsideVector</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">PlaneData</span><span class="p">.</span><span class="n">v3Normal</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v3Line3</span><span class="p">);</span>
+</span></span></code></pre></div><p>add below</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">				<span class="n">PlaneData</span><span class="p">.</span><span class="n">trans</span> <span class="o">=</span> <span class="n">matTransform</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">PlaneData</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">c_pCollisionData</span><span class="o">-&gt;</span><span class="n">fDimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="n">PlaneData</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">c_pCollisionData</span><span class="o">-&gt;</span><span class="n">fDimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span></span></code></pre></div><p>find</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CSphereCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span></code></pre></div><p>and replace with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CSphereCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="n">CScreen</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s</span><span class="p">.</span><span class="n">RenderSphere</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">fRadius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">d3dFillMode</span>
+</span></span><span class="line"><span class="cl">	<span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CPlaneCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span></code></pre></div><p>and replace with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CPlaneCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="n">CScreen</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">255</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s</span><span class="p">.</span><span class="n">RenderBox</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">trans</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">size</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">D3DFILL_WIREFRAME</span>
+</span></span><span class="line"><span class="cl">	<span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CCylinderCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span></code></pre></div><p>and replace with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CCylinderCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="n">CScreen</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s</span><span class="p">.</span><span class="n">RenderCylinder</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Position</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">fRadius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">fHeight</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">d3dFillMode</span>
+</span></span><span class="line"><span class="cl">	<span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CAABBCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span></code></pre></div><p>and replace with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CAABBCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="n">CScreen</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">255</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s</span><span class="p">.</span><span class="n">RenderCube</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Max</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Max</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Max</span><span class="p">.</span><span class="n">z</span>
+</span></span><span class="line"><span class="cl">	<span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">COBBCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span></code></pre></div><p>and replace with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">COBBCollisionInstance</span><span class="o">::</span><span class="n">Render</span><span class="p">(</span><span class="n">D3DFILLMODE</span> <span class="n">d3dFillMode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="n">CScreen</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">STATEMANAGER</span><span class="p">.</span><span class="n">SetRenderState</span><span class="p">(</span><span class="n">D3DRS_TEXTUREFACTOR</span><span class="p">,</span> <span class="n">D3DCOLOR_XRGB</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">50</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s</span><span class="p">.</span><span class="n">RenderCube</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Max</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Max</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">v3Max</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_attribute</span><span class="p">.</span><span class="n">matRot</span>
+</span></span><span class="line"><span class="cl">	<span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a href="../../index.html"><h4>sura-head</h4></a>
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete8069.js?1670088480" defer></script>
+        <script src="../../js/lunr.min8069.js?1670088480" defer></script>
+        <script src="../../js/lunr.stemmer.support.min8069.js?1670088480" defer></script>
+        <script src="../../js/lunr.multi.min8069.js?1670088480" defer></script>
+        <script src="../../js/lunr.en.min8069.js?1670088480" defer></script>
+        <script src="../../js/search8069.js?1670088480" defer></script>
+      </div>
+      <div id="homelinks" class="default-animation">
+        <ul>
+          <li>
+              <a class="padding" href="../../index.html"><i class="fas fa-home"></i> Home</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics collapsible-menu">
+          <li data-nav-id="/serverfiles/" title="Serverfiles" class="dd-item"><a href="../../serverfiles/index.html">Serverfiles</a></li>
+          <li data-nav-id="/installation/" title="Installation" class="dd-item"><input type="checkbox" id="section-07cca5796d23f5bae96340e1eaa52bc5" class="toggle"/><label for="section-07cca5796d23f5bae96340e1eaa52bc5" ></label><a href="../../installation/index.html">Installation</a><ul>
+          <li data-nav-id="/installation/freebsd/" title="FreeBSD" class="dd-item"><a href="../../installation/freebsd/index.html">FreeBSD</a></li>
+          <li data-nav-id="/installation/ssh/" title="SSH" class="dd-item"><a href="../../installation/ssh/index.html">SSH</a></li>
+          <li data-nav-id="/installation/mysql/" title="MySQL" class="dd-item"><a href="../../installation/mysql/index.html">MySQL</a></li>
+          <li data-nav-id="/installation/netdata/" title="Netdata" class="dd-item"><a href="../../installation/netdata/index.html">Netdata</a></li></ul></li>
+          <li data-nav-id="/systems/" title="Systems" class="dd-item"><input type="checkbox" id="section-8032065834bbbd2a3e51cab841014698" class="toggle"/><label for="section-8032065834bbbd2a3e51cab841014698" ></label><a href="../../systems/index.html">Systems</a><ul>
+          <li data-nav-id="/systems/itemshop/" title="Itemshop" class="dd-item"><input type="checkbox" id="section-bbb7ab6baa853f143816058e1337ac6e" class="toggle"/><label for="section-bbb7ab6baa853f143816058e1337ac6e" ></label><a href="../../systems/itemshop/index.html">Itemshop</a><ul>
+          <li data-nav-id="/systems/itemshop/installation/" title="Installation" class="dd-item"><input type="checkbox" id="section-b371428a3419ef49c362d7ae7d67ec4c" class="toggle"/><label for="section-b371428a3419ef49c362d7ae7d67ec4c" ></label><a href="../../systems/itemshop/installation/index.html">Installation</a><ul>
+          <li data-nav-id="/systems/itemshop/installation/server/" title="Server" class="dd-item"><input type="checkbox" id="section-970d61e88b8846bf1033cf2b67d8d6b0" class="toggle"/><label for="section-970d61e88b8846bf1033cf2b67d8d6b0" ></label><a href="../../systems/itemshop/installation/server/index.html">Server</a><ul>
+          <li data-nav-id="/systems/itemshop/installation/server/common/" title="Common" class="dd-item"><a href="../../systems/itemshop/installation/server/common/index.html">Common</a></li>
+          <li data-nav-id="/systems/itemshop/installation/server/db/" title="DB" class="dd-item"><a href="../../systems/itemshop/installation/server/db/index.html">DB</a></li>
+          <li data-nav-id="/systems/itemshop/installation/server/game/" title="Game" class="dd-item"><a href="../../systems/itemshop/installation/server/game/index.html">Game</a></li>
+          <li data-nav-id="/systems/itemshop/installation/server/database/" title="Database" class="dd-item"><a href="../../systems/itemshop/installation/server/database/index.html">Database</a></li></ul></li>
+          <li data-nav-id="/systems/itemshop/installation/binary/" title="Binary" class="dd-item"><input type="checkbox" id="section-40904d5245286687a253a77be5db0ea7" class="toggle"/><label for="section-40904d5245286687a253a77be5db0ea7" ></label><a href="../../systems/itemshop/installation/binary/index.html">Binary</a><ul>
+          <li data-nav-id="/systems/itemshop/installation/binary/eterpythonlib/" title="EterPythonLib" class="dd-item"><a href="../../systems/itemshop/installation/binary/eterpythonlib/index.html">EterPythonLib</a></li>
+          <li data-nav-id="/systems/itemshop/installation/binary/userinterface/" title="UserInterface" class="dd-item"><a href="../../systems/itemshop/installation/binary/userinterface/index.html">UserInterface</a></li>
+          <li data-nav-id="/systems/itemshop/installation/binary/client/" title="Client" class="dd-item"><a href="../../systems/itemshop/installation/binary/client/index.html">Client</a></li></ul></li></ul></li>
+          <li data-nav-id="/systems/itemshop/errors/" title="Possible errors and fixes" class="dd-item"><a href="../../systems/itemshop/errors/index.html">Possible errors and fixes</a></li>
+          <li data-nav-id="/systems/itemshop/guides/" title="Guides" class="dd-item"><a href="../../systems/itemshop/guides/index.html">Guides</a></li>
+          <li data-nav-id="/systems/itemshop/howto/" title="HowTo Addons" class="dd-item"><a href="../../systems/itemshop/howto/index.html">HowTo Addons</a></li>
+          <li data-nav-id="/systems/itemshop/mysql/" title="Mysql-Tables" class="dd-item"><a href="../../systems/itemshop/mysql/index.html">Mysql-Tables</a></li></ul></li></ul></li>
+          <li data-nav-id="/fixes/" title="Fixes" class="dd-item parent"><input type="checkbox" id="section-abc5759ee155c22affa71e4aa9f79a1a" class="toggle" checked/><label for="section-abc5759ee155c22affa71e4aa9f79a1a" ></label><a href="../index.html">Fixes</a><ul>
+          <li data-nav-id="/fixes/invalid_player_id/" title="DoS vulnerability (invalid player id spam)" class="dd-item"><a href="../invalid_player_id/index.html">DoS vulnerability (invalid player id spam)</a></li>
+          <li data-nav-id="/fixes/sectree_memory/" title="SecTree Memory adjustment" class="dd-item"><a href="../sectree_memory/index.html">SecTree Memory adjustment</a></li>
+          <li data-nav-id="/fixes/collsion_rendering/" title="Collision rendering" class="dd-item active"><a href="index.html">Collision rendering</a></li></ul></li>
+        </ul>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="blue" value="blue" selected>Blue</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter"><center>
+    <a href="https://discord.gg/sura-head"><i class="fas fa-heart"></i>Join our discord</a>
+</center>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min8069.js?1670088480" defer></script>
+    <script src="../../js/perfect-scrollbar.min8069.js?1670088480" defer></script>
+    <script src="../../js/featherlight.min8069.js?1670088480" defer></script>
+    <script src="../../js/theme8069.js?1670088480" defer></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"773e226d4b9dd2d1","version":"2022.11.3","r":1,"token":"a7c91de8d0ad498fbb5c0483e3f90c9c","si":100}' crossorigin="anonymous"></script>
+</body>
+
+<!-- Mirrored from docs.sura-head.dev/fixes/collsion_rendering/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Dec 2022 17:49:00 GMT -->
+</html>

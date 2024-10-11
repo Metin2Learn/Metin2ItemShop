@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Binary on sura_head.exe docs</title>
+    <link>https://docs.sura-head.dev/systems/itemshop/installation/binary/</link>
+    <description>Recent content in Binary on sura_head.exe docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://docs.sura-head.dev/systems/itemshop/installation/binary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EterPythonLib</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/binary/eterpythonlib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/binary/eterpythonlib/</guid>
+      <description>1. PythonWindowManagerModule.cpp Search:
+void initwndMgr() Add above:
+#ifdef ENABLE_ITEMSHOP PyObject* wndImageResetFrame(PyObject* poSelf, PyObject* poArgs) { UI::CWindow* pWindow; if (!PyTuple_GetWindow(poArgs, 0, &amp;amp;pWindow)) return Py_BuildException(); ((UI::CAniImageBox*)pWindow)-&amp;gt;ResetFrame(); return Py_BuildNone(); } #endif Search:
+void initwndMgr() { static PyMethodDef s_methods[] = { Add:
+#ifdef ENABLE_ITEMSHOP { &amp;#34;ResetFrame&amp;#34;,	wndImageResetFrame,	METH_VARARGS }, #endif </description>
+    </item>
+    <item>
+      <title>UserInterface</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/binary/userinterface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/binary/userinterface/</guid>
+      <description>1. defines.h Add:
+#define ENABLE_ITEMSHOP 2. Packet.h Search:
+HEADER_CG_TIME_SYNC	= 0xfc, HEADER_CG_PONG	= 0xfe, Add above:
+#ifdef ENABLE_ITEMSHOP HEADER_CG_BUY_ITEMSHOP_ITEM	= 240, HEADER_CG_PROMOTION	= 241, #endif Search:
+HEADER_GC_HANDSHAKE_OK	= 0xfc, HEADER_GC_PHASE	= 0xfd, Add above:
+#ifdef ENABLE_ITEMSHOP HEADER_GC_ITEMSHOP	= 240, #endif Add to end of file above #pragma pack(pop):
+#ifdef ENABLE_ITEMSHOP enum { ITEMSHOP_CATEGORY_MAX_LEN = 24, ITEMSHOP_ICON_MAX_LEN = 24, ITEMSHOP_HASH_MAX_LEN = 32, PROMOTION_CODE_MAX_LEN = 48, }; typedef struct SItemshopCategoryInfo { char	category[ITEMSHOP_CATEGORY_MAX_LEN + 1]; char	icon[ITEMSHOP_ICON_MAX_LEN + 1]; }TItemshopCategoryInfo; typedef struct SPacketGCitemshopCategorySize { DWORD size; } TPacketGCitemshopCategorySize; typedef struct SPacketGCItemshopItemSize { DWORD size; } TPacketGCItemshopItemSize; typedef struct SPacketGCItemshopInfo { BYTE header; DWORD subheader; } TPacketGCItemshopInfo; enum { SUBHEADER_ITEMSHOP_REFRESH_ITEMS, SUBHEADER_ITEMSHOP_REFRESH_COINS, SUBHEADER_ITEMSHOP_REFRESH_SINGLE_ITEM, SUBHEADER_ITEMSHOP_REMOVE_SINGLE_ITEM, SUBHEADER_ITEMSHOP_ADD_SINGLE_ITEM, SUBHEADER_PROMOTION_CODE_REWARDS, }; typedef struct SItemshopItemTable { char	hash[ITEMSHOP_HASH_MAX_LEN + 1]; unsigned long long	ullPrice; BYTE	byDiscountPercent; long long	llLimitCount; BYTE	byCategory; DWORD	dwVnum; WORD	wCount; time_t	end_time; long	alSockets[ITEM_SOCKET_SLOT_MAX_NUM]; TPlayerItemAttribute	aAttr[ITEM_ATTRIBUTE_SLOT_MAX_NUM]; BYTE	weight; } TItemshopItemTable; typedef struct SPromotionItemTable { DWORD	dwVnum; WORD	wCount; long	alSockets[ITEM_SOCKET_SLOT_MAX_NUM]; TPlayerItemAttribute	aAttr[ITEM_ATTRIBUTE_SLOT_MAX_NUM]; } TPromotionItemTable; typedef struct SPacketCGBuyItemshopItem { BYTE	header; char	hash[ITEMSHOP_HASH_MAX_LEN + 1]; WORD	wCount; } TPacketCGBuyItemshopItem; typedef struct SPacketCGRedeemPromotionCode { BYTE	header; char	promotion_code[PROMOTION_CODE_MAX_LEN + 1]; } TPacketCGRedeemPromotionCode; #endif 3.</description>
+    </item>
+    <item>
+      <title>Client</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/binary/client/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/binary/client/</guid>
+      <description>1. Download ETC images Download: ETC images
+Unpack into Client/pack 2. Download banner &amp;amp; icon images Download: banner &amp;amp; icon images
+Unpack into Client/pack/root/ 3. constinfo.py Add:
+if app.ENABLE_ITEMSHOP: ITEMSHOP_INFOS = [] PROMOTION_CODE_REWARDS = [] 4. game.py Search:
+onPressKeyDict[app.DIK_LALT]	= lambda : self.ShowName() Add:
+if app.ENABLE_ITEMSHOP: onPressKeyDict[app.DIK_F9]	= lambda : self.interface.ToggleItemshop() Add to end of file:
+if app.ENABLE_ITEMSHOP: def BINARY_UPDATE_ITEMSHOP_ITEMS(self, obj): constInfo.ITEMSHOP_INFOS = obj self.interface.ReloadItemshop() def BINARY_UPDATE_ITEMSHOP_ITEM(self, obj): self.interface.ReloadItemshopItem(obj) def BINARY_UPDATE_ITEMSHOP_COINS(self, coins): self.</description>
+    </item>
+  </channel>
+</rss>

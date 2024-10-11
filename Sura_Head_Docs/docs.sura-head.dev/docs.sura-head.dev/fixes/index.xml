@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fixes on sura_head.exe docs</title>
+    <link>https://docs.sura-head.dev/fixes/</link>
+    <description>Recent content in Fixes on sura_head.exe docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://docs.sura-head.dev/fixes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DoS vulnerability (invalid player id spam)</title>
+      <link>https://docs.sura-head.dev/fixes/invalid_player_id/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/fixes/invalid_player_id/</guid>
+      <description>This is a fix for a DoS Vulnerability where invalid player ids are spammed (i.e. HEADER_CG_CHARACTER_SELECT), you can confirm this by looking in the syslog for a bunch of [PLAYER_LOAD] Load from PlayerDB pid[0] open input_login.cpp and add above db_clientdesc-&amp;gt;DBPacket(HEADER_GD_PLAYER_LOAD, d-&amp;gt;GetHandle(), &amp;amp;player_load_packet, sizeof(TPlayerLoadPacket)); if (player_load_packet.player_id == 0) { sys_err(&amp;#34;invalid player_id from account %d\n&amp;#34;,c_r.id); d-&amp;gt;DelayedDisconnect(0); return; } it should look like following if (player_load_packet.player_id == 0) { sys_err(&amp;#34;invalid player_id from account %d\n&amp;#34;,c_r.</description>
+    </item>
+    <item>
+      <title>SecTree Memory adjustment</title>
+      <link>https://docs.sura-head.dev/fixes/sectree_memory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/fixes/sectree_memory/</guid>
+      <description>the sectree in metin2 is scary and not even the old korean wizards know what the fuck is happening over there so I took a deep breath and started to change some stuff around. While doing so I found something strange, after around 2.5-5k mobs the ram is exploding and its getting extremely laggy. I noticed that every server-source/game/src/entiy.h -&amp;gt; CEntity has its own
+ENTITY_MAP m_map_view;
+But what is a ENTITY_MAP?</description>
+    </item>
+    <item>
+      <title>Collision rendering</title>
+      <link>https://docs.sura-head.dev/fixes/collsion_rendering/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/fixes/collsion_rendering/</guid>
+      <description>Hello, today I saw that people are using the old collsion rendering code from ymir and I think its disgusting and useless to be honest. The new method is using wire framed 3d meshes instead of weird circles that look like a psychosis. You enable the collision rendering by opening the console and run the &amp;ldquo;collision&amp;rdquo; command
+Before After this is only in the client source.
+GameLib/ActorInstanceRender.cpp search for void CActorInstance::RenderCollisionData() and replace whole function with</description>
+    </item>
+  </channel>
+</rss>

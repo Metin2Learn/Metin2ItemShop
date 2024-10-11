@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation on sura_head.exe docs</title>
+    <link>https://docs.sura-head.dev/installation/</link>
+    <description>Recent content in Installation on sura_head.exe docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://docs.sura-head.dev/installation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FreeBSD</title>
+      <link>https://docs.sura-head.dev/installation/freebsd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/installation/freebsd/</guid>
+      <description>In this example we will be using FreeBSD-12.3-RELEASE-amd64-dvd1.iso once you booted off the iso select Install Confirm the default keymap selection with enter Set your hostname Leave the default settings and confirm again with enter In a single disk setup use Auto (UFS) in a mutlidisk setup Auto (ZFS) with mirror for redundancy Confirm &amp;ldquo;Entire Disk&amp;rdquo; with Enter Select &amp;ldquo;MBR&amp;rdquo; Confirm &amp;ldquo;Finish&amp;rdquo; with Enter Confirm &amp;ldquo;Commit&amp;rdquo; Wait for the unpacking to finish Type a secure password Confirm your password Select your network interface select &amp;ldquo;Yes&amp;rdquo; to configure IPv4 Select &amp;ldquo;No&amp;rdquo; to configure it manually Set your IP address and confirm with &amp;ldquo;OK&amp;rdquo; Select &amp;ldquo;No&amp;rdquo; to disable IPv6 Set IPv4 DNS #1 to 9.</description>
+    </item>
+    <item>
+      <title>SSH</title>
+      <link>https://docs.sura-head.dev/installation/ssh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/installation/ssh/</guid>
+      <description>creating a ssh key ssh-keygen -t rsa -C &amp;#34;my server&amp;#34; set a path where it should save confirm 2 times with enter so no password is set the key is now generated connect to your server using your normal password ssh root@myip create the .ssh folder mkdir ~/.ssh open ~/.ssh/authorized_keys using nano nano ~/.ssh/authorized_keys copy your public key from the .pub file (in this example my-server.pub) and paste it into the ssh session close nano by pressing ctrl + X confirm with Y confirm with Enter open the sshd (ssh deamon) config file using nano nano /etc/ssh/sshd_config enabling using ssh key by removing the # Infront of PubkeyAuthentication yes before:</description>
+    </item>
+    <item>
+      <title>MySQL</title>
+      <link>https://docs.sura-head.dev/installation/mysql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/installation/mysql/</guid>
+      <description>installing sql server over pkg pkg install mysql56-server </description>
+    </item>
+    <item>
+      <title>Netdata</title>
+      <link>https://docs.sura-head.dev/installation/netdata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/installation/netdata/</guid>
+      <description>install netdata pkg install netdata set the rc.conf to enable netdata sysrc netdata_enable=&amp;#34;YES&amp;#34; start netdata service netdata start open netdata.conf nano /usr/local/etc/netdata/netdata.conf replace 127.0.0.1 with 0.0.0.0 before:
+bind to = 127.0.0.1 after:
+bind to = 0.0.0.0 Close nano with ctrl + X and confirm with ctrl + Y open cloud.conf nano /var/db/netdata/cloud.d/cloud.conf paste following content to disable the cloud services [global] enabled = no Close nano with ctrl + X and confirm with ctrl + Y restart netdata service netdata restart netdata is now accessable via http://yourip:19999/ </description>
+    </item>
+  </channel>
+</rss>

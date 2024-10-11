@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Itemshop on sura_head.exe docs</title>
+    <link>https://docs.sura-head.dev/systems/itemshop/</link>
+    <description>Recent content in Itemshop on sura_head.exe docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://docs.sura-head.dev/systems/itemshop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installation</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/</guid>
+      <description>Anything you need to use the itemshop C++17 needed!
+https://metin2.dev/topic/27990-tut-c17-client-side/
+Pro-Tip: You can use the copy-icon to copy code-blocks :)</description>
+    </item>
+    <item>
+      <title>Possible errors and fixes</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/errors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/errors/</guid>
+      <description>error: &amp;lsquo;MAX_ITEM_STACK&amp;rsquo; was not declared in this scope Explaination:
+MAX_ITEM_STACK -&amp;gt; Is the max stack on your server also known as ITEM_MAX_COUNT Fix:
+#define MAX_ITEM_STACK 200 or
+replace MAX_ITEM_STACK with your max stack define error: uiitemshop.py banner &amp;amp; custom icons not visible Fix:
+Change path in uiitemshop.py from root/itemshop to itemshop/ error: Disconnect on buyitem or promotioncode redeem Fix:
+Check your headers in packet.h error: Auth-crash after &amp;lsquo;/reload i&amp;rsquo; command Fix:</description>
+    </item>
+    <item>
+      <title>Guides</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/guides/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/guides/</guid>
+      <description>Coming soon&amp;hellip; </description>
+    </item>
+    <item>
+      <title>HowTo Addons</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/howto/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/howto/</guid>
+      <description>In this example we explain howto add addons Open root/uiitemshop.py Add a new page and increase PAGE_MAX_NUM Add the new page to ITEMSHOP_INFO[&amp;lsquo;pages&amp;rsquo;] More explained if addon is released </description>
+    </item>
+    <item>
+      <title>Mysql-Tables</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/mysql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/mysql/</guid>
+      <description>Mysql-Table explanations itemshop_categories category_index:
+int -&amp;gt; Just because unique categorie index / also works as reverse &amp;ldquo;weight&amp;rdquo; -&amp;gt; lower = top category_name:
+String -&amp;gt; Name of category Note: You can add categories to uiitemshop.py -&amp;gt; ITEMSHOP_INFO and translate like: &#39;categories&#39; : { &#39;WEAPON&#39; : localeInfo.ITEMSHOP_WEAPON, } category_icon:
+String -&amp;gt; vnum of item or icon name with type Example: ice.png (root/itemshop/icons) or 71171 category_state:
+Enum -&amp;gt; in this case used as bool Enables category &amp;amp; items itemshop_items vnum Itemvnum count Itemcount price Itemprice discountPercent discount 0 - 100% limitCount Disabled/Unlimited = -1 Out of order = 0 Count left =&amp;gt; 0 startTime Time item will be buyable endTime Time item will stop being buyable weight works as reverse &amp;ldquo;weight&amp;rdquo; -&amp;gt; lower = top socket For realtime or on wear events just add the number in seconds to socket0 else it will use default value attr No explaination needed promotion_codes index unique index to pair rewards to code promotion_code Code defined for index Note: You can also combine codes Test123 with count 10 and Test123 with count 20 will both count until 0 state Enables / Disables code useCount Redeems left promotion_redeemed log-table &amp;amp; &amp;ldquo;already redeemed&amp;rdquo; source promotion_rewards code_index unique index from promotion_codes table vnum itemvnum count itemcount </description>
+    </item>
+  </channel>
+</rss>

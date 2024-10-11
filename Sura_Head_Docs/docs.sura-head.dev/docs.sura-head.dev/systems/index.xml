@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Systems on sura_head.exe docs</title>
+    <link>https://docs.sura-head.dev/systems/</link>
+    <description>Recent content in Systems on sura_head.exe docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://docs.sura-head.dev/systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Itemshop</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/</guid>
+      <description>Itemshop by CYN3 </description>
+    </item>
+  </channel>
+</rss>

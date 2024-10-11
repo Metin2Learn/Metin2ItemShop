@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Server on sura_head.exe docs</title>
+    <link>https://docs.sura-head.dev/systems/itemshop/installation/server/</link>
+    <description>Recent content in Server on sura_head.exe docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://docs.sura-head.dev/systems/itemshop/installation/server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Common</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/server/common/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/server/common/</guid>
+      <description>1. service.h / CommonDefines.h Add:
+#define ENABLE_ITEMSHOP 2. length.h Add:
+#ifdef ENABLE_ITEMSHOP enum { ITEMSHOP_CATEGORY_MAX_LEN = 24, ITEMSHOP_ICON_MAX_LEN = 24, ITEMSHOP_HASH_MAX_LEN = 32, PROMOTION_CODE_MAX_LEN = 48, }; #endif 3. tables.h Search:
+HEADER_GD_SETUP	= 0xff, Add above:
+#ifdef ENABLE_ITEMSHOP HEADER_GD_RELOAD_ITEMSHOP = 200, HEADER_GD_BUY_ITEMSHOP = 201, HEADER_GD_PROMOTION_REDEEM = 202, #endif Search:
+HEADER_DG_MAP_LOCATIONS	= 0xfe, Add above:
+#ifdef ENABLE_ITEMSHOP HEADER_DG_RELOAD_ITEMSHOP = 192, HEADER_DG_BUY_ITEMSHOP_ITEM = 193, HEADER_DG_REFRESH_ITEMSHOP_SINGLE_ITEM = 194, HEADER_DG_REMOVE_ITEMSHOP_SINGLE_ITEM = 195, HEADER_DG_ADD_ITEMSHOP_SINGLE_ITEM = 196, HEADER_DG_PROMOTION_CODE_REDEEM = 197, #endif Add to end of file above #pragma pack():</description>
+    </item>
+    <item>
+      <title>DB</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/server/db/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/server/db/</guid>
+      <description>1. ClientManager.cpp Search:
+CClientManager::CClientManager() : m_pkAuthPeer(NULL), m_iPlayerIDStart(0), m_iPlayerDeleteLevelLimit(0), m_iPlayerDeleteLevelLimitLower(0), m_iShopTableSize(0), m_pShopTable(NULL), m_iRefineTableSize(0), m_pRefineTable(NULL), Add:
+#ifdef ENABLE_ITEMSHOP m_iItemshopTableCategorySize(0), m_pItemshopTableCategories(NULL), m_iItemshopTableItemSize(0), m_pItemshopTableItems(NULL), #endif Search:
+memset(g_query_count, 0, sizeof(g_query_count)); Add:
+#ifdef ENABLE_ITEMSHOP m_map_ItemshopLimitCountFlush.clear(); m_vec_usedSeeds.clear(); m_ItemshopItems.clear(); #endif Search:
+if (!InitializeTables()) { sys_err(&amp;#34;Table Initialize FAILED&amp;#34;); return false; } Add:
+#ifdef ENABLE_ITEMSHOP if (!InitializePromotionCodes()) { sys_err(&amp;#34;InitializePromotionCodes FAILED&amp;#34;); return false; } if (!InitializeRedeemedPromotionCodes()) { sys_err(&amp;#34;InitializeRedeemedPromotionCodes FAILED&amp;#34;); return false; } if (!InitializeItemshopSpecialOffers()) { sys_err(&amp;#34;InitializeItemshopSpecialOffers FAILED&amp;#34;); return false; } if (!</description>
+    </item>
+    <item>
+      <title>Game</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/server/game/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/server/game/</guid>
+      <description>1. char.cpp Add:
+#ifdef ENABLE_ITEMSHOP #include &amp;#34;itemshop.h&amp;#34; #endif Search:
+void CHARACTER::Initialize() Add to the end of this function:
+#ifdef ENABLE_ITEMSHOP m_iItemshopCooldownTime = 0; m_iPromotionCodeCooldownTime = 0; #endif Add to end of file:
+#ifdef ENABLE_ITEMSHOP void CHARACTER::SendPromotionRewardPacket(BYTE byAnswer, std::vector&amp;lt;TPromotionItemTable&amp;gt; items) { TEMP_BUFFER buf; TPacketGCItemshopInfo itemshop_info; itemshop_info.header = HEADER_GC_ITEMSHOP; itemshop_info.subheader = SUBHEADER_PROMOTION_CODE_REWARDS; buf.write(&amp;amp;itemshop_info, sizeof(TPacketGCItemshopInfo)); buf.write(&amp;amp;byAnswer, sizeof(BYTE)); size_t size = items.size(); buf.write(&amp;amp;size, sizeof(size_t)); buf.write(items.data(), sizeof(TPromotionItemTable) * size); GetDesc()-&amp;gt;Packet(buf.read_peek(), buf.size()); } void CHARACTER::SendItemshopSingleItemRefreshPacket(TItemshopItemTable* item) { TEMP_BUFFER buf; TPacketGCItemshopInfo itemshop_info; itemshop_info.</description>
+    </item>
+    <item>
+      <title>Database</title>
+      <link>https://docs.sura-head.dev/systems/itemshop/installation/server/database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://docs.sura-head.dev/systems/itemshop/installation/server/database/</guid>
+      <description>db/conf.txt Search:
+SQL_COMMON = [...] Add and adjust with username &amp;amp; pass:
+SQL_ITEMSHOP = &amp;#34;localhost itemshop root admin 0&amp;#34; Mysql Note: Add socket3, socket4, socket5 if needed
+Create &amp;lsquo;itemshop&amp;rsquo; database and execute:
+SET NAMES utf8mb4; SET FOREIGN_KEY_CHECKS = 0; -- ---------------------------- -- Table structure for itemshop_categories -- ---------------------------- DROP TABLE IF EXISTS `itemshop_categories`; CREATE TABLE `itemshop_categories` ( `category_index` int(11) UNSIGNED NOT NULL DEFAULT 0, `category_name` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NULL DEFAULT &amp;#39;NONAME&amp;#39;, `category_icon` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NULL DEFAULT &amp;#39;71171&amp;#39;, `category_state` enum(&amp;#39;DISABLED&amp;#39;,&amp;#39;ENABLED&amp;#39;) CHARACTER SET latin1 COLLATE latin1_general_ci NULL DEFAULT &amp;#39;DISABLED&amp;#39;, PRIMARY KEY (`category_index`) USING BTREE, INDEX `category`(`category_index`) USING BTREE, INDEX `name`(`category_name`) USING BTREE ) ENGINE = MyISAM CHARACTER SET = latin1 COLLATE = latin1_general_ci ROW_FORMAT = Dynamic; -- ---------------------------- -- Records of itemshop_categories -- ---------------------------- INSERT INTO `itemshop_categories` VALUES (1, &amp;#39;First&amp;#39;, &amp;#39;bag.</description>
+    </item>
+  </channel>
+</rss>
