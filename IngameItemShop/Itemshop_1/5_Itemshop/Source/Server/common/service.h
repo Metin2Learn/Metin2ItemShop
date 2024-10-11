@@ -1,0 +1,2 @@
+//add
+#define ENABLE_INGAME_ITEMSHOP
