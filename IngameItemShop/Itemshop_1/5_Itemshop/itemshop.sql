@@ -32,7 +32,7 @@ CREATE TABLE `itemshop` (
   `limitedTime` datetime NOT NULL DEFAULT '2050-09-26 14:28:42',
   `limitedCount` int(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of itemshop
@@ -137,7 +137,7 @@ CREATE TABLE `itemshop_categories` (
   `main_category` int(10) NOT NULL,
   `color` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of itemshop_categories
